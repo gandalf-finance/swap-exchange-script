@@ -162,4 +162,8 @@
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.Guids.dll
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.ObjectMapping.dll
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.Specifications.dll
-/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.csproj.CopyComplete
+/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Humanizer.dll
+/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.Design.dll
+/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.AuditLogging.Domain.dll
+/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.AuditLogging.Domain.Shared.dll
+/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/Volo.Abp.AuditLogging.EntityFrameworkCore.dll

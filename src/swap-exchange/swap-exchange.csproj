@@ -26,8 +26,17 @@
         <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
         <PackageReference Include="AElf.Client" Version="1.1.0" />
         <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.3" />
+        <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.4.3" />
     </ItemGroup>
 
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.16">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+            <PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+    
     <ItemGroup>
         <Content Include="appsettings.json">
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

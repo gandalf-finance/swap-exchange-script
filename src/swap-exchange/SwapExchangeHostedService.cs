@@ -6,13 +6,13 @@ using Volo.Abp;
 
 namespace SwapExchange
 {
-    public class PrjHostedService : IHostedService
+    public class SwapExchangeHostedService : IHostedService
     {
         private readonly IAbpApplicationWithExternalServiceProvider _application;
         private readonly IServiceProvider _serviceProvider;
         private readonly HelloWorldService _helloWorldService;
 
-        public PrjHostedService(
+        public SwapExchangeHostedService(
             IAbpApplicationWithExternalServiceProvider application,
             IServiceProvider serviceProvider,
             HelloWorldService helloWorldService)

@@ -496,3 +496,1529 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 2022-04-06 16:18:17.781 +08:00 [INF] 开始执行：04/06/2022 16:18:17
 2022-04-06 16:18:17.907 +08:00 [INF] Application is shutting down...
 2022-04-06 16:18:17.918 +08:00 [DBG] Stopped background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-04-18 16:39:19.827 +08:00 [INF] Starting console host.
+2022-04-18 16:39:20.530 +08:00 [INF] Loaded ABP modules:
+2022-04-18 16:39:20.531 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 16:39:20.531 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 16:39:20.531 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 16:39:20.531 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 16:39:20.531 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 16:39:20.531 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 16:39:20.531 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 16:39:20.531 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 16:39:20.531 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 16:39:20.531 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 16:39:20.531 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 16:39:20.531 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 16:39:20.531 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 16:39:20.531 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 16:39:20.531 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 16:39:20.531 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 16:39:20.531 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 16:39:20.531 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 16:39:20.531 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 16:39:20.531 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 16:39:20.531 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 16:39:20.531 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 16:39:20.573 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 50
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 16:43:40.649 +08:00 [INF] Starting console host.
+2022-04-18 16:43:42.630 +08:00 [INF] Loaded ABP modules:
+2022-04-18 16:43:42.631 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 16:43:42.631 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 16:43:42.631 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 16:43:42.631 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 16:43:42.631 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 16:43:42.631 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 16:43:42.631 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 16:43:42.631 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 16:43:42.631 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 16:43:42.631 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 16:43:42.631 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 16:43:42.631 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 16:43:42.631 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 16:43:42.631 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 16:43:42.631 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 16:43:42.631 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 16:43:42.631 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 16:43:42.632 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 16:43:42.632 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 16:43:42.632 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 16:43:42.632 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 16:43:42.632 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 16:43:42.632 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 16:43:42.632 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 16:43:51.935 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ScopeSelectionMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 50
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:03:05.822 +08:00 [INF] Starting console host.
+2022-04-18 17:03:06.520 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:03:06.522 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:03:06.522 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:03:06.522 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:03:06.522 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:03:06.522 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:03:06.522 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:03:06.522 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:03:06.522 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:03:06.522 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:03:06.522 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:03:06.522 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:03:06.522 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:03:06.522 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:03:06.522 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:03:06.522 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:03:06.522 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:03:06.522 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:03:06.522 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:03:06.522 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:03:06.522 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:03:06.522 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:03:06.522 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:03:06.554 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:03:43.689 +08:00 [INF] Starting console host.
+2022-04-18 17:03:44.312 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:03:44.313 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:03:44.313 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:03:44.313 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:03:44.313 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:03:44.313 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:03:44.313 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:03:44.313 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:03:44.313 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:03:44.313 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:03:44.313 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:03:44.313 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:03:44.313 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:03:44.313 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:03:44.313 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:03:44.313 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:03:44.313 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:03:44.313 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:03:44.313 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:03:44.313 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:03:44.313 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:03:44.313 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:03:44.313 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:03:44.344 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:04:52.290 +08:00 [INF] Starting console host.
+2022-04-18 17:04:53.025 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:04:53.026 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:04:53.026 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:04:53.026 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:04:53.026 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:04:53.026 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:04:53.026 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:04:53.026 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:04:53.026 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:04:53.026 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:04:53.026 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:04:53.026 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:04:53.026 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:04:53.026 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:04:53.026 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:04:53.026 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:04:53.026 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:04:53.026 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:04:53.026 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:04:53.026 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:04:53.026 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:04:53.026 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:04:53.026 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:04:53.067 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:05:28.985 +08:00 [INF] Starting console host.
+2022-04-18 17:05:29.647 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:05:29.648 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:05:29.648 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:05:29.648 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:05:29.648 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:05:29.648 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:05:29.648 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:05:29.648 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:05:29.648 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:05:29.648 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:05:29.648 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:05:29.648 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:05:29.648 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:05:29.648 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:05:29.648 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:05:29.648 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:05:29.648 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:05:29.648 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:05:29.648 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:05:29.648 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:05:29.648 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:05:29.648 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:05:29.648 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:05:29.685 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:08:09.068 +08:00 [INF] Starting console host.
+2022-04-18 17:08:09.748 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:08:09.749 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:08:09.749 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:08:09.749 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:08:09.749 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:08:09.749 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:08:09.749 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:08:09.749 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:08:09.749 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:08:09.749 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:08:09.749 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:08:09.749 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:08:09.749 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:08:09.749 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:08:09.749 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:08:09.749 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:08:09.749 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:08:09.749 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:08:09.749 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:08:09.749 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:08:09.749 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:08:09.749 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:08:09.749 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:08:09.790 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.PrjHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:12:55.751 +08:00 [INF] Starting console host.
+2022-04-18 17:12:56.620 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:12:56.622 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:12:56.622 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:12:56.622 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:12:56.622 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:12:56.622 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:12:56.622 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:12:56.622 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:12:56.622 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:12:56.622 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:12:56.622 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:12:56.622 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:12:56.622 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:12:56.622 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:12:56.622 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:12:56.622 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:12:56.622 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:12:56.622 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:12:56.622 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:12:56.622 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:12:56.622 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:12:56.622 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:12:56.622 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:12:56.673 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:14:10.202 +08:00 [INF] Starting console host.
+2022-04-18 17:14:10.704 +08:00 [FTL] Host terminated unexpectedly!
+Autofac.Core.Activators.Reflection.NoConstructorsFoundException: No accessible constructors were found for the type 'SwapExchange.Service.Implemention.BookServiceImpl'.
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.GetDefaultPublicConstructors(Type type)
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.FindConstructors(Type targetType)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ConfigurePipeline(IComponentRegistryServices componentRegistryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices)
+   at Autofac.Core.Registration.ComponentRegistryBuilder.Build()
+   at Autofac.ContainerBuilder.Build(ContainerBuildOptions options)
+   at Volo.Abp.Autofac.AbpAutofacServiceProviderFactory.CreateServiceProvider(ContainerBuilder containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:15:11.194 +08:00 [INF] Starting console host.
+2022-04-18 17:15:11.641 +08:00 [FTL] Host terminated unexpectedly!
+Autofac.Core.Activators.Reflection.NoConstructorsFoundException: No accessible constructors were found for the type 'SwapExchange.Service.Implemention.BookServiceImpl'.
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.GetDefaultPublicConstructors(Type type)
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.FindConstructors(Type targetType)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ConfigurePipeline(IComponentRegistryServices componentRegistryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices)
+   at Autofac.Core.Registration.ComponentRegistryBuilder.Build()
+   at Autofac.ContainerBuilder.Build(ContainerBuildOptions options)
+   at Volo.Abp.Autofac.AbpAutofacServiceProviderFactory.CreateServiceProvider(ContainerBuilder containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:15:59.972 +08:00 [INF] Starting console host.
+2022-04-18 17:16:00.391 +08:00 [FTL] Host terminated unexpectedly!
+Autofac.Core.Activators.Reflection.NoConstructorsFoundException: No accessible constructors were found for the type 'SwapExchange.Service.Implemention.BookServiceImpl'.
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.GetDefaultPublicConstructors(Type type)
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.FindConstructors(Type targetType)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ConfigurePipeline(IComponentRegistryServices componentRegistryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices)
+   at Autofac.Core.Registration.ComponentRegistryBuilder.Build()
+   at Autofac.ContainerBuilder.Build(ContainerBuildOptions options)
+   at Volo.Abp.Autofac.AbpAutofacServiceProviderFactory.CreateServiceProvider(ContainerBuilder containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:17:51.921 +08:00 [INF] Starting console host.
+2022-04-18 17:17:52.376 +08:00 [FTL] Host terminated unexpectedly!
+Autofac.Core.Activators.Reflection.NoConstructorsFoundException: No accessible constructors were found for the type 'SwapExchange.Service.Implemention.BookServiceImpl'.
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.GetDefaultPublicConstructors(Type type)
+   at Volo.Abp.Autofac.AbpAutofacConstructorFinder.FindConstructors(Type targetType)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ConfigurePipeline(IComponentRegistryServices componentRegistryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices, IResolvePipelineBuilder pipelineBuilder)
+   at Autofac.Core.Registration.ComponentRegistration.BuildResolvePipeline(IComponentRegistryServices registryServices)
+   at Autofac.Core.Registration.ComponentRegistryBuilder.Build()
+   at Autofac.ContainerBuilder.Build(ContainerBuildOptions options)
+   at Volo.Abp.Autofac.AbpAutofacServiceProviderFactory.CreateServiceProvider(ContainerBuilder containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.RunConsoleAsync(IHostBuilder hostBuilder, CancellationToken cancellationToken)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:24:11.995 +08:00 [INF] Starting console host.
+2022-04-18 17:24:12.782 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:24:12.784 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:24:12.784 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:24:12.784 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:24:12.784 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:24:12.784 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:24:12.784 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:24:12.784 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:24:12.784 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:24:12.784 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:24:12.784 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:24:12.784 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:24:12.784 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:24:12.784 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:24:12.784 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:24:12.784 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:24:12.784 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:24:12.784 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:24:12.784 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:24:12.784 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:24:12.784 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:24:12.784 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:24:12.784 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:24:12.860 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Service.Implemention.BookServiceImpl' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid] bookRepository' of constructor 'Void .ctor(Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid])'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:24:46.957 +08:00 [INF] Starting console host.
+2022-04-18 17:24:47.618 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:24:47.619 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:24:47.619 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:24:47.619 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:24:47.619 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:24:47.619 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:24:47.619 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:24:47.619 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:24:47.619 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:24:47.619 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:24:47.619 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:24:47.619 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:24:47.619 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:24:47.619 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:24:47.619 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:24:47.619 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:24:47.619 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:24:47.619 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:24:47.619 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:24:47.619 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:24:47.619 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:24:47.619 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:24:47.619 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:24:47.669 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Service.Implemention.BookServiceImpl' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid] bookRepository' of constructor 'Void .ctor(Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid])'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:27:33.654 +08:00 [INF] Starting console host.
+2022-04-18 17:27:34.374 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:27:34.375 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:27:34.375 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:27:34.375 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:27:34.375 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:27:34.375 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:27:34.375 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:27:34.375 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:27:34.375 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:27:34.375 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:27:34.375 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:27:34.375 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:27:34.375 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:27:34.375 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:27:34.375 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:27:34.375 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:27:34.375 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:27:34.376 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:27:34.376 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:27:34.376 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:27:34.376 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:27:34.376 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:27:34.376 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:27:34.376 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:27:34.376 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:27:34.445 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Service.Implemention.BookServiceImpl' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid] _repository' of constructor 'Void .ctor(Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid])'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:31:01.855 +08:00 [INF] Starting console host.
+2022-04-18 17:31:02.530 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:31:02.531 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:31:02.531 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:31:02.531 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:31:02.531 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:31:02.531 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:31:02.531 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:31:02.531 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:31:02.531 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:31:02.531 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:31:02.531 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:31:02.531 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:31:02.531 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:31:02.531 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:31:02.531 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:31:02.531 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:31:02.531 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:31:02.531 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:31:02.531 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:31:02.531 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:31:02.531 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:31:02.531 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:31:02.531 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:31:02.589 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Service.Implemention.BookServiceImpl' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid] _repository' of constructor 'Void .ctor(Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid])'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:37:08.239 +08:00 [INF] Starting console host.
+2022-04-18 17:37:08.911 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:37:08.913 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:37:08.913 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:37:08.913 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:37:08.913 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:37:08.913 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:37:08.913 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:37:08.913 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:37:08.913 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:37:08.913 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:37:08.913 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:37:08.913 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:37:08.913 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:37:08.913 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:37:08.913 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:37:08.913 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:37:08.913 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:37:08.913 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:37:08.913 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:37:08.913 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:37:08.913 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:37:08.913 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:37:08.913 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:37:08.959 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Jobs.SwapExchangeWorker' can be invoked with the available services and parameters:
+Cannot resolve parameter 'SwapExchange.Service.IBookService bookService' of constructor 'Void .ctor(Volo.Abp.Threading.AbpAsyncTimer, Microsoft.Extensions.DependencyInjection.IServiceScopeFactory, Volo.Abp.Caching.IDistributedCache`1[System.String], SwapExchange.Service.IBookService)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:38:13.370 +08:00 [INF] Starting console host.
+2022-04-18 17:38:14.044 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:38:14.046 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:38:14.046 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:38:14.046 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:38:14.046 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:38:14.046 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:38:14.046 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:38:14.046 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:38:14.046 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:38:14.046 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:38:14.046 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:38:14.046 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:38:14.046 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:38:14.046 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:38:14.046 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:38:14.046 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:38:14.046 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:38:14.046 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:38:14.046 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:38:14.046 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:38:14.046 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:38:14.046 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:38:14.046 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:38:14.126 +08:00 [FTL] Host terminated unexpectedly!
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module SwapExchange.SwapExchangeModule, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating SwapExchange.Jobs.SwapExchangeWorker -> SwapExchange.Service.Implemention.BookServiceImpl.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Volo.Abp.Autofac.AbpAutofacConstructorFinder' on type 'SwapExchange.Service.Implemention.BookServiceImpl' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid] _repository' of constructor 'Void .ctor(Volo.Abp.Domain.Repositories.IRepository`2[SwapExchange.Entity.Book,System.Guid])'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Middleware.DelegateMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.RegistrationPipelineInvokeMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Pipeline.ResolvePipeline.Invoke(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetRequiredService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker(ApplicationInitializationContext context, Type workerType)
+   at Volo.Abp.BackgroundWorkers.BackgroundWorkersApplicationInitializationContextExtensions.AddBackgroundWorker[TWorker](ApplicationInitializationContext context)
+   at SwapExchange.SwapExchangeModule.OnApplicationInitialization(ApplicationInitializationContext context) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeModule.cs:line 51
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.Initialize(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModules(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModules()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.Initialize(IServiceProvider serviceProvider)
+   at SwapExchange.SwapExchangeHostedService.StartAsync(CancellationToken cancellationToken) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/SwapExchangeHostedService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at SwapExchange.Program.Main(String[] args) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Program.cs:line 29
+2022-04-18 17:41:12.015 +08:00 [INF] Starting console host.
+2022-04-18 17:41:12.765 +08:00 [INF] Loaded ABP modules:
+2022-04-18 17:41:12.767 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 17:41:12.767 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 17:41:12.767 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 17:41:12.767 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 17:41:12.767 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 17:41:12.767 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 17:41:12.767 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 17:41:12.767 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 17:41:12.767 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 17:41:12.767 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 17:41:12.767 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 17:41:12.767 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 17:41:12.767 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 17:41:12.767 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 17:41:12.767 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 17:41:12.767 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 17:41:12.767 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 17:41:12.767 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 17:41:12.767 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 17:41:12.767 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 17:41:12.767 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 17:41:12.767 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 17:41:12.931 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-04-18 17:41:12.933 +08:00 [INF] Initialized all ABP modules.
+2022-04-18 17:41:12.936 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-18 17:41:12.938 +08:00 [INF] Hosting environment: Production
+2022-04-18 17:41:12.939 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-04-18 17:41:13.941 +08:00 [INF] 开始执行：04/18/2022 17:41:13
+2022-04-18 17:41:19.819 +08:00 [INF] Application is shutting down...
+2022-04-18 17:41:24.239 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 17:41:25.099 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 17:41:25.430 +08:00 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 17:41:25.492 +08:00 [DBG] Stopped background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-04-18 18:22:05.231 +08:00 [INF] Starting console host.
+2022-04-18 18:22:05.975 +08:00 [INF] Loaded ABP modules:
+2022-04-18 18:22:05.977 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-04-18 18:22:05.977 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-04-18 18:22:05.977 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-04-18 18:22:05.977 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-04-18 18:22:05.977 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-04-18 18:22:05.977 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-04-18 18:22:05.977 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-04-18 18:22:05.977 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-04-18 18:22:05.977 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-04-18 18:22:05.977 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-04-18 18:22:05.977 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-04-18 18:22:05.977 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-04-18 18:22:05.977 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-04-18 18:22:05.977 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-04-18 18:22:05.977 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-04-18 18:22:05.977 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-04-18 18:22:05.977 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-04-18 18:22:05.977 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-04-18 18:22:05.977 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-04-18 18:22:05.977 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-04-18 18:22:05.977 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-04-18 18:22:05.977 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-04-18 18:22:06.136 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-04-18 18:22:06.137 +08:00 [INF] Initialized all ABP modules.
+2022-04-18 18:22:06.140 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-18 18:22:06.143 +08:00 [INF] Hosting environment: Production
+2022-04-18 18:22:06.143 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-04-18 18:22:07.142 +08:00 [INF] 开始执行：04/18/2022 18:22:07
+2022-04-18 18:22:17.434 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:18.695 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:19.132 +08:00 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:19.268 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:19.606 +08:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:19.704 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:19.732 +08:00 [INF] Executed DbCommand (4ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:20.714 +08:00 [INF] 开始执行：04/18/2022 18:22:20
+2022-04-18 18:22:20.731 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 13s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 13s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:20.734 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:20.748 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:20.758 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:20.765 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:20.768 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:20.795 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:21.772 +08:00 [INF] 开始执行：04/18/2022 18:22:21
+2022-04-18 18:22:31.888 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 14s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 14s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:31.893 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:31.902 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:31.912 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:31.916 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:31.919 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:31.927 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:32.921 +08:00 [INF] 开始执行：04/18/2022 18:22:32
+2022-04-18 18:22:37.980 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 30s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 30s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:37.984 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:37.993 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:38.002 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:38.006 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:38.008 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:38.016 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:39.013 +08:00 [INF] 开始执行：04/18/2022 18:22:39
+2022-04-18 18:22:44.075 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 36s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 36s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:44.078 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:44.086 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:44.093 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:44.096 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:44.099 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:44.105 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:45.103 +08:00 [INF] 开始执行：04/18/2022 18:22:45
+2022-04-18 18:22:55.216 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 37s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 37s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:55.220 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:55.227 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:55.235 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:55.239 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:55.241 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:55.249 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:56.244 +08:00 [INF] 开始执行：04/18/2022 18:22:56
+2022-04-18 18:22:56.246 +08:00 [WRN] It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 48s ago, v: 2.0.593.37019
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 48s ago, v: 2.0.593.37019
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImplAsync(Object configuration, TextWriter log) in C:\projects\stackexchange-redis\src\StackExchange.Redis\ConnectionMultiplexer.cs:line 823
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(String key, Byte[] value, DistributedCacheEntryOptions options, CancellationToken token)
+   at Volo.Abp.Caching.DistributedCache`2.<>c__DisplayClass51_0.<<SetAsync>g__SetRealCache|0>d.MoveNext()
+2022-04-18 18:22:56.248 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:56.255 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 40), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime), @p6='?' (DbType = Guid), @p7='?' (Size = 4000), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `book` (`Id`, `ConcurrencyStamp`, `CreationTime`, `CreatorId`, `ExtraProperties`, `LastModificationTime`, `LastModifierId`, `Name`, `Price`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2022-04-18 18:22:56.261 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:56.264 +08:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT `b`.`Id`, `b`.`ConcurrencyStamp`, `b`.`CreationTime`, `b`.`CreatorId`, `b`.`ExtraProperties`, `b`.`LastModificationTime`, `b`.`LastModifierId`, `b`.`Name`, `b`.`Price`
+FROM `book` AS `b`
+WHERE `b`.`Id` = @__id_0
+LIMIT 2
+2022-04-18 18:22:56.266 +08:00 [INF] Entity Framework Core 5.0.16 initialized 'SwapExchangeDbContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: QuerySplittingBehavior=SplitQuery ServerVersion 8.0.27-mysql 
+2022-04-18 18:22:56.273 +08:00 [INF] Executed DbCommand (2ms) [Parameters=[@p8='?' (DbType = Guid), @p0='?' (Size = 40), @p9='?' (Size = 40), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime), @p5='?' (DbType = Guid), @p6='?' (Size = 4000), @p7='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+UPDATE `book` SET `ConcurrencyStamp` = @p0, `CreationTime` = @p1, `CreatorId` = @p2, `ExtraProperties` = @p3, `LastModificationTime` = @p4, `LastModifierId` = @p5, `Name` = @p6, `Price` = @p7
+WHERE `Id` = @p8 AND `ConcurrencyStamp` = @p9;
+SELECT ROW_COUNT();
+2022-04-18 18:22:57.272 +08:00 [INF] 开始执行：04/18/2022 18:22:57
+2022-04-18 18:23:01.868 +08:00 [INF] Application is shutting down...

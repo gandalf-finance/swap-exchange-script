@@ -5,7 +5,7 @@ namespace SwapExchange.Entity
 {
     public class Book : AuditedAggregateRoot<Guid>
     {   
-        private string Name { get; set; }
-        private long Price { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace SwapExchange
         {
             var configuration = context.Services.GetConfiguration();
             var hostEnvironment = context.Services.GetSingletonInstance<IHostEnvironment>();
-            context.Services.AddHostedService<PrjHostedService>();
+            context.Services.AddHostedService<SwapExchangeHostedService>();
             
             // Config Mysql
             context.Services.AddAbpDbContext<SwapExchangeDbContext>(builder =>
@@ -40,6 +40,7 @@ namespace SwapExchange
             {
                 options.UseMySQL();
             });
+            
             
         }
         

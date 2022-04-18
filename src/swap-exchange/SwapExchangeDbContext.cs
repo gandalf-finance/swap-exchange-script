@@ -13,16 +13,21 @@ namespace SwapExchange
         public SwapExchangeDbContext(DbContextOptions<SwapExchangeDbContext> options) : base(options)
         {
         }
-
+        
+        public DbSet<Book> Books { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            
+            
             builder.Entity<Book>(b =>
             {
                 b.ToTable(CommonHelper.CoverntEntityNameToDb<Book>());
                 b.ConfigureByConvention();
             });
         }
+
+       
     }
 }
