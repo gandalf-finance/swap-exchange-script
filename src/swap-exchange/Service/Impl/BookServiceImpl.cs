@@ -15,8 +15,7 @@ namespace SwapExchange.Service.Implemention
         {
             _bookRepository = _repository;
         }
-        
-        
+                
         
         public Guid Save()
         {

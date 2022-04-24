@@ -37,10 +37,11 @@ namespace SwapExchange.Jobs
             });
             var Dir = AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine(Dir);
-            var id = _bookService.Save();
-            var book = _bookService.GetById(id);
-            book.Name = "Update:"+DateTime.Now.Date.ToString();
-            _bookService.Update(book);
+            // var id = _bookService.Save();
+            // var book = _bookService.GetById(id);
+            // book.Name = "Update:"+DateTime.Now.Date.ToString();
+            // _bookService.Update(book);
+            
         }
     }
 }

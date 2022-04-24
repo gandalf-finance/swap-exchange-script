@@ -49,8 +49,5 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Constant" />
-    </ItemGroup>
 
 </Project>

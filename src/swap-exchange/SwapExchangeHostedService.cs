@@ -27,7 +27,7 @@ namespace SwapExchange
             _application.Initialize(_serviceProvider);
 
             _helloWorldService.SayHello();
-
+            
             return Task.CompletedTask;
         }
 

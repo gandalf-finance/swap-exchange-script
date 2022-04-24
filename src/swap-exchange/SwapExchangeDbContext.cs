@@ -12,6 +12,7 @@ namespace SwapExchange
     {
         public SwapExchangeDbContext(DbContextOptions<SwapExchangeDbContext> options) : base(options)
         {
+            
         }
         
         public DbSet<Book> Books { get; set; }

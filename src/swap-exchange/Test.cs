@@ -1,9 +1,12 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using QuadraticVote.Application.Service.Extensions;
 using SwapExchange.Entity;
+using SwapExchange.Service.Implemention;
 
 namespace SwapExchange
 {
@@ -29,16 +32,90 @@ namespace SwapExchange
         //     TxtReadWriteHelper.Write(workConfigPathDir,readToEnd);
         // }
 
-        // public static void Main(string[] args)
-        // {
-        //     // var response = HttpClientHelper.GetResponse("https://www.baidu.com/", out string statusCode);
-        //     // var response = HttpClientHelper.PostResponse("https://www.baidu.com/", "null", out string statusCode);
-        //     // Console.WriteLine(statusCode);
-        //     // Console.WriteLine(response.ToString());
-        //
-        //     var coverntEntityNameToDb = CommonHelper.CoverntEntityNameToDb<TokenHandleResult>();
-        //     Console.WriteLine(coverntEntityNameToDb);
-        // }
-       
+        public static void Main(string[] args)
+        {
+            // var response = HttpClientHelper.GetResponse("https://www.baidu.com/", out string statusCode);
+            // var response = HttpClientHelper.PostResponse("https://www.baidu.com/", "null", out string statusCode);
+            // Console.WriteLine(statusCode);
+            // Console.WriteLine(response.ToString());
+
+            // var coverntEntityNameToDb = CommonHelper.CoverntEntityNameToDb<TokenHandleResult>();
+            // Console.WriteLine(coverntEntityNameToDb);
+            // string url =
+            //     "https://test.awaken.finance/api/app/trade-pairs?chainId=1ddac557-9bc6-11ec-a14b-0ee50f750b74&maxResultCount=999&skipCount=0";
+            //
+            // var response = HttpClientHelper.GetResponse(
+            //     url,
+            //     out string statusCode);
+            // Console.WriteLine(statusCode);
+            // var jObject = (JObject) JsonConvert.DeserializeObject(response);
+            // Console.WriteLine(jObject["totalCount"]);
+            // var jToken = (JArray)jObject["items"];
+            // foreach (var token in jToken)
+            // {
+            //     var o = (JObject) token;
+            //     Console.WriteLine("token0:"+o["token0"]);
+            //     Console.WriteLine("token1:"+o["token1"]);                
+            // }
+            // var queryTokenInfo = HttpClientHelper.GetResponse<QueryTokenInfo>(url);
+            // Console.WriteLine(queryTokenInfo);
+
+            // var tokenQueryAndAssembleServiceImpl = new TokenQueryAndAssembleServiceImpl();
+            // var queryTokenList = tokenQueryAndAssembleServiceImpl.QueryTokenList();
+            // Console.WriteLine(queryTokenList);
+
+            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var random = new Random();
+            var pairsList = new List<string>();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                var index0 = random.Next(26);
+                string first = letters[index0].ToString()+index0;
+                string second;
+                do
+                {
+                    var index1 = random.Next(26);
+                    second = letters[index1].ToString()+index1;
+                } while (first.Equals(second));
+
+                var strs = new string[] {first, second};
+                var array = strs.OrderBy(c => c).ToArray();
+                string pair = array[0] + "-" + array[1];
+                if (!pairsList.Contains(pair))
+                {
+                    pairsList.Add(pair);
+                }
+            }
+
+            var canMap = DisassemblePairsListIntoMap(pairsList);
+            Console.WriteLine(canMap);
+        }
+        
+        private static Dictionary<string, List<string>> DisassemblePairsListIntoMap(List<string> pairs)
+        {
+            var map = new Dictionary<string, List<string>>();
+            foreach (var pair in pairs)
+            {
+                var tokens = LpTokenHelper.ExtractTokensFromTokenPair(pair);
+                var token0 = tokens[0];
+                var token1 = tokens[1];
+                var token0List = map.GetValueOrDefault(token0) ?? new List<string>();
+                if (!token0List.Contains(token1))
+                {
+                    token0List.Add(token1);
+                    map[token0] = token0List;
+                }
+                
+                var token1List = map.GetValueOrDefault(token1) ?? new List<string>();
+                if (!token1List.Contains(token0))
+                {
+                    token1List.Add(token0);
+                    map[token1] = token1List;
+                }
+            }
+
+            return map;
+        }
     }
 }

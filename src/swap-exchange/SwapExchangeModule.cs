@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
+using AElf.Client.Service;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using SwapExchange.Jobs;
+using SwapExchange.Options;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundWorkers;
@@ -14,7 +18,6 @@ using Volo.Abp.EntityFrameworkCore.MySQL;
 
 namespace SwapExchange
 {
-
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AbpBackgroundWorkersModule),
@@ -29,29 +32,39 @@ namespace SwapExchange
             var configuration = context.Services.GetConfiguration();
             var hostEnvironment = context.Services.GetSingletonInstance<IHostEnvironment>();
             context.Services.AddHostedService<SwapExchangeHostedService>();
-            
+
             // Config Mysql
             context.Services.AddAbpDbContext<SwapExchangeDbContext>(builder =>
             {
                 builder.AddDefaultRepositories(true);
             });
-            
-            Configure<AbpDbContextOptions>(options =>
+
+            Configure<AbpDbContextOptions>(options => { options.UseMySQL(); });
+
+            context.Services.AddSingleton<AElfClient>(new AElfClient(configuration["AElfNode:Url"]));
+
+            Configure<TokenOptions>(options =>
             {
-                options.UseMySQL();
+                var tokenConfig = configuration.GetSection("TokenConfig");
+                options.OperatorPrivateKey = tokenConfig.GetSection("OperatorPrivateKey").Value;
+                options.QueryTokenUrl = tokenConfig.GetSection("QueryTokenUrl").Value;
+                options.SlipPointPercent = int.Parse(tokenConfig.GetSection("SlipPointPercent").Value);
+                options.SwapContractAddress = tokenConfig.GetSection("SwapContractAddress").Value;
+                options.SwapToolContractAddress = tokenConfig.GetSection("SwapToolContractAddress").Value;
+                options.LpTokenContractAddresses = new List<string>(tokenConfig.GetSection("LpTokenContractAddresses").Value.Split(","));
+                options.TargetToken = tokenConfig.GetSection("TargetToken").Value;
+                options.LargeCurrencyTokens = new List<string>(tokenConfig.GetSection("LargeCurrencyTokens").Value.Split(","));
             });
-            
-            
         }
-        
-        
+
+
         public override void OnApplicationInitialization(
             ApplicationInitializationContext context)
         {
             context.AddBackgroundWorker<SwapExchangeWorker>();
         }
-        
-        private void ConfigureRedis(ServiceConfigurationContext context,IConfiguration configuration)
+
+        private void ConfigureRedis(ServiceConfigurationContext context, IConfiguration configuration)
         {
             var config = configuration["Redis:Configuration"];
             if (string.IsNullOrEmpty(config))
@@ -64,6 +77,5 @@ namespace SwapExchange
                 .AddDataProtection()
                 .PersistKeysToStackExchangeRedis(redis, "Swap-Exchange-Script");
         }
-        
     }
 }
