@@ -5,16 +5,16 @@ namespace SwapExchange.Constant
     public class ContractOperateConst
     {   
         // Swap
-        public static string SWAP_PAIRS_LIST_METHOD = "GetPairs";
-        public static string SWAP_GET_AMOUNT_OUT_METHOD = "GetAmountsOut";
-        public static string SWAP_GET_RESERVE_METHOD = "GetReserves";
-        public static string SWAP_GET_TOTAL_SUPPLY_METHOD = "GetTotalSupply";
+        public static readonly string SwapPairsListMethod = "GetPairs";
+        public static readonly string SwapGetAmountOutMethod = "GetAmountsOut";
+        public static readonly string SwapGetReserveMethod = "GetReserves";
+        public static readonly string SwapGetTotalSupplyMethod = "GetTotalSupply";
         
         // LP
-        public static string LP_GET_BALANCE_METHOD = "GetBalance";
+        public static readonly string LpGetBalanceMethod = "GetBalance";
 
-        public static string LP_APPROVE_METHOD = "Approve";
+        public static readonly string LpApproveMethod = "Approve";
         // Swap Exchange
-        public static string SWAP_EXCHANGE_SWAP_LP_METHOD = "SwapLpTokens";
+        public static readonly string SwapExchangeSwapLpMethod = "SwapLpTokens";
     }
 }

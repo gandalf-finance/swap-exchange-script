@@ -108,10 +108,10 @@ namespace SwapExchange.Service.Implemention
         private async Task SendTranscation(SwapTokensInput swapTokensInput)
         {
             var saveList = new List<SwapResult>();
-            var transcationId = await _aElfClientService.SendTranscationAsync(_tokenOptions.SwapToolContractAddress,
-                _tokenOptions.OperatorPrivateKey, ContractOperateConst.SWAP_EXCHANGE_SWAP_LP_METHOD, swapTokensInput);
+            var transactionId = await _aElfClientService.SendTranscationAsync(_tokenOptions.SwapToolContractAddress,
+                _tokenOptions.OperatorPrivateKey, ContractOperateConst.SwapExchangeSwapLpMethod, swapTokensInput);
             await Task.Delay(4000);
-            var transactionResultDto = await _aElfClientService.QueryTranscationResultByTranscationId(transcationId);
+            var transactionResultDto = await _aElfClientService.QueryTranscationResultByTranscationId(transactionId);
             if (transactionResultDto.Status.Equals(CommonConst.TxStatus))
             {
                 var logs = transactionResultDto.Logs.Where(l => l.Name.Contains(nameof(SwapResultEvent))).ToList();
@@ -182,7 +182,7 @@ namespace SwapExchange.Service.Implemention
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
             var pair = LpTokenHelper.ExtractTokenPairFromSymbol(lpTokenSymbol);
             var balance = await _aElfClientService.QueryAsync<LPBalance>(_tokenOptions.LpTokenContractAddresses,
-                _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_GET_BALANCE_METHOD,
+                _tokenOptions.OperatorPrivateKey, ContractOperateConst.LpGetBalanceMethod,
                 new GetBalanceInput
                 {
                     Owner = CommonHelper.CoverntString2Address(
@@ -193,21 +193,25 @@ namespace SwapExchange.Service.Implemention
             {
                 return;
             }
-
+            
             // approve
-            await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
-                _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_APPROVE_METHOD, new ApproveInput
+            
+            var txId = await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
+                _tokenOptions.OperatorPrivateKey, ContractOperateConst.LpApproveMethod, new ApproveInput
                 {
                     Amount = balance.Amount,
                     Spender = CommonHelper.CoverntString2Address(_tokenOptions.SwapToolContractAddress),
                     Symbol = lpTokenSymbol
                 });
 
+
+            var resultDto = await _aElfClientService.QueryTranscationResultByTranscationId(txId);
+            
             // Get Reserves.
             var getReservesOutput = await _aElfClientService.QueryAsync<GetReservesOutput>(
                 _tokenOptions.SwapContractAddress,
                 _tokenOptions.OperatorPrivateKey,
-                ContractOperateConst.SWAP_GET_RESERVE_METHOD,
+                ContractOperateConst.SwapGetReserveMethod,
                 new GetReservesInput
                 {
                     SymbolPair = {pair}
@@ -216,7 +220,7 @@ namespace SwapExchange.Service.Implemention
             var getTotalSupplyOutput = await _aElfClientService.QueryAsync<GetTotalSupplyOutput>(
                 _tokenOptions.SwapContractAddress,
                 _tokenOptions.OperatorPrivateKey,
-                ContractOperateConst.SWAP_GET_TOTAL_SUPPLY_METHOD, new StringList
+                ContractOperateConst.SwapGetTotalSupplyMethod, new StringList
                 {
                     Value = {pair}
                 });
@@ -278,7 +282,7 @@ namespace SwapExchange.Service.Implemention
             if (path != null && path.Value != null && path.Value.Count > 0)
             {
                 var expect = await _aElfClientService.QueryAsync<GetAmountOutOutput>(_tokenOptions.SwapContractAddress,
-                    _tokenOptions.OperatorPrivateKey, ContractOperateConst.SWAP_GET_AMOUNT_OUT_METHOD,
+                    _tokenOptions.OperatorPrivateKey, ContractOperateConst.SwapGetAmountOutMethod,
                     new GetAmountsOutInput
                     {
                         Path = {pathMap[token].Value},
@@ -390,7 +394,7 @@ namespace SwapExchange.Service.Implemention
         {
             return await _aElfClientService.QueryAsync<PairsList>(_tokenOptions.SwapContractAddress,
                 _tokenOptions.OperatorPrivateKey,
-                ContractOperateConst.SWAP_PAIRS_LIST_METHOD, new Empty());
+                ContractOperateConst.SwapPairsListMethod, new Empty());
         }
 
 

@@ -25,5 +25,6 @@ namespace SwapExchange.Options
         
         public string FeeRate { get; set; }
         
+        public int ExecutionPeriod { get; set; }
     }
 }
