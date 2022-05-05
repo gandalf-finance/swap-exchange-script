@@ -20,7 +20,7 @@ namespace SwapExchange.Service.Implemention
         public Guid Save()
         {
             Book book = new Book();
-            book.Name = "钢铁是怎么炼成的";
+            book.Name = "AAA";
             book.Price = "23.98";
             var insertAsync = _bookRepository.InsertAsync(book);
             var resultId = insertAsync.Result.Id;

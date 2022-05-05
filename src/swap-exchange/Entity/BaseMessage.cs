@@ -1,19 +1,13 @@
-using System.Collections.Generic;
-using System.Linq;
-using Awaken.Contracts.Swap;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 
 namespace SwapExchange.Entity
 {
-    public class PairsList : IMessage
+    public class BaseMessage:IMessage
     {
-        public List<string> Pairs { get; set; }
-        
-        
         public void MergeFrom(CodedInputStream input)
         {
-            Pairs = StringList.Parser.ParseFrom(input).Value.ToList();
+            throw new System.NotImplementedException();
         }
 
         public void WriteTo(CodedOutputStream output)

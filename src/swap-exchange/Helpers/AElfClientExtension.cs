@@ -2,7 +2,10 @@ using System.Threading.Tasks;
 using AElf;
 using AElf.Client.Dto;
 using AElf.Client.Service;
+using AElf.CSharp.Core;
+using AElf.Types;
 using Google.Protobuf;
+using SwapExchange.Service;
 
 namespace QuadraticVote.Application.Service.Extensions
 {
@@ -28,5 +31,27 @@ namespace QuadraticVote.Application.Service.Extensions
             ret.MergeFrom(dataBytes);
             return ret;
         }
+        
+        public static T DeserializeAElfEvent<T>(LogEvent logEvent) where T : IEvent<T>, new()
+        {
+            var message = new T();
+            message.MergeFrom(logEvent);
+            return message;
+        }
+        
     }
+    
+    public static class EventExtension
+    {
+        public static void MergeFrom<T>(this T eventData, LogEvent log) where T : IEvent<T>
+        {
+            foreach (var bs in log.Indexed)
+            {
+                eventData.MergeFrom(bs);
+            }
+
+            eventData.MergeFrom(log.NonIndexed);
+        }
+    }
+    
 }

@@ -13,35 +13,36 @@ namespace SwapExchange.Jobs
 {
     public class SwapExchangeWorker : AsyncPeriodicBackgroundWorkerBase
     {
-        private  IDistributedCache<string> _stringCache;
-        private  IBookService _bookService;
-        
+        // private  IDistributedCache<string> _stringCache;
+        // private  IBookService _bookService;
+        private readonly IHandlerService _service;
         public SwapExchangeWorker(AbpAsyncTimer timer,
             IServiceScopeFactory serviceScopeFactory,
             IDistributedCache<string> stringCache,
-            IBookService bookService) : base(timer,
+            IBookService bookService, IHandlerService service) : base(timer,
             serviceScopeFactory)
         {
             Timer.Period = 1000;
-            _stringCache = stringCache;
-            _bookService = bookService;
+            // _stringCache = stringCache;
+            // _bookService = bookService;
+            _service = service;
         }
 
         protected override async Task DoWorkAsync(PeriodicBackgroundWorkerContext workerContext)
-        {
-            Logger.LogInformation("开始执行："+DateTime.Now.ToString());
-            string key = "Test";
-            await _stringCache.SetAsync(key, DateTime.Now.ToString(),new DistributedCacheEntryOptions
-            {   
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(12),
-            });
-            var Dir = AppDomain.CurrentDomain.BaseDirectory;
-            Console.WriteLine(Dir);
+        {   
+            Timer.Period = 10000 * 20;
+            // string key = "Test";
+            // await _stringCache.SetAsync(key, DateTime.Now.ToString(),new DistributedCacheEntryOptions
+            // {   
+            //     AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(12),
+            // });
+            // var Dir = AppDomain.CurrentDomain.BaseDirectory;
+            // Console.WriteLine(Dir);
             // var id = _bookService.Save();
             // var book = _bookService.GetById(id);
             // book.Name = "Update:"+DateTime.Now.Date.ToString();
             // _bookService.Update(book);
-            
+            await _service.ExecuteMainTask();
         }
     }
 }

@@ -1,9 +1,12 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 
 namespace SwapExchange.Service.Implemention
 {
+    [Dependency(ReplaceServices = true)]
+    [ExposeServices(typeof(IHandlerService))]
     public class HandlerServiceImpl:IHandlerService,ITransientDependency
     {
         private readonly ILogger<HandlerServiceImpl> _logger;
@@ -18,10 +21,10 @@ namespace SwapExchange.Service.Implemention
         /**
          * Main task
          */
-        public async void ExecuteMainTask()
+        public async Task ExecuteMainTask()
         {
            _logger.LogInformation($"Start main task time：{DateTime.UtcNow.ToUniversalTime()}");
-           var queryTokenAndAssembleSwapInfosAsync = await _queryAndAssembleService.QueryTokenAndAssembleSwapInfosAsync();
+           await _queryAndAssembleService.HandleTokenInfoAndSwap();
            _logger.LogInformation($"End main task time:{DateTime.UtcNow.ToUniversalTime()}");
         }
     }

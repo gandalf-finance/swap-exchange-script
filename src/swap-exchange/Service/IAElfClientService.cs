@@ -20,6 +20,7 @@ namespace SwapExchange.Service
             IMessage txParam);
 
         Task<TransactionResultDto> QueryTranscationResultByTranscationId(string transcationId);
-        
+
+        Task<string> GetAddressFromPrivateKey(string privateKey);
     }
 }

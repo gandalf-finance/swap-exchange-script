@@ -15,10 +15,15 @@ namespace SwapExchange.Options
         
         public string SwapToolContractAddress { get; set; }
         
-        public List<string> LpTokenContractAddresses { get; set; }
+        public string LpTokenContractAddresses { get; set; }
         
         public string TargetToken { get; set; }
         
         public List<string> LargeCurrencyTokens { get; set; }
+        
+        public int BatchAmount { get; set; }
+        
+        public string FeeRate { get; set; }
+        
     }
 }

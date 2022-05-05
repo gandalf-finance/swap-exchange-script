@@ -1,10 +1,14 @@
+using System.Collections.Generic;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 
 namespace SwapExchange.Entity
 {
-    public class Empty:IMessage
+    public class GetAmountOutOutput:IMessage
     {   
+        
+        public List<long> amount { get; set; }
+
         public void MergeFrom(CodedInputStream input)
         {
             throw new System.NotImplementedException();

@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using AElf.Types;
 
 namespace QuadraticVote.Application.Service.Extensions
 {
@@ -25,6 +26,14 @@ namespace QuadraticVote.Application.Service.Extensions
             }
 
             return sb.ToString();
+        }
+
+        public static Address CoverntString2Address(string address)
+        {
+            return new Address
+            {
+                Value = Address.FromBase58(address).Value
+            };
         }
     }
 }

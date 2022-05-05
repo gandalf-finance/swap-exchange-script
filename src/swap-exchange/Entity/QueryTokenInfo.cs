@@ -17,6 +17,8 @@ namespace SwapExchange.Entity
         public string ChainId { get; set; }
         public Token Token0 { get; set; }
         public Token Token1 { get; set; }
+        
+        public string FeeRate { get; set; }
     }
 
     public class Token

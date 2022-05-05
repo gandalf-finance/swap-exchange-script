@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using SwapExchange.Jobs;
 using SwapExchange.Options;
+using SwapExchange.Service;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundWorkers;
@@ -39,21 +40,23 @@ namespace SwapExchange
                 builder.AddDefaultRepositories(true);
             });
 
+            
             Configure<AbpDbContextOptions>(options => { options.UseMySQL(); });
 
             context.Services.AddSingleton<AElfClient>(new AElfClient(configuration["AElfNode:Url"]));
-
+            
             Configure<TokenOptions>(options =>
             {
-                var tokenConfig = configuration.GetSection("TokenConfig");
-                options.OperatorPrivateKey = tokenConfig.GetSection("OperatorPrivateKey").Value;
-                options.QueryTokenUrl = tokenConfig.GetSection("QueryTokenUrl").Value;
-                options.SlipPointPercent = int.Parse(tokenConfig.GetSection("SlipPointPercent").Value);
-                options.SwapContractAddress = tokenConfig.GetSection("SwapContractAddress").Value;
-                options.SwapToolContractAddress = tokenConfig.GetSection("SwapToolContractAddress").Value;
-                options.LpTokenContractAddresses = new List<string>(tokenConfig.GetSection("LpTokenContractAddresses").Value.Split(","));
-                options.TargetToken = tokenConfig.GetSection("TargetToken").Value;
-                options.LargeCurrencyTokens = new List<string>(tokenConfig.GetSection("LargeCurrencyTokens").Value.Split(","));
+                configuration.GetSection("TokenConfig").Bind(options);
+                // feeTo
+                // options.OperatorPrivateKey = tokenConfig.GetSection("OperatorPrivateKey").Value;
+                // options.QueryTokenUrl = tokenConfig.GetSection("QueryTokenUrl").Value;
+                // options.SlipPointPercent = int.Parse(tokenConfig.GetSection("SlipPointPercent").Value);
+                // options.SwapContractAddress = tokenConfig.GetSection("SwapContractAddress").Value;
+                // options.SwapToolContractAddress = tokenConfig.GetSection("SwapToolContractAddress").Value;
+                // options.LpTokenContractAddresses = tokenConfig.GetSection("LpTokenContractAddresses").Value;
+                // options.TargetToken = tokenConfig.GetSection("TargetToken").Value;
+                // options.LargeCurrencyTokens = new List<string>(tokenConfig.GetSection("LargeCurrencyTokens").Value.Split(","));
             });
         }
 

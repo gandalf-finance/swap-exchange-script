@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
+
 namespace SwapExchange.Service
 {
     public interface IHandlerService
     {
-        
-        public void  ExecuteMainTask();
+        public Task  ExecuteMainTask();
         
     }
 }
