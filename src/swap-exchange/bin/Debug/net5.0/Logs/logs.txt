@@ -5380,3 +5380,54 @@ AElf.Client.AElfClientException
 2022-05-05 18:39:39.616 +08:00 [INF] Hosting environment: Production
 2022-05-05 18:39:39.616 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
 2022-05-05 18:39:40.621 +08:00 [INF] Start main task time：05/05/2022 10:39:40
+2022-05-05 19:01:35.497 +08:00 [INF] Starting console host.
+2022-05-05 19:01:37.354 +08:00 [INF] Loaded ABP modules:
+2022-05-05 19:01:37.355 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 19:01:37.355 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 19:01:37.355 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 19:01:37.355 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 19:01:37.355 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 19:01:37.355 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 19:01:37.355 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 19:01:37.355 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 19:01:37.355 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 19:01:37.355 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 19:01:37.355 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 19:01:37.355 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 19:01:37.355 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 19:01:37.355 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 19:01:37.355 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 19:01:37.355 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 19:01:37.355 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 19:01:37.355 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 19:01:37.355 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 19:01:37.355 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 19:01:37.355 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 19:01:37.355 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 19:01:37.787 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 19:01:37.789 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 19:01:37.791 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 19:01:37.793 +08:00 [INF] Hosting environment: Production
+2022-05-05 19:01:37.793 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 19:01:38.801 +08:00 [INF] Start main task time：05/05/2022 11:01:38
+2022-05-05 19:05:17.090 +08:00 [ERR] {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+AElf.Client.AElfClientException: {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+   at AElf.Client.Service.HttpService.PostResponseAsync(String url, Dictionary`2 parameters, String version, Boolean useApplicationJson, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsStringAsync(String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsync[T](String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.AElfClient.SendTransactionAsync(SendTransactionInput input)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 53
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 111
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 105
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()

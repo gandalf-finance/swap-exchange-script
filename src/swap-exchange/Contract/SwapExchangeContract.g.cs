@@ -1160,7 +1160,7 @@ namespace Awaken.Contracts.SwapExchangeContract {
 
   }
 
-  internal sealed partial class Path : pb::IMessage<Path> {
+  public sealed partial class Path : pb::IMessage<Path> {
     private static readonly pb::MessageParser<Path> _parser = new pb::MessageParser<Path>(() => new Path());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

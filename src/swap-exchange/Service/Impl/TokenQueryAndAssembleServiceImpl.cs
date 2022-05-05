@@ -21,7 +21,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using GetReservesOutput = SwapExchange.Entity.GetReservesOutput;
 using GetTotalSupplyOutput = SwapExchange.Entity.GetTotalSupplyOutput;
-using Path = SwapExchange.Entity.Path;
+using Path = Awaken.Contracts.SwapExchangeContract.Path;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
 
 namespace SwapExchange.Service.Implemention
@@ -97,25 +97,9 @@ namespace SwapExchange.Service.Implemention
                 }, tokenCanSwapMap, pathMap, tokenList);
             }
 
-            var pathMapTmp = new MapField<string, Awaken.Contracts.SwapExchangeContract.Path>();
-            foreach (var (key, value) in pathMap)
-            {
-                if (value.Value == null || value.ExpectPrice == null)
-                {
-                    continue;
-                }
-
-                pathMapTmp[key] = new Awaken.Contracts.SwapExchangeContract.Path
-                {
-                    Value = {value.Value},
-                    ExpectPrice = value.ExpectPrice,
-                    SlipPoint = value.SlipPoint
-                };
-            }
-
             var swapTokensInput = new SwapTokensInput
             {
-                PathMap = {pathMapTmp},
+                PathMap = {pathMap},
                 SwapTokenList = tokenList
             };
             await SendTranscation(swapTokensInput);
@@ -209,17 +193,15 @@ namespace SwapExchange.Service.Implemention
             {
                 return;
             }
-            else
-            {
-                // approve
-                await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
-                    _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_APPROVE_METHOD, new ApproveInput
-                    {
-                        Amount = balance.Amount,
-                        Spender = CommonHelper.CoverntString2Address(_tokenOptions.SwapToolContractAddress),
-                        Symbol = lpTokenSymbol
-                    });
-            }
+
+            // approve
+            await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
+                _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_APPROVE_METHOD, new ApproveInput
+                {
+                    Amount = balance.Amount,
+                    Spender = CommonHelper.CoverntString2Address(_tokenOptions.SwapToolContractAddress),
+                    Symbol = lpTokenSymbol
+                });
 
             // Get Reserves.
             var getReservesOutput = await _aElfClientService.QueryAsync<GetReservesOutput>(
@@ -272,7 +254,7 @@ namespace SwapExchange.Service.Implemention
             });
         }
 
-
+        
 #pragma warning disable 1998
         private async Task<List<long>> ComputeAmountFromRemoveLiquit(long liquidityRemoveAmount,
 #pragma warning restore 1998
@@ -327,7 +309,7 @@ namespace SwapExchange.Service.Implemention
                 {
                     if (path.Value != null && path.Value.Count > 0)
                     {
-                        return path.Value;
+                        return path.Value.ToList();
                     }
                 }
                 else
@@ -354,7 +336,10 @@ namespace SwapExchange.Service.Implemention
                         }
                     }
 
-                    pathMap[tokenSymbol].Value = tmp;
+                    pathMap[tokenSymbol] = new Path
+                    {
+                        Value = {tmp}
+                    };
                     return tmp;
                 }
             }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SwapExchange.Entity;
+using Path = Awaken.Contracts.SwapExchangeContract.Path;
 
 namespace SwapExchange.Service
 {

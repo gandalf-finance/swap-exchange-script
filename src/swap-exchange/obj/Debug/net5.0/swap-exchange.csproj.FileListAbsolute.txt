@@ -164,7 +164,6 @@
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.AssemblyInfoInputs.cache
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.AssemblyInfo.cs
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.csproj.CoreCompileInputs.cache
-/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.csproj.CopyComplete
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.dll
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/ref/swap-exchange.dll
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.pdb
