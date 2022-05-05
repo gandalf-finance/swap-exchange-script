@@ -98,18 +98,18 @@ namespace SwapExchange.Service.Implemention
             }
 
             var pathMapTmp = new MapField<string, Awaken.Contracts.SwapExchangeContract.Path>();
-            foreach (var keyValuePair in pathMap)
+            foreach (var (key, value) in pathMap)
             {
-                if (keyValuePair.Value.Value == null || keyValuePair.Value.ExpectPrice == null)
+                if (value.Value == null || value.ExpectPrice == null)
                 {
                     continue;
                 }
 
-                pathMapTmp[keyValuePair.Key] = new Awaken.Contracts.SwapExchangeContract.Path
+                pathMapTmp[key] = new Awaken.Contracts.SwapExchangeContract.Path
                 {
-                    Value = {keyValuePair.Value.Value},
-                    ExpectPrice = keyValuePair.Value.ExpectPrice,
-                    SlipPoint = keyValuePair.Value.SlipPoint
+                    Value = {value.Value},
+                    ExpectPrice = value.ExpectPrice,
+                    SlipPoint = value.SlipPoint
                 };
             }
 
