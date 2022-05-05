@@ -13,9 +13,10 @@ namespace SwapExchange.Entity
 
         public void MergeFrom(CodedInputStream input)
         {
-            Amount = Balance.Parser.ParseFrom(input).Amount;
-            Symbol = Balance.Parser.ParseFrom(input).Symbol;
-            Owner = Balance.Parser.ParseFrom(input).Owner;
+            var balance = Balance.Parser.ParseFrom(input);
+            Amount = balance.Amount;
+            Symbol = balance.Symbol;
+            Owner = balance.Owner;
         }
 
         public void WriteTo(CodedOutputStream output)

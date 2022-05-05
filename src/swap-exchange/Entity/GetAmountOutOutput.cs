@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Awaken.Contracts.Swap;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 
@@ -11,7 +13,7 @@ namespace SwapExchange.Entity
 
         public void MergeFrom(CodedInputStream input)
         {
-            throw new System.NotImplementedException();
+            amount = GetAmountsOutOutput.Parser.ParseFrom(input).Amount.ToList();
         }
 
         public void WriteTo(CodedOutputStream output)

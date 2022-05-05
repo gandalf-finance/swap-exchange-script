@@ -6,6 +6,8 @@ using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
 using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -17,12 +19,10 @@ using SwapExchange.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
-using GetAmountOutInput = SwapExchange.Entity.GetAmountOutInput;
-using GetReservesInput = SwapExchange.Entity.GetReservesInput;
 using GetReservesOutput = SwapExchange.Entity.GetReservesOutput;
 using GetTotalSupplyOutput = SwapExchange.Entity.GetTotalSupplyOutput;
 using Path = SwapExchange.Entity.Path;
-using SwapTokensInput = SwapExchange.Entity.SwapTokensInput;
+using Token = Awaken.Contracts.SwapExchangeContract.Token;
 
 namespace SwapExchange.Service.Implemention
 {
@@ -36,8 +36,10 @@ namespace SwapExchange.Service.Implemention
         private readonly IAutoObjectMappingProvider _mapper;
         private readonly IRepository<SwapResult, Guid> _repository;
 
-        public TokenQueryAndAssembleServiceImpl(IOptionsSnapshot<TokenOptions> tokenOptions, IAElfClientService aElfClientService,
-            ILogger<TokenQueryAndAssembleServiceImpl> logger, IAutoObjectMappingProvider mapper, IRepository<SwapResult, Guid> repository)
+        public TokenQueryAndAssembleServiceImpl(IOptionsSnapshot<TokenOptions> tokenOptions,
+            IAElfClientService aElfClientService,
+            ILogger<TokenQueryAndAssembleServiceImpl> logger, IAutoObjectMappingProvider mapper,
+            IRepository<SwapResult, Guid> repository)
         {
             _tokenOptions = tokenOptions.Value;
             _aElfClientService = aElfClientService;
@@ -48,18 +50,18 @@ namespace SwapExchange.Service.Implemention
 
         /**
          *  start.
-         */  
+         */
         public async Task HandleTokenInfoAndSwap()
-        {   
+        {
             int pageNum = 1;
             var pairsList = await QueryTokenPairsFromChain();
             var queryTokenInfo = await ConvertTokens(pageNum);
             var items = queryTokenInfo.Items;
-            while (items.Count>0)
+            while (items.Count > 0)
             {
                 var tmp = items.Take(_tokenOptions.BatchAmount).ToList();
-                await QueryTokenAndAssembleSwapInfosAsync(pairsList,queryTokenInfo);
-                tmp.RemoveRange(0,tmp.Count);
+                await QueryTokenAndAssembleSwapInfosAsync(pairsList, queryTokenInfo);
+                tmp.RemoveRange(0, tmp.Count);
             }
         }
 
@@ -70,17 +72,14 @@ namespace SwapExchange.Service.Implemention
          */
         public async Task QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
             QueryTokenInfo queryTokenInfo)
-        {   
+        {
             //queryTokenInfo filter
             // queryTokenInfo.Items = queryTokenInfo.Items.Where(item => item.FeeRate.Equals(_tokenOptions.FeeRate)).ToList();
 
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
-            var tokenList = new SwapTokensInput.TokenList
-            {
-                TokensInfo = new List<SwapTokensInput.Token>()
-            };
-          
+            var tokenList = new TokenList();
+
             if (pairsList.Pairs.Count <= 0)
             {
                 _logger.LogError("Get token pairs error,terminate！");
@@ -98,9 +97,25 @@ namespace SwapExchange.Service.Implemention
                 }, tokenCanSwapMap, pathMap, tokenList);
             }
 
+            var pathMapTmp = new MapField<string, Awaken.Contracts.SwapExchangeContract.Path>();
+            foreach (var keyValuePair in pathMap)
+            {
+                if (keyValuePair.Value.Value == null || keyValuePair.Value.ExpectPrice == null)
+                {
+                    continue;
+                }
+
+                pathMapTmp[keyValuePair.Key] = new Awaken.Contracts.SwapExchangeContract.Path
+                {
+                    Value = {keyValuePair.Value.Value},
+                    ExpectPrice = keyValuePair.Value.ExpectPrice,
+                    SlipPoint = keyValuePair.Value.SlipPoint
+                };
+            }
+
             var swapTokensInput = new SwapTokensInput
             {
-                PathMap = pathMap,
+                PathMap = {pathMapTmp},
                 SwapTokenList = tokenList
             };
             await SendTranscation(swapTokensInput);
@@ -115,10 +130,11 @@ namespace SwapExchange.Service.Implemention
             var transactionResultDto = await _aElfClientService.QueryTranscationResultByTranscationId(transcationId);
             if (transactionResultDto.Status.Equals(CommonConst.TxStatus))
             {
-                var logs = transactionResultDto.Logs.Where(l =>l.Name.Contains(nameof(SwapResultEvent))).ToList();
+                var logs = transactionResultDto.Logs.Where(l => l.Name.Contains(nameof(SwapResultEvent))).ToList();
                 foreach (var logEventDto in logs)
                 {
-                    var swapResultEvent = SwapResultEvent.Parser.ParseFrom(ByteString.FromBase64(logEventDto.NonIndexed));
+                    var swapResultEvent =
+                        SwapResultEvent.Parser.ParseFrom(ByteString.FromBase64(logEventDto.NonIndexed));
                     var copy = _mapper.Map<SwapResultEvent, SwapResult>(swapResultEvent);
                     saveList.Add(copy);
                 }
@@ -136,6 +152,7 @@ namespace SwapExchange.Service.Implemention
                     });
                 }
             }
+
             await _repository.InsertManyAsync(saveList);
         }
 
@@ -175,7 +192,7 @@ namespace SwapExchange.Service.Implemention
 
         private async Task HandleSwapPathAndTokenInfoAsync(string[] tokens,
             Dictionary<string, List<string>> canSwapMap,
-            Dictionary<string, Path> pathMap, SwapTokensInput.TokenList tokenList)
+            Dictionary<string, Path> pathMap, TokenList tokenList)
         {
             // Get FeeTo lp token amount.
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
@@ -184,13 +201,26 @@ namespace SwapExchange.Service.Implemention
                 _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_GET_BALANCE_METHOD,
                 new GetBalanceInput
                 {
-                    Owner = CommonHelper.CoverntString2Address(await _aElfClientService.GetAddressFromPrivateKey(_tokenOptions.OperatorPrivateKey)),
+                    Owner = CommonHelper.CoverntString2Address(
+                        await _aElfClientService.GetAddressFromPrivateKey(_tokenOptions.OperatorPrivateKey)),
                     Symbol = lpTokenSymbol
                 });
-            if (balance.Amount<=0)
+            if (balance.Amount <= 0)
             {
                 return;
             }
+            else
+            {
+                // approve
+                await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
+                    _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_APPROVE_METHOD, new ApproveInput
+                    {
+                        Amount = balance.Amount,
+                        Spender = CommonHelper.CoverntString2Address(_tokenOptions.SwapToolContractAddress),
+                        Symbol = lpTokenSymbol
+                    });
+            }
+
             // Get Reserves.
             var getReservesOutput = await _aElfClientService.QueryAsync<GetReservesOutput>(
                 _tokenOptions.SwapContractAddress,
@@ -198,7 +228,7 @@ namespace SwapExchange.Service.Implemention
                 ContractOperateConst.SWAP_GET_RESERVE_METHOD,
                 new GetReservesInput
                 {
-                    SymbolPair = new List<string> {pair}
+                    SymbolPair = {pair}
                 });
             // Get lpToken totalsupply
             var getTotalSupplyOutput = await _aElfClientService.QueryAsync<GetTotalSupplyOutput>(
@@ -215,6 +245,11 @@ namespace SwapExchange.Service.Implemention
 
             for (var i = 0; i < tokens.Length; i++)
             {
+                if (tokens[i].Equals(_tokenOptions.TargetToken))
+                {
+                    continue;
+                }
+
                 await PreferredSwapPathAsync(tokens[i], canSwapMap, pathMap);
                 long amountIn = 0;
                 if (getReservesOutput.Results.First().SymbolA.Equals(tokens[i]))
@@ -230,7 +265,7 @@ namespace SwapExchange.Service.Implemention
             }
 
             // Add token amount 
-            tokenList.TokensInfo.Add(new SwapTokensInput.Token
+            tokenList.TokensInfo.Add(new Token
             {
                 Amount = balance.Amount,
                 TokenSymbol = lpTokenSymbol
@@ -241,7 +276,7 @@ namespace SwapExchange.Service.Implemention
 #pragma warning disable 1998
         private async Task<List<long>> ComputeAmountFromRemoveLiquit(long liquidityRemoveAmount,
 #pragma warning restore 1998
-            GetReservesOutput.ReservePairResult reserves, long totalSupply)
+            ReservePairResult reserves, long totalSupply)
         {
             var result = new List<long>();
             result.Add(new BigInteger(liquidityRemoveAmount.ToString())
@@ -262,9 +297,9 @@ namespace SwapExchange.Service.Implemention
             {
                 var expect = await _aElfClientService.QueryAsync<GetAmountOutOutput>(_tokenOptions.SwapContractAddress,
                     _tokenOptions.OperatorPrivateKey, ContractOperateConst.SWAP_GET_AMOUNT_OUT_METHOD,
-                    new GetAmountOutInput
+                    new GetAmountsOutInput
                     {
-                        Path = pathMap[token].Value,
+                        Path = {pathMap[token].Value},
                         AmountIn = amountIn
                     });
                 var targetTokenOut = expect.amount.Last();
@@ -310,6 +345,7 @@ namespace SwapExchange.Service.Implemention
                         if (tmp == null)
                         {
                             tmp = list;
+                            continue;
                         }
 
                         if (tmp.Count > list.Count)
@@ -366,11 +402,10 @@ namespace SwapExchange.Service.Implemention
          * <param name="pageNum"></param>
          */
         public async Task<PairsList> QueryTokenPairsFromChain()
-        {   
-            
+        {
             return await _aElfClientService.QueryAsync<PairsList>(_tokenOptions.SwapContractAddress,
                 _tokenOptions.OperatorPrivateKey,
-                ContractOperateConst.SWAP_PAIRS_LIST_METHOD, null);
+                ContractOperateConst.SWAP_PAIRS_LIST_METHOD, new Empty());
         }
 
 
@@ -381,7 +416,7 @@ namespace SwapExchange.Service.Implemention
         }
 
         private async Task<string> QueryTokenList(int pageNum)
-        {   
+        {
             // Because this api not implement pages,so get out of all records.
             // var maxResultCount = _tokenOptions.BatchAmount;
             // var skipCount = (pageNum - 1) * maxResultCount;
@@ -394,7 +429,9 @@ namespace SwapExchange.Service.Implemention
                 do
                 {
                     // response = HttpClientHelper.GetResponse(string.Format(_tokenOptions.QueryTokenUrl,maxResultCount,skipCount,_tokenOptions.FeeRate), out statusCode);
-                    response = HttpClientHelper.GetResponse(string.Format(_tokenOptions.QueryTokenUrl,maxResultCount,skipCount,_tokenOptions.FeeRate), out statusCode);
+                    response = HttpClientHelper.GetResponse(
+                        string.Format(_tokenOptions.QueryTokenUrl, maxResultCount, skipCount, _tokenOptions.FeeRate),
+                        out statusCode);
                 } while (!statusCode.Equals("OK"));
 
                 return response;

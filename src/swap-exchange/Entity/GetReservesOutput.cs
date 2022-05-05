@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Awaken.Contracts.Swap;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 
@@ -6,12 +8,11 @@ namespace SwapExchange.Entity
 {
     public class GetReservesOutput:IMessage
     {   
-        
         public List<ReservePairResult> Results { get; set; }
 
         public void MergeFrom(CodedInputStream input)
         {
-            throw new System.NotImplementedException();
+            Results = Awaken.Contracts.Swap.GetReservesOutput.Parser.ParseFrom(input).Results.ToList();
         }
 
         public void WriteTo(CodedOutputStream output)
@@ -25,16 +26,7 @@ namespace SwapExchange.Entity
         }
 
         public MessageDescriptor Descriptor { get; }
-        
-        public class ReservePairResult
-        {
-            public string SymbolPair { get; set; }
-            public string SymbolA { get; set; }
-            public string SymbolB { get; set; }
-            public long ReserveA { get; set; }
-            public long ReserveB { get; set; }
-            public long BlockTimestampLast { get; set; }
-        }
+      
     }
     
 }

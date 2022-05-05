@@ -168,4 +168,3 @@
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/ref/swap-exchange.dll
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.pdb
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.genruntimeconfig.cache
-/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/obj/Debug/net5.0/swap-exchange.csproj.CopyComplete

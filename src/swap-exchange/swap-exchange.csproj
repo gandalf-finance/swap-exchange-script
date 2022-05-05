@@ -38,13 +38,6 @@
             <PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
         </PackageReference>
     </ItemGroup>
-    
-    <ItemGroup>
-        <Content Include="appsettings.json">
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
     <ItemGroup>
         <Content Include="workconfig.json">
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

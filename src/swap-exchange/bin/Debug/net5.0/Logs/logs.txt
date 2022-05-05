@@ -3622,3 +3622,1248 @@ System.Collections.Generic.KeyNotFoundException: The given key 'ELF' was not pre
 2022-05-05 12:22:19.070 +08:00 [INF] Hosting environment: Production
 2022-05-05 12:22:19.070 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
 2022-05-05 12:22:20.079 +08:00 [INF] Start main task time：05/05/2022 04:22:20
+2022-05-05 12:25:55.311 +08:00 [INF] Starting console host.
+2022-05-05 12:25:57.159 +08:00 [INF] Loaded ABP modules:
+2022-05-05 12:25:57.160 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 12:25:57.160 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 12:25:57.160 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 12:25:57.160 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 12:25:57.160 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 12:25:57.160 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 12:25:57.160 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 12:25:57.160 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 12:25:57.160 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 12:25:57.160 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 12:25:57.160 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 12:25:57.160 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 12:25:57.160 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 12:25:57.160 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 12:25:57.160 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 12:25:57.160 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 12:25:57.160 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 12:25:57.160 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 12:25:57.160 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 12:25:57.160 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 12:25:57.160 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 12:25:57.160 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 12:25:57.535 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 12:25:57.536 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 12:25:57.539 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 12:25:57.540 +08:00 [INF] Hosting environment: Production
+2022-05-05 12:25:57.540 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 12:25:58.550 +08:00 [INF] Start main task time：05/05/2022 04:25:58
+2022-05-05 12:28:54.108 +08:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AElf.Client.Service.AElfClient.SignTransaction(String privateKeyHex, Transaction transaction)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 52
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 112
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 106
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 61
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 12:29:13.278 +08:00 [INF] Starting console host.
+2022-05-05 12:29:15.049 +08:00 [INF] Loaded ABP modules:
+2022-05-05 12:29:15.050 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 12:29:15.050 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 12:29:15.050 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 12:29:15.050 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 12:29:15.050 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 12:29:15.050 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 12:29:15.050 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 12:29:15.050 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 12:29:15.050 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 12:29:15.050 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 12:29:15.050 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 12:29:15.050 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 12:29:15.050 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 12:29:15.050 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 12:29:15.050 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 12:29:15.050 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 12:29:15.050 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 12:29:15.050 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 12:29:15.050 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 12:29:15.050 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 12:29:15.050 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 12:29:15.050 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 12:29:15.422 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 12:29:15.423 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 12:29:15.425 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 12:29:15.427 +08:00 [INF] Hosting environment: Production
+2022-05-05 12:29:15.427 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 12:29:16.432 +08:00 [INF] Start main task time：05/05/2022 04:29:16
+2022-05-05 12:32:03.463 +08:00 [INF] Starting console host.
+2022-05-05 12:32:05.336 +08:00 [INF] Loaded ABP modules:
+2022-05-05 12:32:05.337 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 12:32:05.337 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 12:32:05.337 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 12:32:05.337 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 12:32:05.337 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 12:32:05.337 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 12:32:05.337 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 12:32:05.337 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 12:32:05.337 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 12:32:05.337 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 12:32:05.337 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 12:32:05.337 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 12:32:05.337 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 12:32:05.337 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 12:32:05.337 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 12:32:05.337 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 12:32:05.337 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 12:32:05.337 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 12:32:05.337 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 12:32:05.337 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 12:32:05.337 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 12:32:05.337 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 12:32:05.714 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 12:32:05.716 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 12:32:05.718 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 12:32:05.719 +08:00 [INF] Hosting environment: Production
+2022-05-05 12:32:05.719 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 12:32:06.727 +08:00 [INF] Start main task time：05/05/2022 04:32:06
+2022-05-05 12:42:26.151 +08:00 [INF] Starting console host.
+2022-05-05 12:42:28.014 +08:00 [INF] Loaded ABP modules:
+2022-05-05 12:42:28.015 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 12:42:28.015 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 12:42:28.015 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 12:42:28.015 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 12:42:28.015 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 12:42:28.015 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 12:42:28.015 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 12:42:28.015 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 12:42:28.015 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 12:42:28.015 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 12:42:28.015 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 12:42:28.015 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 12:42:28.015 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 12:42:28.015 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 12:42:28.015 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 12:42:28.015 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 12:42:28.015 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 12:42:28.015 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 12:42:28.015 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 12:42:28.015 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 12:42:28.015 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 12:42:28.015 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 12:42:28.386 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 12:42:28.387 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 12:42:28.389 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 12:42:28.391 +08:00 [INF] Hosting environment: Production
+2022-05-05 12:42:28.391 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 12:42:29.398 +08:00 [INF] Start main task time：05/05/2022 04:42:29
+2022-05-05 12:44:07.393 +08:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AElf.Client.Service.AElfClient.SignTransaction(String privateKeyHex, Transaction transaction)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 52
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 112
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 106
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 61
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 13:07:39.192 +08:00 [INF] Starting console host.
+2022-05-05 13:07:41.110 +08:00 [INF] Loaded ABP modules:
+2022-05-05 13:07:41.112 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 13:07:41.112 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 13:07:41.112 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 13:07:41.112 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 13:07:41.112 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 13:07:41.112 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 13:07:41.112 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 13:07:41.112 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 13:07:41.112 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 13:07:41.112 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 13:07:41.112 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 13:07:41.112 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 13:07:41.112 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 13:07:41.112 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 13:07:41.112 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 13:07:41.112 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 13:07:41.112 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 13:07:41.112 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 13:07:41.112 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 13:07:41.112 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 13:07:41.112 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 13:07:41.112 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 13:07:41.494 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 13:07:41.496 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 13:07:41.498 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 13:07:41.499 +08:00 [INF] Hosting environment: Production
+2022-05-05 13:07:41.499 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 13:07:42.507 +08:00 [INF] Start main task time：05/05/2022 05:07:42
+2022-05-05 13:07:46.162 +08:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AElf.Client.Service.AElfClient.SignTransaction(String privateKeyHex, Transaction transaction)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.QueryAsync[T](String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 33
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenPairsFromChain() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 371
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 55
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 13:10:04.439 +08:00 [INF] Starting console host.
+2022-05-05 13:10:06.215 +08:00 [INF] Loaded ABP modules:
+2022-05-05 13:10:06.216 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 13:10:06.216 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 13:10:06.216 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 13:10:06.216 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 13:10:06.216 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 13:10:06.216 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 13:10:06.216 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 13:10:06.216 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 13:10:06.216 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 13:10:06.216 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 13:10:06.216 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 13:10:06.216 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 13:10:06.216 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 13:10:06.216 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 13:10:06.216 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 13:10:06.216 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 13:10:06.216 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 13:10:06.216 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 13:10:06.216 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 13:10:06.216 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 13:10:06.216 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 13:10:06.216 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 13:10:06.562 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 13:10:06.563 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 13:10:06.566 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 13:10:06.567 +08:00 [INF] Hosting environment: Production
+2022-05-05 13:10:06.567 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 13:10:07.573 +08:00 [INF] Start main task time：05/05/2022 05:10:07
+2022-05-05 14:02:50.426 +08:00 [INF] Starting console host.
+2022-05-05 14:02:52.258 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:02:52.259 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:02:52.259 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:02:52.259 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:02:52.259 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:02:52.259 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:02:52.259 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:02:52.259 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:02:52.259 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:02:52.259 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:02:52.259 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:02:52.259 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:02:52.259 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:02:52.259 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:02:52.259 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:02:52.259 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:02:52.259 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:02:52.259 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:02:52.259 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:02:52.259 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:02:52.259 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:02:52.259 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:02:52.259 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:02:52.259 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:02:52.259 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:02:52.260 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:02:52.643 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:02:52.645 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:02:52.647 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:02:52.649 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:02:52.649 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:02:53.658 +08:00 [INF] Start main task time：05/05/2022 06:02:53
+2022-05-05 14:06:18.552 +08:00 [INF] Starting console host.
+2022-05-05 14:06:20.350 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:06:20.351 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:06:20.351 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:06:20.351 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:06:20.351 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:06:20.351 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:06:20.351 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:06:20.351 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:06:20.351 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:06:20.351 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:06:20.351 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:06:20.351 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:06:20.351 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:06:20.351 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:06:20.351 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:06:20.351 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:06:20.351 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:06:20.351 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:06:20.351 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:06:20.351 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:06:20.351 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:06:20.351 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:06:20.351 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:06:20.719 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:06:20.720 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:06:20.723 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:06:20.724 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:06:20.724 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:06:21.732 +08:00 [INF] Start main task time：05/05/2022 06:06:21
+2022-05-05 14:25:18.970 +08:00 [INF] Starting console host.
+2022-05-05 14:25:20.806 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:25:20.807 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:25:20.807 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:25:20.807 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:25:20.807 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:25:20.807 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:25:20.807 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:25:20.807 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:25:20.807 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:25:20.807 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:25:20.807 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:25:20.807 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:25:20.807 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:25:20.807 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:25:20.807 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:25:20.807 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:25:20.807 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:25:20.807 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:25:20.807 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:25:20.807 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:25:20.807 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:25:20.807 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:25:20.807 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:25:21.181 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:25:21.182 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:25:21.184 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:25:21.186 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:25:21.186 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:25:22.194 +08:00 [INF] Start main task time：05/05/2022 06:25:22
+2022-05-05 14:30:46.197 +08:00 [INF] Starting console host.
+2022-05-05 14:30:48.208 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:30:48.209 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:30:48.209 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:30:48.209 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:30:48.209 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:30:48.209 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:30:48.209 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:30:48.209 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:30:48.209 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:30:48.209 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:30:48.209 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:30:48.209 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:30:48.209 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:30:48.209 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:30:48.209 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:30:48.209 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:30:48.209 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:30:48.209 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:30:48.209 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:30:48.209 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:30:48.209 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:30:48.209 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:30:48.209 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:30:48.611 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:30:48.612 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:30:48.614 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:30:48.616 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:30:48.616 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:30:49.620 +08:00 [INF] Start main task time：05/05/2022 06:30:49
+2022-05-05 14:34:46.024 +08:00 [INF] Starting console host.
+2022-05-05 14:34:47.908 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:34:47.909 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:34:47.909 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:34:47.909 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:34:47.909 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:34:47.909 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:34:47.909 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:34:47.909 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:34:47.909 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:34:47.909 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:34:47.909 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:34:47.909 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:34:47.909 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:34:47.909 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:34:47.909 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:34:47.909 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:34:47.909 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:34:47.909 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:34:47.909 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:34:47.909 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:34:47.909 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:34:47.909 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:34:47.909 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:34:48.286 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:34:48.288 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:34:48.290 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:34:48.291 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:34:48.291 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:34:49.299 +08:00 [INF] Start main task time：05/05/2022 06:34:49
+2022-05-05 14:40:37.722 +08:00 [INF] Starting console host.
+2022-05-05 14:40:39.520 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:40:39.521 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:40:39.521 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:40:39.521 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:40:39.521 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:40:39.521 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:40:39.521 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:40:39.521 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:40:39.521 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:40:39.521 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:40:39.521 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:40:39.521 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:40:39.521 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:40:39.521 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:40:39.521 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:40:39.521 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:40:39.521 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:40:39.521 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:40:39.521 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:40:39.521 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:40:39.521 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:40:39.521 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:40:39.521 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:40:39.872 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:40:39.873 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:40:39.875 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:40:39.877 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:40:39.877 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:40:40.882 +08:00 [INF] Start main task time：05/05/2022 06:40:40
+2022-05-05 14:48:55.611 +08:00 [INF] Starting console host.
+2022-05-05 14:48:57.402 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:48:57.403 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:48:57.403 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:48:57.403 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:48:57.403 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:48:57.403 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:48:57.403 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:48:57.403 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:48:57.403 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:48:57.403 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:48:57.403 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:48:57.403 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:48:57.403 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:48:57.403 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:48:57.403 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:48:57.403 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:48:57.403 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:48:57.403 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:48:57.403 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:48:57.403 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:48:57.403 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:48:57.403 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:48:57.403 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:48:57.744 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:48:57.745 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:48:57.747 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:48:57.749 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:48:57.749 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:48:58.756 +08:00 [INF] Start main task time：05/05/2022 06:48:58
+2022-05-05 14:49:09.034 +08:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AElf.Client.Service.AElfClient.SignTransaction(String privateKeyHex, Transaction transaction)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.QueryAsync[T](String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 33
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleSwapPathAndTokenInfoAsync(String[] tokens, Dictionary`2 canSwapMap, Dictionary`2 pathMap, TokenList tokenList) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 183
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 95
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 61
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 14:52:29.047 +08:00 [INF] Start main task time：05/05/2022 06:52:29
+553 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:49:27.554 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:49:27.554 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:49:27.554 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:49:27.554 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:49:27.554 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:49:27.554 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:49:27.554 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:49:27.554 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:49:27.554 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:49:27.554 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:49:27.554 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:49:27.554 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:49:27.554 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:49:27.554 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:49:27.554 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:49:27.554 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:49:27.554 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:49:27.554 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:49:27.554 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:49:27.554 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:49:27.554 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:49:27.554 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:49:27.934 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:49:27.936 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:49:27.938 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:49:27.940 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:49:27.940 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:49:28.946 +08:00 [INF] Start main task time：05/05/2022 06:49:28
+2022-05-05 14:53:55.936 +08:00 [INF] Starting console host.
+2022-05-05 14:53:57.730 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:53:57.731 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:53:57.731 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:53:57.731 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:53:57.731 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:53:57.731 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:53:57.731 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:53:57.731 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:53:57.731 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:53:57.731 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:53:57.731 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:53:57.731 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:53:57.731 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:53:57.731 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:53:57.731 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:53:57.731 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:53:57.731 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:53:57.731 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:53:57.731 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:53:57.731 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:53:57.731 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:53:57.731 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:53:57.731 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:53:58.092 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:53:58.093 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:53:58.095 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:53:58.097 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:53:58.097 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:53:59.101 +08:00 [INF] Start main task time：05/05/2022 06:53:59
+2022-05-05 14:57:15.289 +08:00 [INF] Starting console host.
+2022-05-05 14:57:17.124 +08:00 [INF] Loaded ABP modules:
+2022-05-05 14:57:17.125 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 14:57:17.125 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 14:57:17.125 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 14:57:17.125 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 14:57:17.125 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 14:57:17.125 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 14:57:17.125 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 14:57:17.125 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 14:57:17.125 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 14:57:17.125 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 14:57:17.125 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 14:57:17.125 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 14:57:17.125 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 14:57:17.125 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 14:57:17.125 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 14:57:17.125 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 14:57:17.125 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 14:57:17.125 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 14:57:17.125 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 14:57:17.125 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 14:57:17.125 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 14:57:17.125 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 14:57:17.490 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 14:57:17.491 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 14:57:17.493 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 14:57:17.494 +08:00 [INF] Hosting environment: Production
+2022-05-05 14:57:17.495 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 14:57:18.498 +08:00 [INF] Start main task time：05/05/2022 06:57:18
+2022-05-05 15:16:48.997 +08:00 [INF] Starting console host.
+2022-05-05 15:16:50.919 +08:00 [INF] Loaded ABP modules:
+2022-05-05 15:16:50.920 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 15:16:50.920 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 15:16:50.920 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 15:16:50.920 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 15:16:50.920 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 15:16:50.920 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 15:16:50.920 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 15:16:50.920 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 15:16:50.920 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 15:16:50.920 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 15:16:50.920 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 15:16:50.920 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 15:16:50.920 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 15:16:50.920 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 15:16:50.920 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 15:16:50.920 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 15:16:50.920 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 15:16:50.920 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 15:16:50.920 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 15:16:50.920 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 15:16:50.920 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 15:16:50.920 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 15:16:51.296 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 15:16:51.297 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 15:16:51.300 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 15:16:51.301 +08:00 [INF] Hosting environment: Production
+2022-05-05 15:16:51.301 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 15:16:52.309 +08:00 [INF] Start main task time：05/05/2022 07:16:52
+2022-05-05 15:49:56.606 +08:00 [INF] Starting console host.
+2022-05-05 15:49:58.455 +08:00 [INF] Loaded ABP modules:
+2022-05-05 15:49:58.456 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 15:49:58.456 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 15:49:58.456 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 15:49:58.456 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 15:49:58.456 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 15:49:58.456 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 15:49:58.456 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 15:49:58.456 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 15:49:58.456 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 15:49:58.456 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 15:49:58.456 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 15:49:58.456 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 15:49:58.456 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 15:49:58.456 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 15:49:58.456 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 15:49:58.456 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 15:49:58.456 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 15:49:58.456 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 15:49:58.456 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 15:49:58.456 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 15:49:58.456 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 15:49:58.456 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 15:49:58.836 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 15:49:58.837 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 15:49:58.839 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 15:49:58.841 +08:00 [INF] Hosting environment: Production
+2022-05-05 15:49:58.841 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 15:49:59.842 +08:00 [INF] Start main task time：05/05/2022 07:49:59
+2022-05-05 15:50:09.113 +08:00 [ERR] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AElf.Client.Service.AElfClient.SignTransaction(String privateKeyHex, Transaction transaction)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.QueryAsync[T](String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 33
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleSwapPathAndTokenInfoAsync(String[] tokens, Dictionary`2 canSwapMap, Dictionary`2 pathMap, TokenList tokenList) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 194
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 94
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 15:53:29.127 +08:00 [INF] Start main task time：05/05/2022 07:53:29
+2022-05-05 15:54:09.486 +08:00 [INF] Starting console host.
+2022-05-05 15:54:11.311 +08:00 [INF] Loaded ABP modules:
+2022-05-05 15:54:11.312 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 15:54:11.312 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 15:54:11.312 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 15:54:11.312 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 15:54:11.312 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 15:54:11.312 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 15:54:11.312 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 15:54:11.312 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 15:54:11.312 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 15:54:11.312 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 15:54:11.312 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 15:54:11.312 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 15:54:11.312 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 15:54:11.312 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 15:54:11.312 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 15:54:11.312 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 15:54:11.312 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 15:54:11.312 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 15:54:11.312 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 15:54:11.312 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 15:54:11.312 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 15:54:11.312 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 15:54:11.687 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 15:54:11.688 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 15:54:11.690 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 15:54:11.691 +08:00 [INF] Hosting environment: Production
+2022-05-05 15:54:11.691 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 15:54:12.700 +08:00 [INF] Start main task time：05/05/2022 07:54:12
+2022-05-05 15:55:49.732 +08:00 [ERR] Value cannot be null. (Parameter 'values')
+System.ArgumentNullException: Value cannot be null. (Parameter 'values')
+   at Google.Protobuf.ProtoPreconditions.CheckNotNull[T](T value, String name)
+   at Google.Protobuf.Collections.RepeatedField`1.AddRange(IEnumerable`1 values)
+   at Google.Protobuf.Collections.RepeatedField`1.Add(IEnumerable`1 values)
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 104
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 15:56:46.054 +08:00 [INF] Starting console host.
+2022-05-05 15:56:47.882 +08:00 [INF] Loaded ABP modules:
+2022-05-05 15:56:47.883 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 15:56:47.883 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 15:56:47.883 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 15:56:47.883 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 15:56:47.883 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 15:56:47.883 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 15:56:47.883 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 15:56:47.883 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 15:56:47.883 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 15:56:47.883 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 15:56:47.883 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 15:56:47.883 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 15:56:47.883 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 15:56:47.883 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 15:56:47.883 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 15:56:47.883 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 15:56:47.883 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 15:56:47.883 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 15:56:47.883 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 15:56:47.883 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 15:56:47.883 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 15:56:47.883 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 15:56:48.247 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 15:56:48.248 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 15:56:48.251 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 15:56:48.252 +08:00 [INF] Hosting environment: Production
+2022-05-05 15:56:48.252 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 15:56:49.259 +08:00 [INF] Start main task time：05/05/2022 07:56:49
+2022-05-05 16:04:00.626 +08:00 [INF] Starting console host.
+2022-05-05 16:04:02.491 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:04:02.492 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:04:02.492 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:04:02.492 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:04:02.492 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:04:02.492 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:04:02.492 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:04:02.492 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:04:02.492 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:04:02.492 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:04:02.492 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:04:02.492 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:04:02.492 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:04:02.492 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:04:02.492 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:04:02.492 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:04:02.492 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:04:02.492 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:04:02.492 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:04:02.492 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:04:02.492 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:04:02.492 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:04:02.492 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:04:02.865 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:04:02.867 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:04:02.869 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:04:02.870 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:04:02.871 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:04:03.874 +08:00 [INF] Start main task time：05/05/2022 08:04:03
+2022-05-05 16:04:25.338 +08:00 [ERR] Can not map from given object (SwapExchange.Entity.Path) to Awaken.Contracts.SwapExchangeContract.Path, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null.
+System.NotImplementedException: Can not map from given object (SwapExchange.Entity.Path) to Awaken.Contracts.SwapExchangeContract.Path, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null.
+   at Volo.Abp.ObjectMapping.NotImplementedAutoObjectMappingProvider.Map[TSource,TDestination](Object source)
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 104
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 16:05:16.588 +08:00 [INF] Starting console host.
+2022-05-05 16:05:18.418 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:05:18.418 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:05:18.418 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:05:18.418 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:05:18.418 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:05:18.418 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:05:18.418 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:05:18.418 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:05:18.418 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:05:18.418 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:05:18.418 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:05:18.418 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:05:18.418 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:05:18.418 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:05:18.418 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:05:18.418 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:05:18.418 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:05:18.418 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:05:18.418 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:05:18.418 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:05:18.418 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:05:18.418 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:05:18.418 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:05:18.764 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:05:18.765 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:05:18.767 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:05:18.768 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:05:18.768 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:05:19.771 +08:00 [INF] Start main task time：05/05/2022 08:05:19
+2022-05-05 16:05:59.486 +08:00 [ERR] Can not map from given object (SwapExchange.Entity.Path) to Awaken.Contracts.SwapExchangeContract.Path, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null.
+System.NotImplementedException: Can not map from given object (SwapExchange.Entity.Path) to Awaken.Contracts.SwapExchangeContract.Path, swap-exchange, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null.
+   at Volo.Abp.ObjectMapping.NotImplementedAutoObjectMappingProvider.Map[TSource,TDestination](Object source)
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 104
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 16:06:07.655 +08:00 [INF] Starting console host.
+2022-05-05 16:06:09.431 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:06:09.431 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:06:09.431 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:06:09.431 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:06:09.431 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:06:09.431 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:06:09.431 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:06:09.431 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:06:09.431 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:06:09.431 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:06:09.431 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:06:09.431 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:06:09.431 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:06:09.431 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:06:09.431 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:06:09.431 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:06:09.431 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:06:09.431 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:06:09.431 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:06:09.431 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:06:09.431 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:06:09.431 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:06:09.431 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:06:09.432 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:06:09.809 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:06:09.810 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:06:09.812 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:06:09.813 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:06:09.814 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:06:10.822 +08:00 [INF] Start main task time：05/05/2022 08:06:10
+2022-05-05 16:10:19.735 +08:00 [INF] Starting console host.
+2022-05-05 16:10:21.530 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:10:21.530 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:10:21.530 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:10:21.530 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:10:21.530 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:10:21.530 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:10:21.530 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:10:21.530 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:10:21.530 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:10:21.530 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:10:21.530 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:10:21.530 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:10:21.530 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:10:21.530 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:10:21.530 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:10:21.530 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:10:21.530 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:10:21.530 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:10:21.530 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:10:21.530 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:10:21.530 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:10:21.530 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:10:21.530 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:10:21.531 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:10:21.531 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:10:21.886 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:10:21.887 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:10:21.889 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:10:21.891 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:10:21.891 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:10:22.899 +08:00 [INF] Start main task time：05/05/2022 08:10:22
+2022-05-05 16:11:05.562 +08:00 [INF] Starting console host.
+2022-05-05 16:11:07.343 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:11:07.344 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:11:07.344 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:11:07.344 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:11:07.344 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:11:07.344 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:11:07.344 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:11:07.344 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:11:07.344 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:11:07.344 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:11:07.344 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:11:07.344 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:11:07.344 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:11:07.344 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:11:07.344 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:11:07.344 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:11:07.344 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:11:07.344 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:11:07.344 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:11:07.344 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:11:07.344 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:11:07.344 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:11:07.344 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:11:07.706 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:11:07.708 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:11:07.710 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:11:07.711 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:11:07.712 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:11:08.716 +08:00 [INF] Start main task time：05/05/2022 08:11:08
+2022-05-05 16:16:03.445 +08:00 [INF] Starting console host.
+2022-05-05 16:16:05.232 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:16:05.233 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:16:05.233 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:16:05.233 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:16:05.233 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:16:05.233 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:16:05.233 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:16:05.233 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:16:05.233 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:16:05.233 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:16:05.233 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:16:05.233 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:16:05.233 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:16:05.233 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:16:05.233 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:16:05.233 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:16:05.233 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:16:05.233 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:16:05.233 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:16:05.233 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:16:05.233 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:16:05.233 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:16:05.233 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:16:05.602 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:16:05.603 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:16:05.605 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:16:05.607 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:16:05.607 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:16:06.616 +08:00 [INF] Start main task time：05/05/2022 08:16:06
+2022-05-05 16:21:44.386 +08:00 [INF] Starting console host.
+2022-05-05 16:21:46.249 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:21:46.250 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:21:46.250 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:21:46.250 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:21:46.250 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:21:46.250 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:21:46.250 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:21:46.250 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:21:46.250 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:21:46.250 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:21:46.250 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:21:46.250 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:21:46.250 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:21:46.250 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:21:46.250 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:21:46.250 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:21:46.250 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:21:46.250 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:21:46.250 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:21:46.250 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:21:46.250 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:21:46.250 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:21:46.250 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:21:46.630 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:21:46.631 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:21:46.633 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:21:46.635 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:21:46.635 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:21:47.643 +08:00 [INF] Start main task time：05/05/2022 08:21:47
+2022-05-05 16:21:54.023 +08:00 [ERR] 
+AElf.Client.AElfClientException
+   at AElf.Client.Service.HttpService.PostResponseAsync(String url, Dictionary`2 parameters, String version, Boolean useApplicationJson, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsStringAsync(String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsync[T](String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.AElfClient.ExecuteTransactionAsync(ExecuteTransactionDto input)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.QueryAsync[T](String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 33
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenPairsFromChain() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 393
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 57
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 16:25:14.038 +08:00 [INF] Start main task time：05/05/2022 08:25:14
+2022-05-05 16:25:47.207 +08:00 [ERR] {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+AElf.Client.AElfClientException: {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+   at AElf.Client.Service.HttpService.PostResponseAsync(String url, Dictionary`2 parameters, String version, Boolean useApplicationJson, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsStringAsync(String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsync[T](String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.AElfClient.SendTransactionAsync(SendTransactionInput input)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 53
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 126
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 120
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+7 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:22:18.468 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:22:18.469 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:22:18.472 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:22:18.473 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:22:18.473 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:22:19.480 +08:00 [INF] Start main task time：05/05/2022 08:22:19
+2022-05-05 16:26:47.604 +08:00 [INF] Starting console host.
+2022-05-05 16:26:49.564 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:26:49.565 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:26:49.565 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:26:49.565 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:26:49.565 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:26:49.565 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:26:49.565 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:26:49.565 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:26:49.565 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:26:49.565 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:26:49.565 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:26:49.565 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:26:49.565 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:26:49.565 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:26:49.565 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:26:49.565 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:26:49.565 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:26:49.565 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:26:49.565 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:26:49.565 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:26:49.565 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:26:49.565 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:26:49.565 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:26:49.951 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:26:49.953 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:26:49.955 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:26:49.957 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:26:49.957 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:26:50.964 +08:00 [INF] Start main task time：05/05/2022 08:26:50
+2022-05-05 16:28:06.547 +08:00 [ERR] {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+AElf.Client.AElfClientException: {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+   at AElf.Client.Service.HttpService.PostResponseAsync(String url, Dictionary`2 parameters, String version, Boolean useApplicationJson, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsStringAsync(String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsync[T](String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.AElfClient.SendTransactionAsync(SendTransactionInput input)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 53
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 126
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 120
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 16:31:26.567 +08:00 [INF] Start main task time：05/05/2022 08:31:26
+2022-05-05 16:31:43.601 +08:00 [ERR] {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+AElf.Client.AElfClientException: {"Error":{"Code":null,"Message":"An internal error occurred during your request!","Details":null,"ValidationErrors":null}}
+   at AElf.Client.Service.HttpService.PostResponseAsync(String url, Dictionary`2 parameters, String version, Boolean useApplicationJson, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsStringAsync(String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.HttpService.PostResponseAsync[T](String url, Dictionary`2 parameters, String version, HttpStatusCode expectedStatusCode, AuthenticationHeaderValue authenticationHeaderValue)
+   at AElf.Client.Service.AElfClient.SendTransactionAsync(SendTransactionInput input)
+   at SwapExchange.Service.Implemention.AElfClientServiceImpl.SendTranscationAsync(String toAddress, String privateKey, String methodName, IMessage txParam) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/AElfClientServiceImpl.cs:line 53
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.SendTranscation(SwapTokensInput swapTokensInput) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 126
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList, QueryTokenInfo queryTokenInfo) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 120
+   at SwapExchange.Service.Implemention.TokenQueryAndAssembleServiceImpl.HandleTokenInfoAndSwap() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/TokenQueryAndAssembleServiceImpl.cs:line 63
+   at SwapExchange.Service.Implemention.HandlerServiceImpl.ExecuteMainTask() in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Service/Impl/HandlerServiceImpl.cs:line 27
+   at SwapExchange.Jobs.SwapExchangeWorker.DoWorkAsync(PeriodicBackgroundWorkerContext workerContext) in /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/Jobs/SwapExchangeWorker.cs:line 45
+   at Volo.Abp.BackgroundWorkers.AsyncPeriodicBackgroundWorkerBase.DoWorkAsync()
+2022-05-05 16:35:03.598 +08:00 [INF] Start main task time：05/05/2022 08:35:03
+-05 16:29:19.120 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:29:19.121 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:29:19.123 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:29:19.125 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:29:19.125 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:29:20.129 +08:00 [INF] Start main task time：05/05/2022 08:29:20
+2022-05-05 16:49:33.567 +08:00 [INF] Starting console host.
+2022-05-05 16:49:35.393 +08:00 [INF] Loaded ABP modules:
+2022-05-05 16:49:35.394 +08:00 [INF] - SwapExchange.SwapExchangeModule
+2022-05-05 16:49:35.394 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2022-05-05 16:49:35.394 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2022-05-05 16:49:35.394 +08:00 [INF]   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2022-05-05 16:49:35.394 +08:00 [INF]     - Volo.Abp.Threading.AbpThreadingModule
+2022-05-05 16:49:35.394 +08:00 [INF]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule
+2022-05-05 16:49:35.394 +08:00 [INF]     - Volo.Abp.Caching.AbpCachingModule
+2022-05-05 16:49:35.394 +08:00 [INF]       - Volo.Abp.Serialization.AbpSerializationModule
+2022-05-05 16:49:35.394 +08:00 [INF]       - Volo.Abp.Uow.AbpUnitOfWorkModule
+2022-05-05 16:49:35.394 +08:00 [INF]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2022-05-05 16:49:35.394 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2022-05-05 16:49:35.394 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2022-05-05 16:49:35.394 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2022-05-05 16:49:35.394 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Security.AbpSecurityModule
+2022-05-05 16:49:35.394 +08:00 [INF]       - Volo.Abp.Json.AbpJsonModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Timing.AbpTimingModule
+2022-05-05 16:49:35.394 +08:00 [INF]           - Volo.Abp.Localization.AbpLocalizationModule
+2022-05-05 16:49:35.394 +08:00 [INF]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2022-05-05 16:49:35.394 +08:00 [INF]             - Volo.Abp.Settings.AbpSettingsModule
+2022-05-05 16:49:35.394 +08:00 [INF]   - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule
+2022-05-05 16:49:35.394 +08:00 [INF]     - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule
+2022-05-05 16:49:35.394 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Guids.AbpGuidsModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2022-05-05 16:49:35.394 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2022-05-05 16:49:35.773 +08:00 [DBG] Started background worker: SwapExchange.Jobs.SwapExchangeWorker
+2022-05-05 16:49:35.774 +08:00 [INF] Initialized all ABP modules.
+2022-05-05 16:49:35.776 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 16:49:35.778 +08:00 [INF] Hosting environment: Production
+2022-05-05 16:49:35.778 +08:00 [INF] Content root path: /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0
+2022-05-05 16:49:36.788 +08:00 [INF] Start main task time：05/05/2022 08:49:36

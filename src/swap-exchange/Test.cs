@@ -2,11 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AElf;
+using AElf.Client.Dto;
+using AElf.Client.Service;
+using AElf.Types;
+using Awaken.Contracts.SwapExchangeContract;
+using Awaken.Contracts.Token;
+using Google.Protobuf;
+using Google.Protobuf.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using QuadraticVote.Application.Service.Extensions;
 using SwapExchange.Entity;
 using SwapExchange.Service.Implemention;
+using Path = Awaken.Contracts.SwapExchangeContract.Path;
+using Token = Awaken.Contracts.SwapExchangeContract.Token;
 
 namespace SwapExchange
 {
@@ -97,6 +107,69 @@ namespace SwapExchange
         // }
 
 
+        // public static void Main(string[] args)
+        // {
+        //     var aElfClient = new AElfClient("http://18.163.40.175:8000");
+        //     var ownerAddress = "2jvXoEyc348j8HcW3Auwtyzv4HF1LLJbPWoVxFvdE7BCBYLjcU";
+        //     var contractAddress = "hg7hFigUZ6W3gLreo1bGnpAQTQpGsidueYBScVpzPAi81A2AA";
+        //     var privateKey = "4dbb19a4199b5183c048727ecfa01e6c6906e3fea6ffe8f17bfc079923d22b54";
+        //     var isConnectedAsync = aElfClient.IsConnectedAsync();
+        //     Console.WriteLine($"client status:{isConnectedAsync}");
+        //     var getBalanceInput = new GetBalanceInput
+        //     {
+        //         Owner = new Address
+        //         {
+        //             Value = Address.FromBase58(ownerAddress).Value
+        //         },
+        //         Symbol = "ALP ELF-USDTE"
+        //     };
+        //     var generateTransactionAsync = aElfClient.GenerateTransactionAsync(ownerAddress, contractAddress, "GetBalance", getBalanceInput);
+        //     var signTransaction = aElfClient.SignTransaction(privateKey, generateTransactionAsync.Result);
+        //     var executeTransactionAsync = aElfClient.ExecuteTransactionAsync(new ExecuteTransactionDto
+        //     {
+        //         RawTransaction = signTransaction.ToByteArray().ToHex()
+        //     });
+        //     var balance = Balance.Parser.ParseFrom(ByteArrayHelper.HexStringToByteArray(executeTransactionAsync.Result));
+        //     Console.WriteLine(balance);
+        // }
+
+        public static void Main(string[] args)
+        {
+            var aElfClient = new AElfClient("http://18.163.40.175:8000");
+            var ownerAddress = "2jvXoEyc348j8HcW3Auwtyzv4HF1LLJbPWoVxFvdE7BCBYLjcU";
+            var privateKey = "4dbb19a4199b5183c048727ecfa01e6c6906e3fea6ffe8f17bfc079923d22b54";
+            var swapExchangeAddr = "2eJ4MnRWFo7YJXB92qj2AF3NWoB3umBggzNLhbGeahkwDYYLAD";
+            var map = new MapField<string, Path>();
+            map["ELF"] = new Path
+            {
+                Value = {"ELF", "USDTE"},
+                ExpectPrice = "9600187043178480",
+                SlipPoint = 5
+            };
+            var tokenList = new TokenList();
+            tokenList.TokensInfo.Add(new Token
+            {
+                Amount = 5590140,
+                TokenSymbol = "ALP ELF-USDTE"
+            });
+
+            var swapTokensInput = new SwapTokensInput
+            {
+                PathMap = {map},
+                SwapTokenList = tokenList
+            };
+                
+            var generateTransactionAsync = aElfClient.GenerateTransactionAsync(ownerAddress, swapExchangeAddr, "SwapLpTokens",swapTokensInput);
+            var signTransaction = aElfClient.SignTransaction(privateKey, generateTransactionAsync.Result);
+            var result = aElfClient.SendTransactionAsync(new SendTransactionInput
+            {
+                RawTransaction = signTransaction.ToByteArray().ToHex()
+            });
+            Task.Delay(4000);
+            Console.WriteLine(result.Result.TransactionId);
+            aElfClient.GetTransactionResultAsync()
+        }
+        
         private static Task<List<string>> PreferedSwapPathAsync(string tokenSymbol,
             Dictionary<string, List<string>> canSwapMap,
             Dictionary<string, List<string>> pathMap)

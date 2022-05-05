@@ -4,7 +4,6 @@ using AElf;
 using AElf.Client.Dto;
 using AElf.Client.Service;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
 using Volo.Abp.DependencyInjection;
 
 namespace SwapExchange.Service.Implemention
@@ -27,9 +26,9 @@ namespace SwapExchange.Service.Implemention
         public async Task<T> QueryAsync<T>(string toAddress, string privateKey, string methodName, IMessage txParam) where T : IMessage, new()
         {
             var isConnectedAsync =await _client.IsConnectedAsync();
-            Console.WriteLine(isConnectedAsync);
+            Console.WriteLine($"aelfClent status:{isConnectedAsync}");
             var address =  _client.GetAddressFromPrivateKey(privateKey);
-            var transaction = await _client.GenerateTransactionAsync(address, toAddress, methodName, new Empty());
+            var transaction = await _client.GenerateTransactionAsync(address, toAddress, methodName, txParam);
             var txWithSign = _client.SignTransaction(privateKey, transaction);
             var transactionResult = await _client.ExecuteTransactionAsync(new ExecuteTransactionDto()
             {

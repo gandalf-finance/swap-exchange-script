@@ -1,3 +1,5 @@
+using System;
+
 namespace SwapExchange.Constant
 {
     public class ContractOperateConst
@@ -10,6 +12,8 @@ namespace SwapExchange.Constant
         
         // LP
         public static string LP_GET_BALANCE_METHOD = "GetBalance";
+
+        public static string LP_APPROVE_METHOD = "Approve";
         // Swap Exchange
         public static string SWAP_EXCHANGE_SWAP_LP_METHOD = "SwapLpTokens";
     }
