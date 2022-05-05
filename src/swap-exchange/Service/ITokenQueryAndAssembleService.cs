@@ -6,7 +6,7 @@ namespace SwapExchange.Service
 {
     public interface ITokenQueryAndAssembleService
     {
-        Task<PretreatmentTokenInfo> QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
+        Task QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
             QueryTokenInfo queryTokenInfo);
 
         Task<List<string>> PreferredSwapPathAsync(string tokenSymbol, Dictionary<string, List<string>> canSwapMap,

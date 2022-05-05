@@ -31,10 +31,9 @@ namespace SwapExchange
         //     readToEnd= readToEnd + "123";
         //     TxtReadWriteHelper.Write(workConfigPathDir,readToEnd);
         // }
-
         // public static void Main(string[] args)
         // {
-        //     // var response = HttpClientHelper.GetResponse("https://www.baidu.com/", out string statusCode);
+            //     // var response = HttpClientHelper.GetResponse("https://www.baidu.com/", out string statusCode);
         //     // var response = HttpClientHelper.PostResponse("https://www.baidu.com/", "null", out string statusCode);
         //     // Console.WriteLine(statusCode);
         //     // Console.WriteLine(response.ToString());
@@ -96,6 +95,7 @@ namespace SwapExchange
         //     string queryStr="";
         //     JsonConvert.DeserializeObject<QueryTokenInfo>(queryStr);
         // }
+
 
         private static Task<List<string>> PreferedSwapPathAsync(string tokenSymbol,
             Dictionary<string, List<string>> canSwapMap,

@@ -70,7 +70,9 @@ namespace SwapExchange.Service.Implemention
             return null;
         }
 
+#pragma warning disable 1998
         public async Task<string> GetAddressFromPrivateKey(string privateKey)
+#pragma warning restore 1998
         {
             return _client.GetAddressFromPrivateKey(privateKey);
         }

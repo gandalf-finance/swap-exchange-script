@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
+using Awaken.Contracts.Token;
 using Google.Protobuf;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -67,11 +68,11 @@ namespace SwapExchange.Service.Implemention
          * <param name="pairsList"></param>
          * <param name="queryTokenInfo"></param>
          */
-        public async Task<PretreatmentTokenInfo> QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
+        public async Task QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
             QueryTokenInfo queryTokenInfo)
         {   
             //queryTokenInfo filter
-            queryTokenInfo.Items = queryTokenInfo.Items.Where(item => item.FeeRate.Equals(_tokenOptions.FeeRate)).ToList();
+            // queryTokenInfo.Items = queryTokenInfo.Items.Where(item => item.FeeRate.Equals(_tokenOptions.FeeRate)).ToList();
 
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
@@ -95,11 +96,6 @@ namespace SwapExchange.Service.Implemention
                 {
                     item.Token0.Symbol, item.Token1.Symbol
                 }, tokenCanSwapMap, pathMap, tokenList);
-
-                if (pathMap[item.Token0.Symbol].Value.Count <= 0 || pathMap[item.Token1.Symbol].Value.Count <= 0)
-                {
-                    continue;
-                }
             }
 
             var swapTokensInput = new SwapTokensInput
@@ -107,12 +103,7 @@ namespace SwapExchange.Service.Implemention
                 PathMap = pathMap,
                 SwapTokenList = tokenList
             };
-            // todo store
-            // todo send transcation
-
             await SendTranscation(swapTokensInput);
-            
-            return null;
         }
 
         private async Task SendTranscation(SwapTokensInput swapTokensInput)
@@ -153,7 +144,9 @@ namespace SwapExchange.Service.Implemention
          * Disassemble pair list for Preferred swap path.
          * <param name="pairsList"></param>
          */
+#pragma warning disable 1998
         private async Task<Dictionary<string, List<string>>> DisassemblePairsListIntoMap(PairsList pairsList)
+#pragma warning restore 1998
         {
             var map = new Dictionary<string, List<string>>();
             var pairs = pairsList.Pairs;
@@ -187,14 +180,17 @@ namespace SwapExchange.Service.Implemention
             // Get FeeTo lp token amount.
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
             var pair = LpTokenHelper.ExtractTokenPairFromSymbol(lpTokenSymbol);
-            // todo 多个lptoken合约地址 多个feeTo
             var balance = await _aElfClientService.QueryAsync<LPBalance>(_tokenOptions.LpTokenContractAddresses,
                 _tokenOptions.OperatorPrivateKey, ContractOperateConst.LP_GET_BALANCE_METHOD,
-                new LPGetBalanceInput
+                new GetBalanceInput
                 {
                     Owner = CommonHelper.CoverntString2Address(await _aElfClientService.GetAddressFromPrivateKey(_tokenOptions.OperatorPrivateKey)),
                     Symbol = lpTokenSymbol
                 });
+            if (balance.Amount<=0)
+            {
+                return;
+            }
             // Get Reserves.
             var getReservesOutput = await _aElfClientService.QueryAsync<GetReservesOutput>(
                 _tokenOptions.SwapContractAddress,
@@ -242,7 +238,9 @@ namespace SwapExchange.Service.Implemention
         }
 
 
+#pragma warning disable 1998
         private async Task<List<long>> ComputeAmountFromRemoveLiquit(long liquidityRemoveAmount,
+#pragma warning restore 1998
             GetReservesOutput.ReservePairResult reserves, long totalSupply)
         {
             var result = new List<long>();
@@ -383,15 +381,19 @@ namespace SwapExchange.Service.Implemention
         }
 
         private async Task<string> QueryTokenList(int pageNum)
-        {
-            var maxResultCount = _tokenOptions.BatchAmount;
-            var skipCount = (pageNum - 1) * maxResultCount;
+        {   
+            // Because this api not implement pages,so get out of all records.
+            // var maxResultCount = _tokenOptions.BatchAmount;
+            // var skipCount = (pageNum - 1) * maxResultCount;
+            var maxResultCount = 999;
+            var skipCount = 0;
             try
             {
                 string response = null;
                 string statusCode;
                 do
                 {
+                    // response = HttpClientHelper.GetResponse(string.Format(_tokenOptions.QueryTokenUrl,maxResultCount,skipCount,_tokenOptions.FeeRate), out statusCode);
                     response = HttpClientHelper.GetResponse(string.Format(_tokenOptions.QueryTokenUrl,maxResultCount,skipCount,_tokenOptions.FeeRate), out statusCode);
                 } while (!statusCode.Equals("OK"));
 
