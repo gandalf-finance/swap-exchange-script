@@ -6,7 +6,6 @@ using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
 using Google.Protobuf;
-using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -48,9 +47,9 @@ namespace SwapExchange.Service.Implemention
             _repository = repository;
         }
 
-        /**
-         *  start.
-         */
+       /// <summary>
+       /// start
+       /// </summary>
         public async Task HandleTokenInfoAndSwap()
         {
             int pageNum = 1;
@@ -73,13 +72,9 @@ namespace SwapExchange.Service.Implemention
         public async Task QueryTokenAndAssembleSwapInfosAsync(PairsList pairsList,
             QueryTokenInfo queryTokenInfo)
         {
-            //queryTokenInfo filter
-            // queryTokenInfo.Items = queryTokenInfo.Items.Where(item => item.FeeRate.Equals(_tokenOptions.FeeRate)).ToList();
-
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
             var tokenList = new TokenList();
-
             if (pairsList.Pairs.Count <= 0)
             {
                 _logger.LogError("Get token pairs error,terminate！");
@@ -140,11 +135,12 @@ namespace SwapExchange.Service.Implemention
             await _repository.InsertManyAsync(saveList);
         }
 
-
-        /**
-         * Disassemble pair list for Preferred swap path.
-         * <param name="pairsList"></param>
-         */
+        
+        /// <summary>
+        /// Disassemble pair list for Preferred swap path.
+        /// </summary>
+        /// <param name="pairsList"></param>
+        /// <returns></returns>
 #pragma warning disable 1998
         private async Task<Dictionary<string, List<string>>> DisassemblePairsListIntoMap(PairsList pairsList)
 #pragma warning restore 1998
@@ -195,17 +191,13 @@ namespace SwapExchange.Service.Implemention
             }
             
             // approve
-            
-            var txId = await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
+            await _aElfClientService.SendTranscationAsync(_tokenOptions.LpTokenContractAddresses,
                 _tokenOptions.OperatorPrivateKey, ContractOperateConst.LpApproveMethod, new ApproveInput
                 {
                     Amount = balance.Amount,
                     Spender = CommonHelper.CoverntString2Address(_tokenOptions.SwapToolContractAddress),
                     Symbol = lpTokenSymbol
                 });
-
-
-            var resultDto = await _aElfClientService.QueryTranscationResultByTranscationId(txId);
             
             // Get Reserves.
             var getReservesOutput = await _aElfClientService.QueryAsync<GetReservesOutput>(
@@ -216,6 +208,7 @@ namespace SwapExchange.Service.Implemention
                 {
                     SymbolPair = {pair}
                 });
+            
             // Get lpToken totalsupply
             var getTotalSupplyOutput = await _aElfClientService.QueryAsync<GetTotalSupplyOutput>(
                 _tokenOptions.SwapContractAddress,
@@ -264,13 +257,15 @@ namespace SwapExchange.Service.Implemention
 #pragma warning restore 1998
             ReservePairResult reserves, long totalSupply)
         {
-            var result = new List<long>();
-            result.Add(new BigInteger(liquidityRemoveAmount.ToString())
-                .Multiply(new BigInteger(reserves.ReserveA.ToString())).Divide(new BigInteger(totalSupply.ToString()))
-                .LongValue);
-            result.Add(new BigInteger(liquidityRemoveAmount.ToString())
-                .Multiply(new BigInteger(reserves.ReserveB.ToString())).Divide(new BigInteger(totalSupply.ToString()))
-                .LongValue);
+            var result = new List<long>
+            {
+                new BigInteger(liquidityRemoveAmount.ToString())
+                    .Multiply(new BigInteger(reserves.ReserveA.ToString())).Divide(new BigInteger(totalSupply.ToString()))
+                    .LongValue,
+                new BigInteger(liquidityRemoveAmount.ToString())
+                    .Multiply(new BigInteger(reserves.ReserveB.ToString())).Divide(new BigInteger(totalSupply.ToString()))
+                    .LongValue
+            };
             return result;
         }
 
@@ -311,7 +306,7 @@ namespace SwapExchange.Service.Implemention
                 var path = pathMap.GetValueOrDefault(tokenSymbol);
                 if (path != null)
                 {
-                    if (path.Value != null && path.Value.Count > 0)
+                    if (path.Value is {Count: > 0})
                     {
                         return path.Value.ToList();
                     }
@@ -406,14 +401,11 @@ namespace SwapExchange.Service.Implemention
 
         private async Task<string> QueryTokenList(int pageNum)
         {
-            // Because this api not implement pages,so get out of all records.
-            // var maxResultCount = _tokenOptions.BatchAmount;
-            // var skipCount = (pageNum - 1) * maxResultCount;
             var maxResultCount = 999;
             var skipCount = 0;
             try
             {
-                string response = null;
+                string response;
                 string statusCode;
                 do
                 {

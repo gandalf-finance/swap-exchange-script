@@ -15,20 +15,12 @@ namespace SwapExchange
             
         }
         
-        public DbSet<Book> Books { get; set; }
         public DbSet<SwapResult> SwapResults { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
-            
-            builder.Entity<Book>(b =>
-            {
-                b.ToTable(CommonHelper.CoverntEntityNameToDb<Book>());
-                b.ConfigureByConvention();
-            });
 
             builder.Entity<SwapResult>(b =>
             {
