@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
-using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -33,12 +32,12 @@ namespace SwapExchange.Service.Implemention
         private readonly TokenOptions _tokenOptions;
         private readonly IAElfClientService _aElfClientService;
         private readonly IAutoObjectMappingProvider _mapper;
-        private readonly IRepository<SwapResult, Guid> _repository;
+        private readonly IRepository<SwapTranscationRecord, Guid> _repository;
 
         public TokenQueryAndAssembleServiceImpl(IOptionsSnapshot<TokenOptions> tokenOptions,
             IAElfClientService aElfClientService,
             ILogger<TokenQueryAndAssembleServiceImpl> logger, IAutoObjectMappingProvider mapper,
-            IRepository<SwapResult, Guid> repository)
+            IRepository<SwapTranscationRecord, Guid> repository)
         {
             _tokenOptions = tokenOptions.Value;
             _aElfClientService = aElfClientService;
@@ -105,34 +104,37 @@ namespace SwapExchange.Service.Implemention
             var saveList = new List<SwapResult>();
             var transactionId = await _aElfClientService.SendTranscationAsync(_tokenOptions.SwapToolContractAddress,
                 _tokenOptions.OperatorPrivateKey, ContractOperateConst.SwapExchangeSwapLpMethod, swapTokensInput);
-            await Task.Delay(4000);
-            var transactionResultDto = await _aElfClientService.QueryTranscationResultByTranscationId(transactionId);
-            if (transactionResultDto.Status.Equals(CommonConst.TxStatus))
+            
+            // var transactionResultDto = await _aElfClientService.QueryTranscationResultByTranscationId(transactionId);
+            // if (transactionResultDto.Status.Equals(CommonConst.TxStatus))
+            // {
+            //     var logs = transactionResultDto.Logs.Where(l => l.Name.Contains(nameof(SwapResultEvent))).ToList();
+            //     foreach (var logEventDto in logs)
+            //     {
+            //         var swapResultEvent =
+            //             SwapResultEvent.Parser.ParseFrom(ByteString.FromBase64(logEventDto.NonIndexed));
+            //         var copy = _mapper.Map<SwapResultEvent, SwapResult>(swapResultEvent);
+            //         saveList.Add(copy);
+            //     }
+            // }
+            // else
+            // {
+            //     foreach (var token in swapTokensInput.SwapTokenList.TokensInfo)
+            //     {
+            //         saveList.Add(new SwapResult
+            //         {
+            //             Amount = token.Amount,
+            //             Result = false,
+            //             Symbol = token.TokenSymbol,
+            //             IsLptoken = token.TokenSymbol.StartsWith("ALP")
+            //         });
+            //     }
+            // }
+            if (!string.IsNullOrEmpty(transactionId))
             {
-                var logs = transactionResultDto.Logs.Where(l => l.Name.Contains(nameof(SwapResultEvent))).ToList();
-                foreach (var logEventDto in logs)
-                {
-                    var swapResultEvent =
-                        SwapResultEvent.Parser.ParseFrom(ByteString.FromBase64(logEventDto.NonIndexed));
-                    var copy = _mapper.Map<SwapResultEvent, SwapResult>(swapResultEvent);
-                    saveList.Add(copy);
-                }
+                await _repository.InsertAsync(new SwapTranscationRecord(transactionId));
             }
-            else
-            {
-                foreach (var token in swapTokensInput.SwapTokenList.TokensInfo)
-                {
-                    saveList.Add(new SwapResult
-                    {
-                        Amount = token.Amount,
-                        Result = false,
-                        Symbol = token.TokenSymbol,
-                        IsLptoken = token.TokenSymbol.StartsWith("ALP")
-                    });
-                }
-            }
-
-            await _repository.InsertManyAsync(saveList);
+            
         }
 
         

@@ -15,14 +15,20 @@ namespace SwapExchange
             
         }
         
-        public DbSet<SwapResult> SwapResults { get; set; }
-
+        // public DbSet<SwapResult> SwapResults { get; set; }
+        public DbSet<SwapTranscationRecord> SwapTranscationRecords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<SwapResult>(b =>
+            // builder.Entity<SwapResult>(b =>
+            // {
+            //     b.ToTable(CommonHelper.CoverntEntityNameToDb<SwapResult>());
+            //     b.ConfigureByConvention();
+            // });
+
+            builder.Entity<SwapTranscationRecord>(b =>
             {
                 b.ToTable(CommonHelper.CoverntEntityNameToDb<SwapResult>());
                 b.ConfigureByConvention();

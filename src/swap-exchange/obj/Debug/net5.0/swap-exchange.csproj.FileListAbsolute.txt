@@ -1,4 +1,3 @@
-/Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/workconfig.json
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/appsettings.json
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/swap-exchange.deps.json
 /Users/chenghaiming/work/codes/AElf/CLI/scripts/swap-exchange-abp/src/swap-exchange/bin/Debug/net5.0/swap-exchange.runtimeconfig.json
