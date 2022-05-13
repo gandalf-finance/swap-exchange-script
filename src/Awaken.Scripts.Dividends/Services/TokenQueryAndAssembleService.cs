@@ -98,7 +98,10 @@ namespace Awaken.Scripts.Dividends.Services
 
             if (!string.IsNullOrEmpty(transactionId))
             {
-                await _repository.InsertAsync(new SwapTransactionRecord(transactionId));
+                await _repository.InsertAsync(new SwapTransactionRecord
+                {
+                    TransactionId = transactionId
+                });
             }
         }
 

@@ -15,7 +15,6 @@ namespace Awaken.Scripts.Dividends
 
         }
 
-        // public DbSet<SwapResult> SwapResults { get; set; }
         public DbSet<SwapTransactionRecord> SwapTransactionRecords { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

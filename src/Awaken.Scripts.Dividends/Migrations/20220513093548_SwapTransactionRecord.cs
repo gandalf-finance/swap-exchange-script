@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Awaken.Scripts.Dividends.Migrations
 {
-    public partial class init : Migration
+    public partial class SwapTransactionRecord : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,13 +13,11 @@ namespace Awaken.Scripts.Dividends.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "book",
+                name: "swap_result",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Price = table.Column<string>(type: "longtext", nullable: true)
+                    TransactionId = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExtraProperties = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -30,7 +30,7 @@ namespace Awaken.Scripts.Dividends.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_book", x => x.Id);
+                    table.PrimaryKey("PK_swap_result", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
@@ -38,7 +38,7 @@ namespace Awaken.Scripts.Dividends.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "book");
+                name: "swap_result");
         }
     }
 }

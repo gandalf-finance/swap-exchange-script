@@ -6,12 +6,12 @@ using Volo.Abp;
 
 namespace Awaken.Scripts.Dividends
 {
-    public class SwapExchangeHostedService : IHostedService
+    public class DividendsScriptHostedService : IHostedService
     {
         private readonly IAbpApplicationWithExternalServiceProvider _application;
         private readonly IServiceProvider _serviceProvider;
 
-        public SwapExchangeHostedService(
+        public DividendsScriptHostedService(
             IAbpApplicationWithExternalServiceProvider application,
             IServiceProvider serviceProvider)
         {

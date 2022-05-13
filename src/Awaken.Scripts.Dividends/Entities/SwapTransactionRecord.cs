@@ -5,11 +5,6 @@ namespace Awaken.Scripts.Dividends.Entities
 {
     public class SwapTransactionRecord : AuditedAggregateRoot<Guid>
     {
-        private string TxId { get; set; }
-
-        public SwapTransactionRecord(string txId)
-        {
-            TxId = txId;
-        }
+        public string TransactionId { get; set; }
     }
 }

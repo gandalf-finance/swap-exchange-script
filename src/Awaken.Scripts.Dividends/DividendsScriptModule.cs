@@ -23,20 +23,19 @@ namespace Awaken.Scripts.Dividends
         typeof(AbpEntityFrameworkCoreMySQLModule)
     )]
     [DependsOn(typeof(AbpCachingStackExchangeRedisModule))]
-    public class SwapExchangeModule : AbpModule
+    public class DividendsScriptModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
             var hostEnvironment = context.Services.GetSingletonInstance<IHostEnvironment>();
-            context.Services.AddHostedService<SwapExchangeHostedService>();
+            context.Services.AddHostedService<DividendsScriptHostedService>();
 
             // Config Mysql
             context.Services.AddAbpDbContext<SwapExchangeDbContext>(builder =>
             {
                 builder.AddDefaultRepositories(true);
             });
-
             
             Configure<AbpDbContextOptions>(options => { options.UseMySQL(); });
 
@@ -47,7 +46,6 @@ namespace Awaken.Scripts.Dividends
                 configuration.GetSection("TokenConfig").Bind(options);
             });
         }
-
 
         public override void OnApplicationInitialization(
             ApplicationInitializationContext context)
