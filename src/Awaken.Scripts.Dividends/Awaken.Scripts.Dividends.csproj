@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Awaken.Scripts.Dividends</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AElf.CSharp.Core" Version="1.0.0" />
+        <PackageReference Include="AElf.Types" Version="1.1.1-18963" />
+        <PackageReference Include="Quartz" Version="3.4.0" />
+        <PackageReference Include="Volo.Abp.Autofac" Version="5.2.0" />
+        <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="5.2.0" />
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="5.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.*" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="3.1.0" />
+        <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+        <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+        <PackageReference Include="Volo.Abp.BackgroundWorkers" Version="5.2.0" />
+        <PackageReference Include="Volo.Abp.BackgroundJobs.Abstractions" Version="5.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
+        <PackageReference Include="AElf.Client" Version="1.1.0" />
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="5.2.0" />
+        <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="5.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.16">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+            <PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="appsettings.json">
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>
