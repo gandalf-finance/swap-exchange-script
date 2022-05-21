@@ -46,38 +46,38 @@ namespace Awaken.Scripts.Dividends.Services
         /// </summary>
         public async Task HandleTokenInfoAndSwap()
         {
-            int pageNum = 1;
-            var pairsList = await QueryTokenPairsFromChain();
-            var queryTokenInfo = await ConvertTokens(pageNum);
+            var pairList = await QueryTokenPairsFromChain();
+            var queryTokenInfo = await ConvertTokens();
             var items = queryTokenInfo.Items;
             while (items.Count > 0)
             {
-                var tmp = items.Take(_dividendsScriptOptions.BatchAmount).ToList();
-                await QueryTokenAndAssembleSwapInfosAsync(pairsList, queryTokenInfo);
-                tmp.RemoveRange(0, tmp.Count);
+                var takeAmount = Math.Min(_dividendsScriptOptions.BatchAmount, items.Count);
+                var handleItems = items.Take(takeAmount).ToList();
+                await QueryTokenAndAssembleSwapInfosAsync(pairList, handleItems);
+                items.RemoveRange(0, takeAmount);
             }
         }
 
         /// <summary>
         /// Query supports token list and forecase price，final assembly.
         /// </summary>
-        /// <param name="pairsList"></param>
-        /// <param name="queryTokenInfo"></param>
-        public async Task QueryTokenAndAssembleSwapInfosAsync(StringList pairsList,
-            QueryTokenInfo queryTokenInfo)
+        /// <param name="pairList"></param>
+        /// <param name="handleItems"></param>
+        public async Task QueryTokenAndAssembleSwapInfosAsync(StringList pairList,
+            List<Item> handleItems)
         {
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
             var tokenList = new TokenList();
-            if (pairsList.Value.Count <= 0)
+            if (pairList.Value.Count <= 0)
             {
                 _logger.LogError("Get token pairs error,terminate！");
             }
 
             // Make pairList into Map
-            var tokenCanSwapMap = await DisassemblePairsListIntoMap(pairsList);
+            var tokenCanSwapMap = await DisassemblePairsListIntoMap(pairList);
 
-            foreach (var item in queryTokenInfo.Items)
+            foreach (var item in handleItems)
             {
                 // Handle path ，expect price,slip point percentage
                 await HandleSwapPathAndTokenInfoAsync(new string[]
@@ -186,7 +186,8 @@ namespace Awaken.Scripts.Dividends.Services
                 });
 
             // Amount of tokens could get from removed liquidity.
-            var amountsExcept = await ComputeAmountFromRemovedLiquidity(balance.Amount, getReservesOutput.Results.First(),
+            var amountsExcept = await ComputeAmountFromRemovedLiquidity(balance.Amount,
+                getReservesOutput.Results.First(),
                 getTotalSupplyOutput.Results.First().TotalSupply);
 
             foreach (var token in tokens)
@@ -236,7 +237,8 @@ namespace Awaken.Scripts.Dividends.Services
             var path = pathMap.GetValueOrDefault(token);
             if (path is { Value.Count: > 0 })
             {
-                var expect = await _clientService.QueryAsync<GetAmountsOutOutput>(_dividendsScriptOptions.SwapContractAddress,
+                var expect = await _clientService.QueryAsync<GetAmountsOutOutput>(
+                    _dividendsScriptOptions.SwapContractAddress,
                     _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.GetAmountsOut,
                     new GetAmountsOutInput
                     {
@@ -344,13 +346,13 @@ namespace Awaken.Scripts.Dividends.Services
                 ContractMethodNameConstants.GetPairs, new Empty());
         }
 
-        private async Task<QueryTokenInfo> ConvertTokens(int pageNum)
+        private async Task<QueryTokenInfo> ConvertTokens()
         {
-            var queryStr = await QueryTokenList(pageNum);
+            var queryStr = await QueryTokenList();
             return JsonConvert.DeserializeObject<QueryTokenInfo>(queryStr);
         }
 
-        private async Task<string> QueryTokenList(int pageNum)
+        private async Task<string> QueryTokenList()
         {
             const int maxResultCount = 999;
             const int skipCount = 0;
@@ -362,7 +364,8 @@ namespace Awaken.Scripts.Dividends.Services
                 {
                     // response = HttpClientHelper.GetResponse(string.Format(_dividendsScriptOptions.QueryTokenUrl,maxResultCount,skipCount,_dividendsScriptOptions.FeeRate), out statusCode);
                     response = HttpClientHelper.GetResponse(
-                        string.Format(_dividendsScriptOptions.QueryTokenUrl, maxResultCount, skipCount, _dividendsScriptOptions.FeeRate),
+                        string.Format(_dividendsScriptOptions.QueryTokenUrl, maxResultCount, skipCount,
+                            _dividendsScriptOptions.FeeRate),
                         out statusCode);
                 } while (!statusCode.Equals("OK"));
 
@@ -371,7 +374,7 @@ namespace Awaken.Scripts.Dividends.Services
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return await QueryTokenList(pageNum);
+                return await QueryTokenList();
             }
         }
     }

@@ -4,25 +4,8 @@
     <projectFile>src/swap-exchange/swap-exchange.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53105b94-9b05-4222-801d-1159b042d2f1" name="Changes" comment="Remove test file.">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SwapExchange/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwapExchange.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Awaken.Scripts.Dividends.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Awaken.Scripts.Dividends.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Awaken.Scripts.Dividends.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Entities/SwapTransactionRecord.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Entities/SwapTransactionRecord.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220418065559_init.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220418065559_init.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220429080937_init02.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220429080937_init02.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220506082619_init03.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/20220506082619_init03.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/SwapExchangeDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Migrations/SwapExchangeDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Services/TokenQueryAndAssembleService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/Services/TokenQueryAndAssembleService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/SwapExchangeDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/DividendsScriptDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/SwapExchangeHostedService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/DividendsScriptHostedService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/SwapExchangeModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/DividendsScriptModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/src/Awaken.Scripts.Dividends/obj/rider.project.restore.info" afterDir="false" />
+    <list default="true" id="53105b94-9b05-4222-801d-1159b042d2f1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwapExchange/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwapExchange/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +120,7 @@
       <workItem from="1651718686225" duration="654000" />
       <workItem from="1651743373454" duration="882000" />
       <workItem from="1651751745130" duration="2539000" />
-      <workItem from="1652079683328" duration="24174000" />
+      <workItem from="1652079683328" duration="25612000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <created>1652416236113</created>
@@ -160,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652423398068</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Re-generate migration file.">
+      <created>1652434998846</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652434998846</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +174,7 @@
     <MESSAGE value="Refactor" />
     <MESSAGE value="Tune SwapToolContractAddress" />
     <MESSAGE value="Remove test file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove test file." />
+    <MESSAGE value="Re-generate migration file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-generate migration file." />
   </component>
 </project>
