@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\common.props" />
-
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Awaken.Scripts.Dividends</RootNamespace>
+        <LangVersion>latest</LangVersion>
+        <Version>0.1.0</Version>
+        <NoWarn>$(NoWarn);CS1591;CS0436</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
