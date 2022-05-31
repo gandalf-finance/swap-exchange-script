@@ -8,7 +8,7 @@ namespace Awaken.Scripts.Dividends.Services
 {
     public interface ITokenQueryAndAssembleService
     {
-        Task QueryTokenAndAssembleSwapInfosAsync(StringList pairList,
+        Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
             List<Item> handleItems);
 
         Task<List<string>> PreferredSwapPathAsync(string tokenSymbol, Dictionary<string, List<string>> canSwapMap,

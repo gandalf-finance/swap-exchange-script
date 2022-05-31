@@ -10,6 +10,7 @@ public class ContractMethodNameConstants
 
     // LP Contract
     public static readonly string GetBalance = "GetBalance";
+    public static readonly string GetAllowance = "GetAllowance";
     public static readonly string Approve = "Approve";
 
     // Swap Exchange Contract

@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
 using Awaken.Scripts.Dividends.Entities;
+using Awaken.Scripts.Dividends.Enum;
 using Awaken.Scripts.Dividends.Extensions;
 using Awaken.Scripts.Dividends.Helpers;
 using Awaken.Scripts.Dividends.Options;
@@ -17,6 +20,7 @@ using Org.BouncyCastle.Math;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
+using Volo.Abp.Uow;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
 
 namespace Awaken.Scripts.Dividends.Services
@@ -28,17 +32,19 @@ namespace Awaken.Scripts.Dividends.Services
         private readonly IAElfClientService _clientService;
         private readonly IAutoObjectMappingProvider _mapper;
         private readonly IRepository<SwapTransactionRecord, Guid> _repository;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public TokenQueryAndAssembleService(IOptionsSnapshot<DividendsScriptOptions> tokenOptions,
             IAElfClientService clientService,
             ILogger<TokenQueryAndAssembleService> logger, IAutoObjectMappingProvider mapper,
-            IRepository<SwapTransactionRecord, Guid> repository)
+            IRepository<SwapTransactionRecord, Guid> repository, IUnitOfWorkManager unitOfWorkManager)
         {
             _dividendsScriptOptions = tokenOptions.Value;
             _clientService = clientService;
             _logger = logger;
             _mapper = mapper;
             _repository = repository;
+            _unitOfWorkManager = unitOfWorkManager;
         }
 
         /// <summary>
@@ -47,43 +53,57 @@ namespace Awaken.Scripts.Dividends.Services
         public async Task HandleTokenInfoAndSwap()
         {
             var pairList = await QueryTokenPairsFromChain();
+            if (pairList.Value.Count <= 0)
+            {
+                throw new Exception("Get token pairs error,terminate！");
+            }
+
             var queryTokenInfo = await ConvertTokens();
             var items = queryTokenInfo.Items;
+            var tokenSwapMap = DisassemblePairsListIntoMap(pairList);
+            CheckTokenItems(items, tokenSwapMap);
             while (items.Count > 0)
             {
+                using var uow = _unitOfWorkManager.Begin(requiresNew: true, isTransactional: true);
                 var takeAmount = Math.Min(_dividendsScriptOptions.BatchAmount, items.Count);
                 var handleItems = items.Take(takeAmount).ToList();
-                await QueryTokenAndAssembleSwapInfosAsync(pairList, handleItems);
+                await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems);
                 items.RemoveRange(0, takeAmount);
+                await uow.CompleteAsync();
+            }
+
+            while (true)
+            {
+                Thread.Sleep(60000);
+                if (await CheckTransactionStatusAsync() == 0)
+                {
+                    break;
+                }
             }
         }
 
-        /// <summary>
-        /// Query supports token list and forecase price，final assembly.
-        /// </summary>
-        /// <param name="pairList"></param>
-        /// <param name="handleItems"></param>
-        public async Task QueryTokenAndAssembleSwapInfosAsync(StringList pairList,
+        public async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
             List<Item> handleItems)
         {
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
             var tokenList = new TokenList();
-            if (pairList.Value.Count <= 0)
-            {
-                _logger.LogError("Get token pairs error,terminate！");
-            }
-
-            // Make pairList into Map
-            var tokenCanSwapMap = await DisassemblePairsListIntoMap(pairList);
 
             foreach (var item in handleItems)
             {
-                // Handle path ，expect price,slip point percentage
-                await HandleSwapPathAndTokenInfoAsync(new string[]
+                try
                 {
-                    item.Token0.Symbol, item.Token1.Symbol
-                }, tokenCanSwapMap, pathMap, tokenList);
+                    await HandleSwapPathAndTokenInfoAsync(new string[]
+                    {
+                        item.Token0.Symbol, item.Token1.Symbol
+                    }, tokenCanSwapMap, pathMap, tokenList);
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogError(exception.Message);
+                    _logger.LogError(exception.StackTrace);
+                }
+                // Handle path ，expect price,slip point percentage
             }
 
             var swapTokensInput = new SwapTokensInput
@@ -110,7 +130,7 @@ namespace Awaken.Scripts.Dividends.Services
         /// </summary>
         /// <param name="pairsList"></param>
         /// <returns></returns>
-        private async Task<Dictionary<string, List<string>>> DisassemblePairsListIntoMap(StringList pairsList)
+        private Dictionary<string, List<string>> DisassemblePairsListIntoMap(StringList pairsList)
         {
             var map = new Dictionary<string, List<string>>();
             var pairs = pairsList.Value;
@@ -144,27 +164,47 @@ namespace Awaken.Scripts.Dividends.Services
             // Get FeeTo lp token amount.
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
             var pair = LpTokenHelper.ExtractTokenPairFromSymbol(lpTokenSymbol);
-            var address = await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey);
+            var address = (await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey))
+                .ToAddress();
             var balance = await _clientService.QueryAsync<Balance>(_dividendsScriptOptions.LpTokenContractAddresses,
                 _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.GetBalance,
                 new GetBalanceInput
                 {
-                    Owner = address.ToAddress(),
+                    Owner = address,
                     Symbol = lpTokenSymbol
                 });
             if (balance.Amount <= 0)
             {
+                _logger.LogError($"Lp Token: {lpTokenSymbol} Balance is zero");
                 return;
             }
 
             // approve
-            await _clientService.SendTransactionAsync(_dividendsScriptOptions.LpTokenContractAddresses,
-                _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.Approve, new ApproveInput
+            var spender = _dividendsScriptOptions.SwapToolContractAddress.ToAddress();
+            var approvedAmount = await _clientService.QueryAsync<Balance>(
+                _dividendsScriptOptions.LpTokenContractAddresses,
+                _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.GetAllowance,
+                new GetAllowanceInput
                 {
-                    Amount = balance.Amount,
-                    Spender = _dividendsScriptOptions.SwapToolContractAddress.ToAddress(),
-                    Symbol = lpTokenSymbol
+                    Symbol = lpTokenSymbol,
+                    Owner = address,
+                    Spender = spender,
                 });
+            var toApproveAmount = balance.Amount - approvedAmount.Amount;
+            if (toApproveAmount > 0)
+            {
+                var txId = await _clientService.SendTransactionAsync(_dividendsScriptOptions.LpTokenContractAddresses,
+                    _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.Approve, new ApproveInput
+                    {
+                        Amount = toApproveAmount,
+                        Spender = spender,
+                        Symbol = lpTokenSymbol
+                    });
+                await _repository.InsertAsync(new SwapTransactionRecord
+                {
+                    TransactionId = txId
+                });
+            }
 
             // Get Reserves.
             var getReservesOutput = await _clientService.QueryAsync<GetReservesOutput>(
@@ -186,7 +226,7 @@ namespace Awaken.Scripts.Dividends.Services
                 });
 
             // Amount of tokens could get from removed liquidity.
-            var amountsExcept = await ComputeAmountFromRemovedLiquidity(balance.Amount,
+            var amountsExcept = ComputeAmountFromRemovedLiquidity(balance.Amount,
                 getReservesOutput.Results.First(),
                 getTotalSupplyOutput.Results.First().TotalSupply);
 
@@ -198,8 +238,7 @@ namespace Awaken.Scripts.Dividends.Services
                 }
 
                 await PreferredSwapPathAsync(token, canSwapMap, pathMap);
-                long amountIn = 0;
-                amountIn = getReservesOutput.Results.First().SymbolA.Equals(token)
+                var amountIn = getReservesOutput.Results.First().SymbolA.Equals(token)
                     ? amountsExcept.First()
                     : amountsExcept.Last();
 
@@ -214,7 +253,7 @@ namespace Awaken.Scripts.Dividends.Services
             });
         }
 
-        private async Task<List<long>> ComputeAmountFromRemovedLiquidity(long liquidityRemoveAmount,
+        private List<long> ComputeAmountFromRemovedLiquidity(long liquidityRemoveAmount,
             ReservePairResult reserves, long totalSupply)
         {
             var result = new List<long>
@@ -259,46 +298,44 @@ namespace Awaken.Scripts.Dividends.Services
             Dictionary<string, List<string>> canSwapMap,
             Dictionary<string, Path> pathMap)
         {
-            if (!tokenSymbol.IsNullOrEmpty())
+            if (tokenSymbol.IsNullOrEmpty()) return new List<string>();
+            var path = pathMap.GetValueOrDefault(tokenSymbol);
+            if (path != null)
             {
-                var path = pathMap.GetValueOrDefault(tokenSymbol);
-                if (path != null)
+                if (path.Value is { Count: > 0 })
                 {
-                    if (path.Value is { Count: > 0 })
-                    {
-                        return path.Value.ToList();
-                    }
+                    return path.Value.ToList();
                 }
-                else
-                {
-                    pathMap[tokenSymbol] = new Path();
-                }
+            }
+            else
+            {
+                pathMap[tokenSymbol] = new Path();
+            }
 
-                var pathList = new List<List<string>>();
-                await RecursionHandlePath(tokenSymbol, canSwapMap, null, pathList);
-                if (pathList.Count > 0)
+            var pathList = new List<List<string>>();
+            await RecursionHandlePath(tokenSymbol, canSwapMap, null, pathList);
+            if (pathList.Count > 0)
+            {
+                List<string> tmp = null;
+                foreach (var list in pathList)
                 {
-                    List<string> tmp = null;
-                    foreach (var list in pathList)
+                    if (tmp == null)
                     {
-                        if (tmp == null)
-                        {
-                            tmp = list;
-                            continue;
-                        }
-
-                        if (tmp.Count > list.Count)
-                        {
-                            tmp = list;
-                        }
+                        tmp = list;
+                        continue;
                     }
 
-                    pathMap[tokenSymbol] = new Path
+                    if (tmp.Count > list.Count)
                     {
-                        Value = { tmp }
-                    };
-                    return tmp;
+                        tmp = list;
+                    }
                 }
+
+                pathMap[tokenSymbol] = new Path
+                {
+                    Value = { tmp }
+                };
+                return tmp;
             }
 
             return new List<string>();
@@ -376,6 +413,88 @@ namespace Awaken.Scripts.Dividends.Services
                 Console.WriteLine(e);
                 return await QueryTokenList();
             }
+        }
+
+        private void CheckTokenItems(IEnumerable<Item> items, Dictionary<string, List<string>> tokenSwapMap)
+        {
+            var itemCheckMsg = new StringBuilder();
+            foreach (var item in items)
+            {
+                if (item.Token0.Symbol.IsNullOrEmpty() || item.Token1.Symbol.IsNullOrEmpty())
+                {
+                    itemCheckMsg.Append($"Lack of item token info: {item.Id}\n");
+                }
+
+                if (!EnsureTokenPairMapExisted(item.Token0.Symbol, tokenSwapMap))
+                {
+                    itemCheckMsg.Append($"Lack of token:{item.Token0.Symbol} swap map\n");
+                }
+
+                if (
+                    !EnsureTokenPairMapExisted(item.Token1.Symbol, tokenSwapMap))
+                {
+                    itemCheckMsg.Append($"Lack of token:{item.Token1.Symbol} swap map\n");
+                }
+            }
+
+            if (itemCheckMsg.Length > 0)
+            {
+                throw new Exception(itemCheckMsg.ToString());
+            }
+        }
+
+        private bool EnsureTokenPairMapExisted(string tokenSymbol, Dictionary<string, List<string>> swapMap)
+        {
+            return tokenSymbol == _dividendsScriptOptions.TargetToken || swapMap.ContainsKey(tokenSymbol);
+        }
+
+        private async Task<int> CheckTransactionStatusAsync()
+        {
+            using var uow = _unitOfWorkManager.Begin(requiresNew: true, isTransactional: true);
+            var txRecords = await _repository.GetListAsync(x => x.TransactionStatus == TransactionStatus.NotChecked);
+            var toUpdateRecords = new List<SwapTransactionRecord>();
+            foreach (var txRecord in txRecords)
+            {
+                try
+                {
+                    if (await HandlerSwapTransactionRecord(txRecord))
+                    {
+                        toUpdateRecords.Add(txRecord);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogError(exception.Message);
+                    _logger.LogError(exception.StackTrace);
+                }
+            }
+
+            if (toUpdateRecords.Any())
+            {
+                await _repository.UpdateManyAsync(toUpdateRecords);
+            }
+
+            await uow.CompleteAsync();
+            return txRecords.Count;
+        }
+
+        private async Task<bool> HandlerSwapTransactionRecord(SwapTransactionRecord txRecord)
+        {
+            var tx = await _clientService.QueryTransactionResultByTransactionId(txRecord.TransactionId);
+            if (tx.Status == DividendsScriptConstants.Mined)
+            {
+                txRecord.TransactionStatus = TransactionStatus.Success;
+                return true;
+            }
+
+            if (tx.Status is DividendsScriptConstants.Pending or DividendsScriptConstants.PendingValidation)
+            {
+                return false;
+            }
+                
+            _logger.LogError($"TransactionId: {tx.TransactionId} failed, message: {tx.Error}");
+            txRecord.TransactionStatus = TransactionStatus.Fail;
+            return true;
         }
     }
 }
