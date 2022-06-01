@@ -8,6 +8,7 @@ namespace Awaken.Scripts.Dividends.Entities
     {
         public string TransactionId { get; set; }
         public TransactionStatus TransactionStatus { get; set; }
+        public TransactionType TransactionType { get; set; }
 
         public SwapTransactionRecord()
         {

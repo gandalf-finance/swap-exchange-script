@@ -12,6 +12,7 @@ using Awaken.Scripts.Dividends.Enum;
 using Awaken.Scripts.Dividends.Extensions;
 using Awaken.Scripts.Dividends.Helpers;
 using Awaken.Scripts.Dividends.Options;
+using Gandalf.Contracts.DividendPoolContract;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -21,7 +22,11 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
+using Google.Protobuf;
+using GetAllowanceInput = Awaken.Contracts.Token.GetAllowanceInput;
+using GetBalanceInput = Awaken.Contracts.Token.GetBalanceInput;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
+using TokenList = Awaken.Contracts.SwapExchangeContract.TokenList;
 
 namespace Awaken.Scripts.Dividends.Services
 {
@@ -64,14 +69,13 @@ namespace Awaken.Scripts.Dividends.Services
             CheckTokenItems(items, tokenSwapMap);
             while (items.Count > 0)
             {
-                using var uow = _unitOfWorkManager.Begin(requiresNew: true, isTransactional: true);
                 var takeAmount = Math.Min(_dividendsScriptOptions.BatchAmount, items.Count);
                 var handleItems = items.Take(takeAmount).ToList();
                 await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems);
                 items.RemoveRange(0, takeAmount);
-                await uow.CompleteAsync();
             }
 
+            await DonateAsync(_dividendsScriptOptions.TargetToken);
             while (true)
             {
                 Thread.Sleep(60000);
@@ -120,7 +124,8 @@ namespace Awaken.Scripts.Dividends.Services
             {
                 await _repository.InsertAsync(new SwapTransactionRecord
                 {
-                    TransactionId = transactionId
+                    TransactionId = transactionId,
+                    TransactionType = TransactionType.SwapLpTokens
                 });
             }
         }
@@ -202,7 +207,8 @@ namespace Awaken.Scripts.Dividends.Services
                     });
                 await _repository.InsertAsync(new SwapTransactionRecord
                 {
-                    TransactionId = txId
+                    TransactionId = txId,
+                    TransactionType = TransactionType.Approve
                 });
             }
 
@@ -491,10 +497,95 @@ namespace Awaken.Scripts.Dividends.Services
             {
                 return false;
             }
-                
+
             _logger.LogError($"TransactionId: {tx.TransactionId} failed, message: {tx.Error}");
             txRecord.TransactionStatus = TransactionStatus.Fail;
             return true;
+        }
+
+        private async Task DonateAsync(string targetToken)
+        {
+            if (_dividendsScriptOptions.AElfTokenContractAddresses.IsNullOrEmpty())
+            {
+                _dividendsScriptOptions.AElfTokenContractAddresses = await
+                    _clientService.GetAddressByNameAsync("AElf.ContractNames.Token");
+            }
+
+            var tokenContractAddress = _dividendsScriptOptions.AElfTokenContractAddresses;
+            var addressByteString =
+                (await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey)).ToAddress();
+            var address = GetAddress(addressByteString);
+            var balanceOutput = await _clientService.QueryAsync<AElf.Client.MultiToken.GetBalanceOutput>(
+                tokenContractAddress,
+                _dividendsScriptOptions.OperatorPrivateKey, "GetBalance",
+                new AElf.Client.MultiToken.GetBalanceInput
+                {
+                    Owner = address,
+                    Symbol = targetToken
+                });
+            var balance = balanceOutput.Balance;
+            _logger.LogInformation($"Token: {targetToken} Balance is {balance}");
+            if (balance <= 0)
+            {
+                return;
+            }
+
+            var dividendAddress = GetAddress(_dividendsScriptOptions.DividendContractAddresses.ToAddress());
+            var approveAmount = await _clientService.QueryAsync<AElf.Client.MultiToken.GetAllowanceOutput>(
+                tokenContractAddress,
+                _dividendsScriptOptions.OperatorPrivateKey, "GetAllowance",
+                new AElf.Client.MultiToken.GetAllowanceInput
+                {
+                    Owner = address,
+                    Symbol = targetToken,
+                    Spender = dividendAddress
+                });
+            var toApproveAmount = balance - approveAmount.Allowance;
+            _logger.LogInformation($"Has approved:{approveAmount.Allowance}");
+            if (toApproveAmount > 0)
+            {
+                _logger.LogInformation($"To approve: {toApproveAmount}");
+                await _clientService.SendTransactionAsync(
+                    tokenContractAddress,
+                    _dividendsScriptOptions.OperatorPrivateKey, "Approve", new AElf.Contracts.MultiToken.ApproveInput
+                    {
+                        Symbol = targetToken,
+                        Amount = toApproveAmount,
+                        Spender = _dividendsScriptOptions.DividendContractAddresses.ToAddress()
+                    });
+            }
+
+            var currentHeight = await _clientService.GetCurrentHeightAsync();
+            var amountPerBlock = balance / _dividendsScriptOptions.TermBlocks;
+            var transactionId = await _clientService.SendTransactionAsync(
+                _dividendsScriptOptions.DividendContractAddresses,
+                _dividendsScriptOptions.OperatorPrivateKey, nameof(Gandalf.Contracts.DividendPoolContract.NewReward),
+                new NewRewardInput
+                {
+                    Tokens = { targetToken },
+                    PerBlocks = { amountPerBlock },
+                    Amounts = { balance },
+                    StartBlock = currentHeight + _dividendsScriptOptions.BlocksToStart
+                });
+            _logger.LogInformation(
+                $"NewReward information, token: {targetToken}, start block: {currentHeight + _dividendsScriptOptions.BlocksToStart}, amounts: {balance}, amount per block: {amountPerBlock}");
+            if (transactionId.IsNullOrEmpty())
+            {
+                _logger.LogError($"Failed to send newReward transaction");
+                return;
+            }
+
+            await _repository.InsertAsync(new SwapTransactionRecord
+            {
+                TransactionId = transactionId,
+                TransactionType = TransactionType.Donate
+            });
+        }
+
+        private AElf.Client.Proto.Address GetAddress(AElf.Types.Address address)
+        {
+            var addressByteString = address.ToByteString();
+            return AElf.Client.Proto.Address.Parser.ParseFrom(addressByteString);
         }
     }
 }

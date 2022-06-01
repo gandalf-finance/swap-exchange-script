@@ -21,5 +21,8 @@ namespace Awaken.Scripts.Dividends.Services
         Task<TransactionResultDto> QueryTransactionResultByTransactionId(string txId);
 
         Task<string> GetAddressFromPrivateKey(string privateKey);
+        Task<string> GetAddressByNameAsync(string name);
+
+        Task<long> GetCurrentHeightAsync();
     }
 }

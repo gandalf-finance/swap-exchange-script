@@ -65,5 +65,16 @@ namespace Awaken.Scripts.Dividends.Services
         {
             return _client.GetAddressFromPrivateKey(privateKey);
         }
+
+        public async Task<string> GetAddressByNameAsync(string name)
+        {
+            return (await _client.GetContractAddressByNameAsync(
+                HashHelper.ComputeFrom("AElf.ContractNames.Token"))).ToBase58();
+        }
+
+        public async Task<long> GetCurrentHeightAsync()
+        {
+            return (await _client.GetChainStatusAsync()).BestChainHeight;
+        }
     }
 }

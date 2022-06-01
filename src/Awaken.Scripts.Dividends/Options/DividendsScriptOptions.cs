@@ -15,6 +15,8 @@ namespace Awaken.Scripts.Dividends.Options
         public string SwapToolContractAddress { get; set; }
 
         public string LpTokenContractAddresses { get; set; }
+        public string AElfTokenContractAddresses { get; set; }
+        public string DividendContractAddresses { get; set; }
 
         public string TargetToken { get; set; }
 
@@ -25,5 +27,8 @@ namespace Awaken.Scripts.Dividends.Options
         public string FeeRate { get; set; }
 
         public int ExecutionPeriod { get; set; }
+
+        public long BlocksToStart { get; set; } = 500;
+        public long TermBlocks { get; set; } = 172800;
     }
 }
