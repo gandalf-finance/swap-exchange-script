@@ -29,6 +29,6 @@ namespace Awaken.Scripts.Dividends.Options
         public int ExecutionPeriod { get; set; }
 
         public long BlocksToStart { get; set; } = 500;
-        public long TermBlocks { get; set; } = 172800;
+        public long BlocksPerTerm { get; set; } = 172800;
     }
 }

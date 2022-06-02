@@ -518,7 +518,7 @@ namespace Awaken.Scripts.Dividends.Services
             var address = GetAddress(userAddress);
             var dividendAddressBase58Str = _dividendsScriptOptions.DividendContractAddresses;
             var dividendAddress = GetAddress(dividendAddressBase58Str.ToAddress());
-            var termsBlock =  _dividendsScriptOptions.TermBlocks;
+            var blocksPerTerm =  _dividendsScriptOptions.BlocksPerTerm;
             var blocksToStart = _dividendsScriptOptions.BlocksToStart;
             
             // query token balance
@@ -564,7 +564,7 @@ namespace Awaken.Scripts.Dividends.Services
 
             // new reward
             var currentHeight = await _clientService.GetCurrentHeightAsync();
-            var amountPerBlock = balance / termsBlock;
+            var amountPerBlock = balance / blocksPerTerm;
             var startBlock = currentHeight + blocksToStart;
             var transactionId = await _clientService.SendTransactionAsync(
                 dividendAddressBase58Str,
