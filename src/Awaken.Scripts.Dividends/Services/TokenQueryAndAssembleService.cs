@@ -512,12 +512,19 @@ namespace Awaken.Scripts.Dividends.Services
             }
 
             var tokenContractAddress = _dividendsScriptOptions.AElfTokenContractAddresses;
-            var addressByteString =
-                (await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey)).ToAddress();
-            var address = GetAddress(addressByteString);
+            var operatorKey = _dividendsScriptOptions.OperatorPrivateKey;
+            var userAddress =
+                (await _clientService.GetAddressFromPrivateKey(operatorKey)).ToAddress();
+            var address = GetAddress(userAddress);
+            var dividendAddressBase58Str = _dividendsScriptOptions.DividendContractAddresses;
+            var dividendAddress = GetAddress(dividendAddressBase58Str.ToAddress());
+            var termsBlock =  _dividendsScriptOptions.TermBlocks;
+            var blocksToStart = _dividendsScriptOptions.BlocksToStart;
+            
+            // query token balance
             var balanceOutput = await _clientService.QueryAsync<AElf.Client.MultiToken.GetBalanceOutput>(
                 tokenContractAddress,
-                _dividendsScriptOptions.OperatorPrivateKey, "GetBalance",
+                operatorKey, ContractMethodNameConstants.GetTokenBalance,
                 new AElf.Client.MultiToken.GetBalanceInput
                 {
                     Owner = address,
@@ -530,10 +537,10 @@ namespace Awaken.Scripts.Dividends.Services
                 return;
             }
 
-            var dividendAddress = GetAddress(_dividendsScriptOptions.DividendContractAddresses.ToAddress());
+            // approve
             var approveAmount = await _clientService.QueryAsync<AElf.Client.MultiToken.GetAllowanceOutput>(
                 tokenContractAddress,
-                _dividendsScriptOptions.OperatorPrivateKey, "GetAllowance",
+                operatorKey, ContractMethodNameConstants.GetTokenAllowance,
                 new AElf.Client.MultiToken.GetAllowanceInput
                 {
                     Owner = address,
@@ -547,31 +554,33 @@ namespace Awaken.Scripts.Dividends.Services
                 _logger.LogInformation($"To approve: {toApproveAmount}");
                 await _clientService.SendTransactionAsync(
                     tokenContractAddress,
-                    _dividendsScriptOptions.OperatorPrivateKey, "Approve", new AElf.Contracts.MultiToken.ApproveInput
+                    operatorKey, ContractMethodNameConstants.TokenApprove, new AElf.Contracts.MultiToken.ApproveInput
                     {
                         Symbol = targetToken,
                         Amount = toApproveAmount,
-                        Spender = _dividendsScriptOptions.DividendContractAddresses.ToAddress()
+                        Spender = dividendAddressBase58Str.ToAddress()
                     });
             }
 
+            // new reward
             var currentHeight = await _clientService.GetCurrentHeightAsync();
-            var amountPerBlock = balance / _dividendsScriptOptions.TermBlocks;
+            var amountPerBlock = balance / termsBlock;
+            var startBlock = currentHeight + blocksToStart;
             var transactionId = await _clientService.SendTransactionAsync(
-                _dividendsScriptOptions.DividendContractAddresses,
-                _dividendsScriptOptions.OperatorPrivateKey, nameof(Gandalf.Contracts.DividendPoolContract.NewReward),
+                dividendAddressBase58Str,
+                operatorKey, nameof(Gandalf.Contracts.DividendPoolContract.NewReward),
                 new NewRewardInput
                 {
                     Tokens = { targetToken },
                     PerBlocks = { amountPerBlock },
                     Amounts = { balance },
-                    StartBlock = currentHeight + _dividendsScriptOptions.BlocksToStart
+                    StartBlock = startBlock
                 });
             _logger.LogInformation(
-                $"NewReward information, token: {targetToken}, start block: {currentHeight + _dividendsScriptOptions.BlocksToStart}, amounts: {balance}, amount per block: {amountPerBlock}");
+                $"NewReward information, token: {targetToken}, start block: {startBlock}, amounts: {balance}, amount per block: {amountPerBlock}");
             if (transactionId.IsNullOrEmpty())
             {
-                _logger.LogError($"Failed to send newReward transaction");
+                _logger.LogError("Failed to send newReward transaction");
                 return;
             }
 

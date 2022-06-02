@@ -15,4 +15,9 @@ public class ContractMethodNameConstants
 
     // Swap Exchange Contract
     public static readonly string SwapLpTokens = "SwapLpTokens";
+    
+    // Token Contract
+    public const string GetTokenBalance = "GetBalance";
+    public const string TokenApprove = "Approve";
+    public const string GetTokenAllowance = "GetAllowance";
 }
