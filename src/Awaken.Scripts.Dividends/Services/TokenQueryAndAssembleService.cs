@@ -181,7 +181,7 @@ namespace Awaken.Scripts.Dividends.Services
                 });
             if (balance.Amount <= 0)
             {
-                _logger.LogError($"Lp Token: {lpTokenSymbol} Balance is zero");
+                _logger.LogInformation($"Lp Token: {lpTokenSymbol} Balance is zero");
                 return;
             }
 
