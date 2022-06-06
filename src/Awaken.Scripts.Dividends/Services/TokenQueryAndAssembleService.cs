@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Awaken.Contracts.DividendPoolContract;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
@@ -20,7 +19,6 @@ using Newtonsoft.Json;
 using Org.BouncyCastle.Math;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
 using Google.Protobuf;
 using GetAllowanceInput = Awaken.Contracts.Token.GetAllowanceInput;
@@ -35,21 +33,24 @@ namespace Awaken.Scripts.Dividends.Services
         private readonly ILogger<TokenQueryAndAssembleService> _logger;
         private readonly DividendsScriptOptions _dividendsScriptOptions;
         private readonly IAElfClientService _clientService;
-        private readonly IAutoObjectMappingProvider _mapper;
         private readonly IRepository<SwapTransactionRecord, Guid> _repository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
+        private readonly IAElfTokenService _elfTokenService;
+        private readonly IDividendService _dividendService;
 
         public TokenQueryAndAssembleService(IOptionsSnapshot<DividendsScriptOptions> tokenOptions,
             IAElfClientService clientService,
-            ILogger<TokenQueryAndAssembleService> logger, IAutoObjectMappingProvider mapper,
-            IRepository<SwapTransactionRecord, Guid> repository, IUnitOfWorkManager unitOfWorkManager)
+            ILogger<TokenQueryAndAssembleService> logger,
+            IRepository<SwapTransactionRecord, Guid> repository, IUnitOfWorkManager unitOfWorkManager,
+            IAElfTokenService elfTokenService, IDividendService dividendService)
         {
             _dividendsScriptOptions = tokenOptions.Value;
             _clientService = clientService;
             _logger = logger;
-            _mapper = mapper;
             _repository = repository;
             _unitOfWorkManager = unitOfWorkManager;
+            _elfTokenService = elfTokenService;
+            _dividendService = dividendService;
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Awaken.Scripts.Dividends.Services
                 items.RemoveRange(0, takeAmount);
             }
 
-            await DonateAsync(_dividendsScriptOptions.TargetToken);
+            await NewRewardAsync(_dividendsScriptOptions.TargetToken);
             while (true)
             {
                 Thread.Sleep(60000);
@@ -248,7 +249,7 @@ namespace Awaken.Scripts.Dividends.Services
                     ? amountsExcept.First()
                     : amountsExcept.Last();
 
-                await BudgetTokenExpectPrice(token, pathMap, amountIn);
+                await BudgetTokenExpectPriceAsync(token, pathMap, amountIn);
             }
 
             // Add token amount 
@@ -276,7 +277,7 @@ namespace Awaken.Scripts.Dividends.Services
             return result;
         }
 
-        private async Task BudgetTokenExpectPrice(string token, Dictionary<string, Path> pathMap,
+        private async Task BudgetTokenExpectPriceAsync(string token, Dictionary<string, Path> pathMap,
             long amountIn)
         {
             var path = pathMap.GetValueOrDefault(token);
@@ -503,82 +504,30 @@ namespace Awaken.Scripts.Dividends.Services
             return true;
         }
 
-        private async Task DonateAsync(string targetToken)
+        private async Task NewRewardAsync(string targetToken)
         {
-            if (_dividendsScriptOptions.AElfTokenContractAddresses.IsNullOrEmpty())
+            var operatorKey = _dividendsScriptOptions.ReceiverPrivateKey;
+            if (operatorKey.IsNullOrEmpty())
             {
-                _dividendsScriptOptions.AElfTokenContractAddresses = await
-                    _clientService.GetAddressByNameAsync("AElf.ContractNames.Token");
+                throw new Exception("Failed to send NewReward transactions because of lacking of Receiver private key");
             }
 
-            var tokenContractAddress = _dividendsScriptOptions.AElfTokenContractAddresses;
-            var operatorKey = _dividendsScriptOptions.OperatorPrivateKey;
             var userAddress =
                 (await _clientService.GetAddressFromPrivateKey(operatorKey)).ToAddress();
             var address = GetAddress(userAddress);
             var dividendAddressBase58Str = _dividendsScriptOptions.DividendContractAddresses;
             var dividendAddress = GetAddress(dividendAddressBase58Str.ToAddress());
-            var blocksPerTerm =  _dividendsScriptOptions.BlocksPerTerm;
-            var blocksToStart = _dividendsScriptOptions.BlocksToStart;
-            
-            // query token balance
-            var balanceOutput = await _clientService.QueryAsync<AElf.Client.MultiToken.GetBalanceOutput>(
-                tokenContractAddress,
-                operatorKey, ContractMethodNameConstants.GetTokenBalance,
-                new AElf.Client.MultiToken.GetBalanceInput
-                {
-                    Owner = address,
-                    Symbol = targetToken
-                });
-            var balance = balanceOutput.Balance;
-            _logger.LogInformation($"Token: {targetToken} Balance is {balance}");
+
+            var balance = await ApproveAllTokenBalanceAsync(operatorKey, address, dividendAddress,
+                dividendAddressBase58Str, targetToken);
             if (balance <= 0)
             {
                 return;
             }
 
-            // approve
-            var approveAmount = await _clientService.QueryAsync<AElf.Client.MultiToken.GetAllowanceOutput>(
-                tokenContractAddress,
-                operatorKey, ContractMethodNameConstants.GetTokenAllowance,
-                new AElf.Client.MultiToken.GetAllowanceInput
-                {
-                    Owner = address,
-                    Symbol = targetToken,
-                    Spender = dividendAddress
-                });
-            var toApproveAmount = balance - approveAmount.Allowance;
-            _logger.LogInformation($"Has approved:{approveAmount.Allowance}");
-            if (toApproveAmount > 0)
-            {
-                _logger.LogInformation($"To approve: {toApproveAmount}");
-                await _clientService.SendTransactionAsync(
-                    tokenContractAddress,
-                    operatorKey, ContractMethodNameConstants.TokenApprove, new AElf.Contracts.MultiToken.ApproveInput
-                    {
-                        Symbol = targetToken,
-                        Amount = toApproveAmount,
-                        Spender = dividendAddressBase58Str.ToAddress()
-                    });
-            }
-
             // new reward
-            var currentHeight = await _clientService.GetCurrentHeightAsync();
-            var amountPerBlock = balance / blocksPerTerm;
-            var startBlock = currentHeight + blocksToStart;
-            var transactionId = await _clientService.SendTransactionAsync(
-                dividendAddressBase58Str,
-                operatorKey, nameof(Awaken.Contracts.DividendPoolContract.NewReward),
-                new NewRewardInput
-                {
-                    Tokens = { targetToken },
-                    PerBlocks = { amountPerBlock },
-                    Amounts = { balance },
-                    StartBlock = startBlock
-                });
-            _logger.LogInformation(
-                $"NewReward information, token: {targetToken}, start block: {startBlock}, amounts: {balance}, amount per block: {amountPerBlock}");
-            if (transactionId.IsNullOrEmpty())
+            var newRewardTxId = await _dividendService.NewRewardAsync(operatorKey, targetToken, balance);
+            if (newRewardTxId.IsNullOrEmpty())
             {
                 _logger.LogError("Failed to send newReward transaction");
                 return;
@@ -586,9 +535,32 @@ namespace Awaken.Scripts.Dividends.Services
 
             await _repository.InsertAsync(new SwapTransactionRecord
             {
-                TransactionId = transactionId,
-                TransactionType = TransactionType.Donate
+                TransactionId = newRewardTxId,
+                TransactionType = TransactionType.NewReward
             });
+        }
+
+        private async Task<long> ApproveAllTokenBalanceAsync(string operatorKey, AElf.Client.Proto.Address owner,
+            AElf.Client.Proto.Address spender, string spenderBase58, string targetToken)
+        {
+            var balance = await _elfTokenService.GetBalanceAsync(operatorKey, owner, targetToken);
+            _logger.LogInformation($"Token: {targetToken} Balance is {balance}");
+            if (balance <= 0)
+            {
+                return balance;
+            }
+
+            // approve
+            var approveAmount =
+                await _elfTokenService.GetAllowanceAsync(operatorKey, owner, spender, targetToken);
+            _logger.LogInformation($"Token: {targetToken} has approved:{approveAmount}");
+            var toApproveAmount = balance - approveAmount;
+            if (toApproveAmount <= 0) return balance;
+            _logger.LogInformation($"Token: {targetToken} to approve: {toApproveAmount}");
+            await _elfTokenService.ApproveTokenAsync(operatorKey, spenderBase58, toApproveAmount,
+                targetToken);
+
+            return balance;
         }
 
         private AElf.Client.Proto.Address GetAddress(AElf.Types.Address address)

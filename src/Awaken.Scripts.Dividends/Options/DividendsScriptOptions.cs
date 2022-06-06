@@ -5,6 +5,7 @@ namespace Awaken.Scripts.Dividends.Options
     public class DividendsScriptOptions
     {
         public string OperatorPrivateKey { get; set; }
+        public string ReceiverPrivateKey { get; set; }
 
         public string QueryTokenUrl { get; set; }
 

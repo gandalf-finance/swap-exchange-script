@@ -4,5 +4,5 @@ public enum TransactionType
 {
     Approve,
     SwapLpTokens,
-    Donate
+    NewReward
 }
