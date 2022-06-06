@@ -65,7 +65,7 @@ namespace Awaken.Scripts.Dividends.Services
                 return;
             }
 
-            var queryTokenInfo = await ConvertTokens();
+            var queryTokenInfo = await ConvertTokensAsync();
             var items = queryTokenInfo.Items;
             var tokenSwapMap = DisassemblePairsListIntoMap(pairList);
             CheckTokenItems(items, tokenSwapMap);
@@ -80,7 +80,7 @@ namespace Awaken.Scripts.Dividends.Services
             await NewRewardAsync(_dividendsScriptOptions.TargetToken);
             while (true)
             {
-                Thread.Sleep(60000);
+                Thread.Sleep(_dividendsScriptOptions.TransactionCheckTerm);
                 if (await CheckTransactionStatusAsync() == 0)
                 {
                     break;
@@ -392,13 +392,13 @@ namespace Awaken.Scripts.Dividends.Services
                 ContractMethodNameConstants.GetPairs, new Empty());
         }
 
-        private async Task<QueryTokenInfo> ConvertTokens()
+        private async Task<QueryTokenInfo> ConvertTokensAsync()
         {
-            var queryStr = await QueryTokenList();
+            var queryStr = await QueryTokenListAsync();
             return JsonConvert.DeserializeObject<QueryTokenInfo>(queryStr);
         }
 
-        private async Task<string> QueryTokenList()
+        private async Task<string> QueryTokenListAsync()
         {
             const int maxResultCount = 999;
             const int skipCount = 0;
@@ -421,7 +421,7 @@ namespace Awaken.Scripts.Dividends.Services
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return await QueryTokenList();
+                return await QueryTokenListAsync();
             }
         }
 

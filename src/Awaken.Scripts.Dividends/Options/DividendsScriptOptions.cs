@@ -31,5 +31,7 @@ namespace Awaken.Scripts.Dividends.Options
 
         public long BlocksToStart { get; set; } = 500;
         public long BlocksPerTerm { get; set; } = 172800;
+        
+        public int TransactionCheckTerm { get; set; } = 60000;
     }
 }
