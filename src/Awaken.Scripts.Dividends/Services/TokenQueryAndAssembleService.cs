@@ -250,6 +250,7 @@ namespace Awaken.Scripts.Dividends.Services
                     : amountsExcept.Last();
 
                 await BudgetTokenExpectPriceAsync(token, pathMap, amountIn);
+                await ApproveToSwapExchangeAsync(_dividendsScriptOptions.OperatorPrivateKey, address, spender, token);
             }
 
             // Add token amount 
@@ -538,6 +539,16 @@ namespace Awaken.Scripts.Dividends.Services
                 TransactionId = newRewardTxId,
                 TransactionType = TransactionType.NewReward
             });
+        }
+
+        private async Task ApproveToSwapExchangeAsync(string operatorKey, AElf.Types.Address address,
+            AElf.Types.Address spender, string token)
+        {
+            var owner = GetAddress(address);
+            var swapExchangeBase58Address = _dividendsScriptOptions.SwapToolContractAddress;
+            var swapExchangeAddress = GetAddress(spender);
+            await ApproveAllTokenBalanceAsync(operatorKey, owner, swapExchangeAddress, swapExchangeBase58Address,
+                token);
         }
 
         private async Task<long> ApproveAllTokenBalanceAsync(string operatorKey, AElf.Client.Proto.Address owner,
