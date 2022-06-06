@@ -16,9 +16,9 @@ public interface IDividendService
 public class DividendService : IDividendService, ITransientDependency
 {
     private readonly IAElfClientService _clientService;
-    private readonly string _dividendContractAddress;
-    private readonly long _blocksPerTerm;
-    private readonly long _blocksToStart;
+    private string _dividendContractAddress;
+    private long _blocksPerTerm;
+    private long _blocksToStart;
     private readonly ILogger<DividendService> _logger;
 
 
@@ -26,29 +26,33 @@ public class DividendService : IDividendService, ITransientDependency
         ILogger<DividendService> logger)
     {
         _dividendContractAddress = tokenOptions.Value.DividendContractAddresses;
+        _blocksPerTerm = tokenOptions.Value.BlocksPerTerm;
+        _blocksToStart = tokenOptions.Value.BlocksToStart;
+        _clientService = clientService;
+        _logger = logger;
+    }
+
+    private void CheckParameters()
+    {
         if (_dividendContractAddress.IsNullOrEmpty())
         {
             throw new Exception("Lack of dividend contract address");
         }
 
-        _blocksPerTerm = tokenOptions.Value.BlocksPerTerm;
         if (_blocksPerTerm <= 0)
         {
             throw new Exception($"Invalid blocksPerTerm : {_blocksPerTerm}");
         }
 
-        _blocksToStart = tokenOptions.Value.BlocksToStart;
         if (_blocksToStart <= 0)
         {
             throw new Exception($"Invalid blocksToStart : {_blocksToStart}");
         }
-
-        _clientService = clientService;
-        _logger = logger;
     }
 
     public async Task<string> NewRewardAsync(string operatorKey, string symbol, long totalAmount)
     {
+        CheckParameters();
         var currentHeight = await _clientService.GetCurrentHeightAsync();
         var amountPerBlock = totalAmount / _blocksPerTerm;
         var startBlock = currentHeight + _blocksToStart;
