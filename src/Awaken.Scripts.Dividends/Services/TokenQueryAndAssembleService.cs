@@ -407,6 +407,7 @@ namespace Awaken.Scripts.Dividends.Services
                 string statusCode;
                 do
                 {
+                    _logger.LogInformation("Start querying token");
                     // response = HttpClientHelper.GetResponse(string.Format(_dividendsScriptOptions.QueryTokenUrl,maxResultCount,skipCount,_dividendsScriptOptions.FeeRate), out statusCode);
                     response = HttpClientHelper.GetResponse(
                         string.Format(_dividendsScriptOptions.QueryTokenUrl, maxResultCount, skipCount,
