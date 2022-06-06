@@ -59,9 +59,10 @@ namespace Awaken.Scripts.Dividends.Services
         public async Task HandleTokenInfoAndSwap()
         {
             var pairList = await QueryTokenPairsFromChain();
+            _logger.LogInformation($"pair list count {pairList.Value.Count}");
             if (pairList.Value.Count <= 0)
             {
-                throw new Exception("Get token pairs error,terminate！");
+                return;
             }
 
             var queryTokenInfo = await ConvertTokens();
