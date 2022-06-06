@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Awaken.Contracts.DividendPoolContract;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
@@ -12,7 +13,6 @@ using Awaken.Scripts.Dividends.Enum;
 using Awaken.Scripts.Dividends.Extensions;
 using Awaken.Scripts.Dividends.Helpers;
 using Awaken.Scripts.Dividends.Options;
-using Gandalf.Contracts.DividendPoolContract;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -568,7 +568,7 @@ namespace Awaken.Scripts.Dividends.Services
             var startBlock = currentHeight + blocksToStart;
             var transactionId = await _clientService.SendTransactionAsync(
                 dividendAddressBase58Str,
-                operatorKey, nameof(Gandalf.Contracts.DividendPoolContract.NewReward),
+                operatorKey, nameof(Awaken.Contracts.DividendPoolContract.NewReward),
                 new NewRewardInput
                 {
                     Tokens = { targetToken },

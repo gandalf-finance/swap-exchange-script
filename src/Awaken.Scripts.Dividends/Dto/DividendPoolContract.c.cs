@@ -9,9 +9,9 @@
 //
 // You can use this as a basic template for new contracts.
 // 
-// When building Boilerplate or the contract project located in the "../contract/Gandalf.Contracts.DividendPool/" 
+// When building Boilerplate or the contract project located in the "../contract/Awaken.Contracts.DividendPool/" 
 // protoc (the protobuf compiler) will be invoked and this file will produce a .c.cs file and .g.cs file, in the 
-// "../contract/Gandalf.Contracts.DividendPool/Protobuf/Generated/" folder. 
+// "../contract/Awaken.Contracts.DividendPool/Protobuf/Generated/" folder. 
 //
 // the version of the language, use proto3 for contracts
 #pragma warning disable 0414, 1591
@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using aelf = global::AElf.CSharp.Core;
 
-namespace Gandalf.Contracts.DividendPoolContract {
+namespace Awaken.Contracts.DividendPoolContract {
 
   #region Events
   public partial class UpdatePool : aelf::IEvent<UpdatePool>
@@ -214,44 +214,44 @@ namespace Gandalf.Contracts.DividendPoolContract {
     static readonly string __ServiceName = "DividendPoolContract";
 
     #region Marshallers
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.InitializeInput> __Marshaller_InitializeInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.InitializeInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.InitializeInput> __Marshaller_InitializeInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.InitializeInput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.Token> __Marshaller_Token = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.Token.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.NewRewardInput> __Marshaller_NewRewardInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.NewRewardInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.Token> __Marshaller_Token = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.Token.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.NewRewardInput> __Marshaller_NewRewardInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.NewRewardInput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.Int32Value> __Marshaller_google_protobuf_Int32Value = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Int32Value.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.AddPoolInput> __Marshaller_AddPoolInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.AddPoolInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.SetPoolInput> __Marshaller_SetPoolInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.SetPoolInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput> __Marshaller_TokenOptionInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.PendingInput> __Marshaller_PendingInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.PendingInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.PendingOutput> __Marshaller_PendingOutput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.PendingOutput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.AddPoolInput> __Marshaller_AddPoolInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.AddPoolInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.SetPoolInput> __Marshaller_SetPoolInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.SetPoolInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.TokenOptionInput> __Marshaller_TokenOptionInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.TokenOptionInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.PendingInput> __Marshaller_PendingInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.PendingInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.PendingOutput> __Marshaller_PendingOutput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.PendingOutput.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.BoolValue> __Marshaller_google_protobuf_BoolValue = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.BoolValue.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Types.Address> __Marshaller_aelf_Address = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Types.Address.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.StringValue> __Marshaller_google_protobuf_StringValue = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.StringValue.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Types.BigIntValue> __Marshaller_aelf_BigIntValue = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Types.BigIntValue.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.Pool> __Marshaller_Pool = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.Pool.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.UserInfoInput> __Marshaller_UserInfoInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.UserInfoInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.User> __Marshaller_User = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.User.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.Pool> __Marshaller_Pool = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.Pool.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.UserInfoInput> __Marshaller_UserInfoInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.UserInfoInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.User> __Marshaller_User = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.User.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.Int64Value> __Marshaller_google_protobuf_Int64Value = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Int64Value.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput> __Marshaller_RewardDebtInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput.Parser.ParseFrom);
-    static readonly aelf::Marshaller<global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput> __Marshaller_AccPerShareInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.RewardDebtInput> __Marshaller_RewardDebtInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.RewardDebtInput.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::Awaken.Contracts.DividendPoolContract.AccPerShareInput> __Marshaller_AccPerShareInput = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Awaken.Contracts.DividendPoolContract.AccPerShareInput.Parser.ParseFrom);
     #endregion
 
     #region Methods
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Initialize = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Initialize = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.InitializeInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "Initialize",
         __Marshaller_InitializeInput,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.Empty> __Method_AddToken = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.Empty> __Method_AddToken = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "AddToken",
         __Marshaller_Token,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.NewRewardInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_NewReward = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.NewRewardInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.NewRewardInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_NewReward = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.NewRewardInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "NewReward",
@@ -265,14 +265,14 @@ namespace Gandalf.Contracts.DividendPoolContract {
         __Marshaller_google_protobuf_Int32Value,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.AddPoolInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Add = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.AddPoolInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.AddPoolInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Add = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.AddPoolInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "Add",
         __Marshaller_AddPoolInput,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.SetPoolInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Set = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.SetPoolInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.SetPoolInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Set = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.SetPoolInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "Set",
@@ -293,21 +293,21 @@ namespace Gandalf.Contracts.DividendPoolContract {
         __Marshaller_google_protobuf_Int32Value,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Deposit = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Deposit = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "Deposit",
         __Marshaller_TokenOptionInput,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Withdraw = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Withdraw = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.TokenOptionInput, global::Google.Protobuf.WellKnownTypes.Empty>(
         aelf::MethodType.Action,
         __ServiceName,
         "Withdraw",
         __Marshaller_TokenOptionInput,
         __Marshaller_google_protobuf_Empty);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.PendingInput, global::Gandalf.Contracts.DividendPoolContract.PendingOutput> __Method_Pending = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.PendingInput, global::Gandalf.Contracts.DividendPoolContract.PendingOutput>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.PendingInput, global::Awaken.Contracts.DividendPoolContract.PendingOutput> __Method_Pending = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.PendingInput, global::Awaken.Contracts.DividendPoolContract.PendingOutput>(
         aelf::MethodType.View,
         __ServiceName,
         "Pending",
@@ -328,7 +328,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
         __Marshaller_google_protobuf_Empty,
         __Marshaller_google_protobuf_Int32Value);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.BoolValue> __Method_IsTokenList = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.BoolValue>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.BoolValue> __Method_IsTokenList = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.Token, global::Google.Protobuf.WellKnownTypes.BoolValue>(
         aelf::MethodType.View,
         __ServiceName,
         "IsTokenList",
@@ -356,14 +356,14 @@ namespace Gandalf.Contracts.DividendPoolContract {
         __Marshaller_google_protobuf_StringValue,
         __Marshaller_aelf_BigIntValue);
 
-    static readonly aelf::Method<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Gandalf.Contracts.DividendPoolContract.Pool> __Method_PoolInfo = new aelf::Method<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Gandalf.Contracts.DividendPoolContract.Pool>(
+    static readonly aelf::Method<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Awaken.Contracts.DividendPoolContract.Pool> __Method_PoolInfo = new aelf::Method<global::Google.Protobuf.WellKnownTypes.Int32Value, global::Awaken.Contracts.DividendPoolContract.Pool>(
         aelf::MethodType.View,
         __ServiceName,
         "PoolInfo",
         __Marshaller_google_protobuf_Int32Value,
         __Marshaller_Pool);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.UserInfoInput, global::Gandalf.Contracts.DividendPoolContract.User> __Method_UserInfo = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.UserInfoInput, global::Gandalf.Contracts.DividendPoolContract.User>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.UserInfoInput, global::Awaken.Contracts.DividendPoolContract.User> __Method_UserInfo = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.UserInfoInput, global::Awaken.Contracts.DividendPoolContract.User>(
         aelf::MethodType.View,
         __ServiceName,
         "UserInfo",
@@ -398,14 +398,14 @@ namespace Gandalf.Contracts.DividendPoolContract {
         __Marshaller_google_protobuf_Empty,
         __Marshaller_google_protobuf_Int64Value);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput, global::AElf.Types.BigIntValue> __Method_RewardDebt = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput, global::AElf.Types.BigIntValue>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.RewardDebtInput, global::AElf.Types.BigIntValue> __Method_RewardDebt = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.RewardDebtInput, global::AElf.Types.BigIntValue>(
         aelf::MethodType.View,
         __ServiceName,
         "RewardDebt",
         __Marshaller_RewardDebtInput,
         __Marshaller_aelf_BigIntValue);
 
-    static readonly aelf::Method<global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput, global::AElf.Types.BigIntValue> __Method_AccPerShare = new aelf::Method<global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput, global::AElf.Types.BigIntValue>(
+    static readonly aelf::Method<global::Awaken.Contracts.DividendPoolContract.AccPerShareInput, global::AElf.Types.BigIntValue> __Method_AccPerShare = new aelf::Method<global::Awaken.Contracts.DividendPoolContract.AccPerShareInput, global::AElf.Types.BigIntValue>(
         aelf::MethodType.View,
         __ServiceName,
         "AccPerShare",
@@ -417,7 +417,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
     #region Descriptors
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.Services[0]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.Services[0]; }
     }
 
     public static global::System.Collections.Generic.IReadOnlyList<global::Google.Protobuf.Reflection.ServiceDescriptor> Descriptors
@@ -426,11 +426,12 @@ namespace Gandalf.Contracts.DividendPoolContract {
       {
         return new global::System.Collections.Generic.List<global::Google.Protobuf.Reflection.ServiceDescriptor>()
         {
-          global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.Services[0],
+          global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.Services[0],
         };
       }
     }
     #endregion
+
   }
 }
 #endregion

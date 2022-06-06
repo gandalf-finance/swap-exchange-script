@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Gandalf.Contracts.DividendPoolContract {
+namespace Awaken.Contracts.DividendPoolContract {
 
   /// <summary>Holder for reflection information generated from dividend_pool_contract.proto</summary>
   public static partial class DividendPoolContractReflection {
@@ -67,7 +67,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
             "ASgJEhMKC2FsbG9jX3BvaW50GAIgASgDEhkKEWxhc3RfcmV3YXJkX2Jsb2Nr",
             "GAMgASgDEicKDHRvdGFsX2Ftb3VudBgEIAEoCzIRLmFlbGYuQmlnSW50VmFs",
             "dWUiGgoJVG9rZW5MaXN0Eg0KBXZhbHVlGAEgAygJIiQKDFBvb2xJbmZvTGlz",
-            "dBIUCgV2YWx1ZRgBIAMoCzIFLlBvb2wy6QwKFERpdmlkZW5kUG9vbENvbnRy",
+            "dBIUCgV2YWx1ZRgBIAMoCzIFLlBvb2wy6AwKFERpdmlkZW5kUG9vbENvbnRy",
             "YWN0EjgKCkluaXRpYWxpemUSEC5Jbml0aWFsaXplSW5wdXQaFi5nb29nbGUu",
             "cHJvdG9idWYuRW1wdHkiABIsCghBZGRUb2tlbhIGLlRva2VuGhYuZ29vZ2xl",
             "LnByb3RvYnVmLkVtcHR5IgASNgoJTmV3UmV3YXJkEg8uTmV3UmV3YXJkSW5w",
@@ -102,37 +102,37 @@ namespace Gandalf.Contracts.DividendPoolContract {
             "dHkaGy5nb29nbGUucHJvdG9idWYuSW50NjRWYWx1ZSIFiIn3AQESOAoKUmV3",
             "YXJkRGVidBIQLlJld2FyZERlYnRJbnB1dBoRLmFlbGYuQmlnSW50VmFsdWUi",
             "BYiJ9wEBEjoKC0FjY1BlclNoYXJlEhEuQWNjUGVyU2hhcmVJbnB1dBoRLmFl",
-            "bGYuQmlnSW50VmFsdWUiBYiJ9wEBGkWyzPYBQEdhbmRhbGYuQ29udHJhY3Rz",
-            "LkRpdmlkZW5kUG9vbENvbnRyYWN0LkRpdmlkZW5kUG9vbENvbnRyYWN0U3Rh",
-            "dGVCKaoCJkdhbmRhbGYuQ29udHJhY3RzLkRpdmlkZW5kUG9vbENvbnRyYWN0",
-            "YgZwcm90bzM="));
+            "bGYuQmlnSW50VmFsdWUiBYiJ9wEBGkSyzPYBP0F3YWtlbi5Db250cmFjdHMu",
+            "RGl2aWRlbmRQb29sQ29udHJhY3QuRGl2aWRlbmRQb29sQ29udHJhY3RTdGF0",
+            "ZUIoqgIlQXdha2VuLkNvbnRyYWN0cy5EaXZpZGVuZFBvb2xDb250cmFjdGIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::AElf.Types.CoreReflection.Descriptor, global::AElf.OptionsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.WrappersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput), global::Gandalf.Contracts.DividendPoolContract.AccPerShareInput.Parser, new[]{ "Pid", "Token" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput), global::Gandalf.Contracts.DividendPoolContract.RewardDebtInput.Parser, new[]{ "Pid", "User", "Token" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.UserInfoInput), global::Gandalf.Contracts.DividendPoolContract.UserInfoInput.Parser, new[]{ "Pid", "User" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.InitializeInput), global::Gandalf.Contracts.DividendPoolContract.InitializeInput.Parser, new[]{ "Cycle", "Owner" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput), global::Gandalf.Contracts.DividendPoolContract.TokenOptionInput.Parser, new[]{ "Pid", "Amount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.PendingOutput), global::Gandalf.Contracts.DividendPoolContract.PendingOutput.Parser, new[]{ "Tokens", "Amounts" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.PendingInput), global::Gandalf.Contracts.DividendPoolContract.PendingInput.Parser, new[]{ "Pid", "User" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.Token), global::Gandalf.Contracts.DividendPoolContract.Token.Parser, new[]{ "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.NewRewardInput), global::Gandalf.Contracts.DividendPoolContract.NewRewardInput.Parser, new[]{ "Tokens", "PerBlocks", "Amounts", "StartBlock" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.AddPoolInput), global::Gandalf.Contracts.DividendPoolContract.AddPoolInput.Parser, new[]{ "AllocationPoint", "TokenSymbol", "WithUpdate" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.SetPoolInput), global::Gandalf.Contracts.DividendPoolContract.SetPoolInput.Parser, new[]{ "Pid", "AllocationPoint", "WithUpdate" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.UpdatePool), global::Gandalf.Contracts.DividendPoolContract.UpdatePool.Parser, new[]{ "Pid", "Token", "Reward", "AccPerShare", "BlockHeight" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.Harvest), global::Gandalf.Contracts.DividendPoolContract.Harvest.Parser, new[]{ "To", "Amount", "Token", "Pid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.Deposit), global::Gandalf.Contracts.DividendPoolContract.Deposit.Parser, new[]{ "User", "Pid", "Amount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.Withdraw), global::Gandalf.Contracts.DividendPoolContract.Withdraw.Parser, new[]{ "User", "Pid", "Amount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.SetCycle), global::Gandalf.Contracts.DividendPoolContract.SetCycle.Parser, new[]{ "Cycle" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.AddToken), global::Gandalf.Contracts.DividendPoolContract.AddToken.Parser, new[]{ "TokenSymbol", "Index" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.NewReward), global::Gandalf.Contracts.DividendPoolContract.NewReward.Parser, new[]{ "Token", "PerBlocks", "Amount", "StartBlock", "EndBlock" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.AddPool), global::Gandalf.Contracts.DividendPoolContract.AddPool.Parser, new[]{ "Token", "AllocPoint", "LastRewardBlock", "Pid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.SetPool), global::Gandalf.Contracts.DividendPoolContract.SetPool.Parser, new[]{ "Pid", "AllocationPoint" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.User), global::Gandalf.Contracts.DividendPoolContract.User.Parser, new[]{ "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.Pool), global::Gandalf.Contracts.DividendPoolContract.Pool.Parser, new[]{ "LpToken", "AllocPoint", "LastRewardBlock", "TotalAmount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.TokenList), global::Gandalf.Contracts.DividendPoolContract.TokenList.Parser, new[]{ "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Gandalf.Contracts.DividendPoolContract.PoolInfoList), global::Gandalf.Contracts.DividendPoolContract.PoolInfoList.Parser, new[]{ "Value" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.AccPerShareInput), global::Awaken.Contracts.DividendPoolContract.AccPerShareInput.Parser, new[]{ "Pid", "Token" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.RewardDebtInput), global::Awaken.Contracts.DividendPoolContract.RewardDebtInput.Parser, new[]{ "Pid", "User", "Token" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.UserInfoInput), global::Awaken.Contracts.DividendPoolContract.UserInfoInput.Parser, new[]{ "Pid", "User" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.InitializeInput), global::Awaken.Contracts.DividendPoolContract.InitializeInput.Parser, new[]{ "Cycle", "Owner" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.TokenOptionInput), global::Awaken.Contracts.DividendPoolContract.TokenOptionInput.Parser, new[]{ "Pid", "Amount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.PendingOutput), global::Awaken.Contracts.DividendPoolContract.PendingOutput.Parser, new[]{ "Tokens", "Amounts" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.PendingInput), global::Awaken.Contracts.DividendPoolContract.PendingInput.Parser, new[]{ "Pid", "User" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.Token), global::Awaken.Contracts.DividendPoolContract.Token.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.NewRewardInput), global::Awaken.Contracts.DividendPoolContract.NewRewardInput.Parser, new[]{ "Tokens", "PerBlocks", "Amounts", "StartBlock" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.AddPoolInput), global::Awaken.Contracts.DividendPoolContract.AddPoolInput.Parser, new[]{ "AllocationPoint", "TokenSymbol", "WithUpdate" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.SetPoolInput), global::Awaken.Contracts.DividendPoolContract.SetPoolInput.Parser, new[]{ "Pid", "AllocationPoint", "WithUpdate" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.UpdatePool), global::Awaken.Contracts.DividendPoolContract.UpdatePool.Parser, new[]{ "Pid", "Token", "Reward", "AccPerShare", "BlockHeight" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.Harvest), global::Awaken.Contracts.DividendPoolContract.Harvest.Parser, new[]{ "To", "Amount", "Token", "Pid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.Deposit), global::Awaken.Contracts.DividendPoolContract.Deposit.Parser, new[]{ "User", "Pid", "Amount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.Withdraw), global::Awaken.Contracts.DividendPoolContract.Withdraw.Parser, new[]{ "User", "Pid", "Amount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.SetCycle), global::Awaken.Contracts.DividendPoolContract.SetCycle.Parser, new[]{ "Cycle" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.AddToken), global::Awaken.Contracts.DividendPoolContract.AddToken.Parser, new[]{ "TokenSymbol", "Index" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.NewReward), global::Awaken.Contracts.DividendPoolContract.NewReward.Parser, new[]{ "Token", "PerBlocks", "Amount", "StartBlock", "EndBlock" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.AddPool), global::Awaken.Contracts.DividendPoolContract.AddPool.Parser, new[]{ "Token", "AllocPoint", "LastRewardBlock", "Pid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.SetPool), global::Awaken.Contracts.DividendPoolContract.SetPool.Parser, new[]{ "Pid", "AllocationPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.User), global::Awaken.Contracts.DividendPoolContract.User.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.Pool), global::Awaken.Contracts.DividendPoolContract.Pool.Parser, new[]{ "LpToken", "AllocPoint", "LastRewardBlock", "TotalAmount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.TokenList), global::Awaken.Contracts.DividendPoolContract.TokenList.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Awaken.Contracts.DividendPoolContract.PoolInfoList), global::Awaken.Contracts.DividendPoolContract.PoolInfoList.Parser, new[]{ "Value" }, null, null, null, null)
           }));
     }
     #endregion
@@ -147,7 +147,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -304,7 +304,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -495,7 +495,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -658,7 +658,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -821,7 +821,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -984,7 +984,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1125,7 +1125,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1288,7 +1288,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1417,7 +1417,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1606,7 +1606,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1791,7 +1791,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1976,7 +1976,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2229,7 +2229,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2454,7 +2454,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2651,7 +2651,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2848,7 +2848,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2977,7 +2977,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[16]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3134,7 +3134,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[17]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3387,7 +3387,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[18]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3600,7 +3600,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[19]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3766,7 +3766,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[20]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3901,7 +3901,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[21]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4120,7 +4120,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[22]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4241,7 +4241,7 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Gandalf.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[23]; }
+      get { return global::Awaken.Contracts.DividendPoolContract.DividendPoolContractReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4269,11 +4269,11 @@ namespace Gandalf.Contracts.DividendPoolContract {
 
     /// <summary>Field number for the "value" field.</summary>
     public const int ValueFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Gandalf.Contracts.DividendPoolContract.Pool> _repeated_value_codec
-        = pb::FieldCodec.ForMessage(10, global::Gandalf.Contracts.DividendPoolContract.Pool.Parser);
-    private readonly pbc::RepeatedField<global::Gandalf.Contracts.DividendPoolContract.Pool> value_ = new pbc::RepeatedField<global::Gandalf.Contracts.DividendPoolContract.Pool>();
+    private static readonly pb::FieldCodec<global::Awaken.Contracts.DividendPoolContract.Pool> _repeated_value_codec
+        = pb::FieldCodec.ForMessage(10, global::Awaken.Contracts.DividendPoolContract.Pool.Parser);
+    private readonly pbc::RepeatedField<global::Awaken.Contracts.DividendPoolContract.Pool> value_ = new pbc::RepeatedField<global::Awaken.Contracts.DividendPoolContract.Pool>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Gandalf.Contracts.DividendPoolContract.Pool> Value {
+    public pbc::RepeatedField<global::Awaken.Contracts.DividendPoolContract.Pool> Value {
       get { return value_; }
     }
 
