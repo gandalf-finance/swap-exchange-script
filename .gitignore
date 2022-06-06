@@ -268,8 +268,8 @@ __pycache__/
 slnx.sqlite
 
 # Generated Protobuf classes
-*.g.cs
-*.c.cs
+#*.g.cs
+#*.c.cs
 grpc_csharp_plugin
 *Grpc.cs
 **/Generated/*.cs
