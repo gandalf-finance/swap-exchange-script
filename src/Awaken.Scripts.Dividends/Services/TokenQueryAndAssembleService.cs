@@ -466,7 +466,7 @@ namespace Awaken.Scripts.Dividends.Services
             {
                 try
                 {
-                    if (await HandlerSwapTransactionRecord(txRecord))
+                    if (await HandlerSwapTransactionRecordAsync(txRecord))
                     {
                         toUpdateRecords.Add(txRecord);
                     }
@@ -487,7 +487,8 @@ namespace Awaken.Scripts.Dividends.Services
             return txRecords.Count;
         }
 
-        private async Task<bool> HandlerSwapTransactionRecord(SwapTransactionRecord txRecord)
+        private async Task<bool> HandlerSwapTransactionRecordAsync
+            (SwapTransactionRecord txRecord)
         {
             var tx = await _clientService.QueryTransactionResultByTransactionId(txRecord.TransactionId);
             if (tx.Status == DividendsScriptConstants.Mined)
