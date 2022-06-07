@@ -248,7 +248,11 @@ namespace Awaken.Scripts.Dividends.Services
                     continue;
                 }
 
-                await PreferredSwapPathAsync(token, canSwapMap, pathMap);
+                if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) == null)
+                {
+                    _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
+                    return;
+                }
                 var amountIn = getReservesOutput.Results.First().SymbolA.Equals(token)
                     ? amountsExcept.First()
                     : amountsExcept.Last();
@@ -310,47 +314,35 @@ namespace Awaken.Scripts.Dividends.Services
             Dictionary<string, List<string>> canSwapMap,
             Dictionary<string, Path> pathMap)
         {
-            if (tokenSymbol.IsNullOrEmpty()) return new List<string>();
-            var path = pathMap.GetValueOrDefault(tokenSymbol);
-            if (path != null)
+            if (tokenSymbol.IsNullOrEmpty()) return null;
+            if (pathMap.TryGetValue(tokenSymbol, out var path))
             {
-                if (path.Value is { Count: > 0 })
-                {
-                    return path.Value.ToList();
-                }
-            }
-            else
-            {
-                pathMap[tokenSymbol] = new Path();
+                return path.Value.ToList();
             }
 
             var pathList = new List<List<string>>();
             await RecursionHandlePath(tokenSymbol, canSwapMap, null, pathList);
-            if (pathList.Count > 0)
+            if (pathList.Count <= 0) return null;
+            List<string> tmp = null;
+            foreach (var list in pathList)
             {
-                List<string> tmp = null;
-                foreach (var list in pathList)
+                if (tmp == null)
                 {
-                    if (tmp == null)
-                    {
-                        tmp = list;
-                        continue;
-                    }
-
-                    if (tmp.Count > list.Count)
-                    {
-                        tmp = list;
-                    }
+                    tmp = list;
+                    continue;
                 }
 
-                pathMap[tokenSymbol] = new Path
+                if (tmp.Count > list.Count)
                 {
-                    Value = { tmp }
-                };
-                return tmp;
+                    tmp = list;
+                }
             }
 
-            return new List<string>();
+            pathMap[tokenSymbol] = new Path
+            {
+                Value = { tmp }
+            };
+            return tmp;
         }
 
         private async Task RecursionHandlePath(string token, Dictionary<string, List<string>> canSwapMap,
