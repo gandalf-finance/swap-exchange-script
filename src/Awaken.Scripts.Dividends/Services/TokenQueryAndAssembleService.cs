@@ -176,6 +176,18 @@ namespace Awaken.Scripts.Dividends.Services
         {
             // Get FeeTo lp token amount.
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
+            foreach (var token in tokens)
+            {
+                if (token == _dividendsScriptOptions.TargetToken)
+                {
+                    continue;
+                }
+
+                if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) != null) continue;
+                _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
+                return;
+            }
+
             var pair = LpTokenHelper.ExtractTokenPairFromSymbol(lpTokenSymbol);
             var address = (await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey))
                 .ToAddress();
@@ -243,16 +255,6 @@ namespace Awaken.Scripts.Dividends.Services
 
             foreach (var token in tokens)
             {
-                if (token == _dividendsScriptOptions.TargetToken)
-                {
-                    continue;
-                }
-
-                if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) == null)
-                {
-                    _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
-                    return;
-                }
                 var amountIn = getReservesOutput.Results.First().SymbolA.Equals(token)
                     ? amountsExcept.First()
                     : amountsExcept.Last();
