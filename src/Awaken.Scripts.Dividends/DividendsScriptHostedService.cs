@@ -19,11 +19,11 @@ namespace Awaken.Scripts.Dividends
             _serviceProvider = serviceProvider;
         }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _application.Initialize(_serviceProvider);
-
-            return Task.CompletedTask;
+            // _application.Initialize(_serviceProvider);
+            await _application.InitializeAsync(_serviceProvider);
+            // return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

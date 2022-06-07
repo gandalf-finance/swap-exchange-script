@@ -14,7 +14,6 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
-using Volo.Abp.Threading;
 
 namespace Awaken.Scripts.Dividends
 {
@@ -49,9 +48,9 @@ namespace Awaken.Scripts.Dividends
             });
         }
 
-        public override void OnPreApplicationInitialization(ApplicationInitializationContext context)
+        public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
         {
-            AsyncHelper.RunSync(context.AddBackgroundWorkerAsync<SwapExchangeWorker>);
+            await context.AddBackgroundWorkerAsync<SwapExchangeWorker>();
         }
 
         private void ConfigureRedis(ServiceConfigurationContext context, IConfiguration configuration)
