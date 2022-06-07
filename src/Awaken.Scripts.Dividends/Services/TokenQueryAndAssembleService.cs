@@ -213,11 +213,8 @@ namespace Awaken.Scripts.Dividends.Services
                         Spender = spender,
                         Symbol = lpTokenSymbol
                     });
-                await _repository.InsertAsync(new SwapTransactionRecord
-                {
-                    TransactionId = txId,
-                    TransactionType = TransactionType.Approve
-                });
+                _logger.LogInformation(
+                    $"Approve token: {lpTokenSymbol}, amount: {toApproveAmount} to {spender}\n Transaction Id: {txId}");
             }
 
             // Get Reserves.
