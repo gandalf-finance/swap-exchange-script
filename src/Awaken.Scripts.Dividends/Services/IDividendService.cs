@@ -30,6 +30,7 @@ public class DividendService : IDividendService, ITransientDependency
         _blocksToStart = tokenOptions.Value.BlocksToStart;
         _clientService = clientService;
         _logger = logger;
+        CheckParameters();
     }
 
     private void CheckParameters()
@@ -52,7 +53,6 @@ public class DividendService : IDividendService, ITransientDependency
 
     public async Task<string> NewRewardAsync(string operatorKey, string symbol, long totalAmount)
     {
-        CheckParameters();
         var currentHeight = await _clientService.GetCurrentHeightAsync();
         var amountPerBlock = totalAmount / _blocksPerTerm;
         var startBlock = currentHeight + _blocksToStart;

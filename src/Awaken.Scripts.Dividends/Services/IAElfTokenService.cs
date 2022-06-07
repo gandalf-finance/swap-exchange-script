@@ -4,6 +4,8 @@ using Awaken.Scripts.Dividends.Options;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using AElf.Client.Proto;
+using Volo.Abp;
+using Volo.Abp.Threading;
 
 namespace Awaken.Scripts.Dividends.Services;
 
@@ -23,6 +25,7 @@ public class AElfTokenService : IAElfTokenService, ITransientDependency
     {
         _clientService = clientService;
         _aelfTokenAddress = tokenOptions.Value.AElfTokenContractAddresses;
+        AsyncHelper.RunSync(EnsureInitializeTokenAddressAsync);
     }
 
     private async Task EnsureInitializeTokenAddressAsync()
@@ -35,7 +38,6 @@ public class AElfTokenService : IAElfTokenService, ITransientDependency
 
     public async Task<long> GetBalanceAsync(string operatorKey, Address user, string symbol)
     {
-        await EnsureInitializeTokenAddressAsync();
         var balanceOutput = await _clientService.QueryAsync<AElf.Client.MultiToken.GetBalanceOutput>(
             _aelfTokenAddress,
             operatorKey, ContractMethodNameConstants.GetTokenBalance,
@@ -49,7 +51,6 @@ public class AElfTokenService : IAElfTokenService, ITransientDependency
 
     public async Task<long> GetAllowanceAsync(string operatorKey, Address owner, Address spender, string symbol)
     {
-        await EnsureInitializeTokenAddressAsync();
         var approveAmount = await _clientService.QueryAsync<AElf.Client.MultiToken.GetAllowanceOutput>(
             _aelfTokenAddress,
             operatorKey, ContractMethodNameConstants.GetTokenAllowance,
@@ -64,7 +65,6 @@ public class AElfTokenService : IAElfTokenService, ITransientDependency
 
     public async Task<string> ApproveTokenAsync(string operatorKey, string spender, long amount, string symbol)
     {
-        await EnsureInitializeTokenAddressAsync();
         var txId = await _clientService.SendTransactionAsync(
             _aelfTokenAddress,
             operatorKey, ContractMethodNameConstants.TokenApprove, new AElf.Contracts.MultiToken.ApproveInput

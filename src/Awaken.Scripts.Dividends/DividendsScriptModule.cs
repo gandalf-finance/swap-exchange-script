@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using AElf.Client.Service;
 using Awaken.Scripts.Dividends.Jobs;
 using Awaken.Scripts.Dividends.Options;
@@ -13,6 +14,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.Threading;
 
 namespace Awaken.Scripts.Dividends
 {
@@ -47,10 +49,9 @@ namespace Awaken.Scripts.Dividends
             });
         }
 
-        public override void OnApplicationInitialization(
-            ApplicationInitializationContext context)
+        public override void OnPreApplicationInitialization(ApplicationInitializationContext context)
         {
-            context.AddBackgroundWorkerAsync<SwapExchangeWorker>();
+            AsyncHelper.RunSync(context.AddBackgroundWorkerAsync<SwapExchangeWorker>);
         }
 
         private void ConfigureRedis(ServiceConfigurationContext context, IConfiguration configuration)
