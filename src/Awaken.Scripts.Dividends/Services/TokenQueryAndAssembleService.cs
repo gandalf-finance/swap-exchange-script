@@ -112,6 +112,12 @@ namespace Awaken.Scripts.Dividends.Services
                 // Handle path ，expect price,slip point percentage
             }
 
+            if (tokenList.TokensInfo.Count == 0)
+            {
+                _logger.LogInformation("0 token in QueryTokenAndAssembleSwapInfosAsync");
+                return;
+            }
+
             var swapTokensInput = new SwapTokensInput
             {
                 PathMap = { pathMap },
