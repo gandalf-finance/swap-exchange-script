@@ -67,12 +67,10 @@ namespace Awaken.Scripts.Dividends.Services
                 items.RemoveRange(0, takeAmount);
             }
 
-            if (!isNewReward)
+            if (isNewReward)
             {
-                return;
+                await NewRewardAsync(_dividendsScriptOptions.TargetToken);
             }
-            
-            await NewRewardAsync(_dividendsScriptOptions.TargetToken);
         }
 
         public async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
