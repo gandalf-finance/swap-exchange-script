@@ -206,16 +206,7 @@ namespace Awaken.Scripts.Dividends.Services
 
             // approve
             var spender = _dividendsScriptOptions.SwapToolContractAddress.ToAddress();
-            var approvedAmount = await _clientService.QueryAsync<Balance>(
-                _dividendsScriptOptions.LpTokenContractAddresses,
-                _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.GetAllowance,
-                new GetAllowanceInput
-                {
-                    Symbol = lpTokenSymbol,
-                    Owner = address,
-                    Spender = spender,
-                });
-            var toApproveAmount = balance.Amount - approvedAmount.Amount;
+            var toApproveAmount = balance.Amount;
             if (toApproveAmount > 0)
             {
                 var txId = await _clientService.SendTransactionAsync(_dividendsScriptOptions.LpTokenContractAddresses,
@@ -562,11 +553,7 @@ namespace Awaken.Scripts.Dividends.Services
             }
 
             // approve
-            var approveAmount =
-                await _elfTokenService.GetAllowanceAsync(operatorKey, owner, spender, targetToken);
-            _logger.LogInformation($"Token: {targetToken} has approved:{approveAmount}");
-            var toApproveAmount = balance - approveAmount;
-            if (toApproveAmount <= 0) return balance;
+            var toApproveAmount = balance;
             _logger.LogInformation($"Token: {targetToken} to approve: {toApproveAmount}");
             await _elfTokenService.ApproveTokenAsync(operatorKey, spenderBase58, toApproveAmount,
                 targetToken);
