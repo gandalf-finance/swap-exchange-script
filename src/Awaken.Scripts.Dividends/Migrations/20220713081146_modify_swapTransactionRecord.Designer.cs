@@ -3,6 +3,7 @@ using System;
 using Awaken.Scripts.Dividends;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Awaken.Scripts.Dividends.Migrations
 {
     [DbContext(typeof(SwapExchangeDbContext))]
-    partial class SwapExchangeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220713081146_modify_swapTransactionRecord")]
+    partial class modify_swapTransactionRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

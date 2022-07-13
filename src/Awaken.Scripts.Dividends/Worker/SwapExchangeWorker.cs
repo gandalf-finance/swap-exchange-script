@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.BackgroundWorkers;
 using Volo.Abp.Threading;
 
-namespace Awaken.Scripts.Dividends.Jobs
+namespace Awaken.Scripts.Dividends.Worker
 {
     public class SwapExchangeWorker : AsyncPeriodicBackgroundWorkerBase
     {
