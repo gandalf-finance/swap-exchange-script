@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
 using Awaken.Scripts.Dividends.Entities;
-using Awaken.Scripts.Dividends.Enum;
 using Awaken.Scripts.Dividends.Extensions;
 using Awaken.Scripts.Dividends.Helpers;
 using Awaken.Scripts.Dividends.Options;
@@ -18,10 +16,8 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Math;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
 using Google.Protobuf;
-using GetAllowanceInput = Awaken.Contracts.Token.GetAllowanceInput;
 using GetBalanceInput = Awaken.Contracts.Token.GetBalanceInput;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
 using TokenList = Awaken.Contracts.SwapExchangeContract.TokenList;
@@ -33,7 +29,6 @@ namespace Awaken.Scripts.Dividends.Services
         private readonly ILogger<TokenQueryAndAssembleService> _logger;
         private readonly DividendsScriptOptions _dividendsScriptOptions;
         private readonly IAElfClientService _clientService;
-        private readonly IRepository<SwapTransactionRecord, Guid> _repository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IAElfTokenService _elfTokenService;
         private readonly IDividendService _dividendService;
@@ -41,13 +36,12 @@ namespace Awaken.Scripts.Dividends.Services
         public TokenQueryAndAssembleService(IOptionsSnapshot<DividendsScriptOptions> tokenOptions,
             IAElfClientService clientService,
             ILogger<TokenQueryAndAssembleService> logger,
-            IRepository<SwapTransactionRecord, Guid> repository, IUnitOfWorkManager unitOfWorkManager,
+            IUnitOfWorkManager unitOfWorkManager,
             IAElfTokenService elfTokenService, IDividendService dividendService)
         {
             _dividendsScriptOptions = tokenOptions.Value;
             _clientService = clientService;
             _logger = logger;
-            _repository = repository;
             _unitOfWorkManager = unitOfWorkManager;
             _elfTokenService = elfTokenService;
             _dividendService = dividendService;
@@ -78,14 +72,6 @@ namespace Awaken.Scripts.Dividends.Services
             }
 
             await NewRewardAsync(_dividendsScriptOptions.TargetToken);
-            while (true)
-            {
-                Thread.Sleep(_dividendsScriptOptions.TransactionCheckTerm);
-                if (await CheckTransactionStatusAsync() == 0)
-                {
-                    break;
-                }
-            }
         }
 
         public async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
@@ -124,18 +110,9 @@ namespace Awaken.Scripts.Dividends.Services
                 SwapTokenList = tokenList
             };
 
-            var transactionId = await _clientService.SendTransactionAsync(
+            await _clientService.SendTransactionAsync(
                 _dividendsScriptOptions.SwapToolContractAddress,
                 _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.SwapLpTokens, swapTokensInput);
-
-            if (!string.IsNullOrEmpty(transactionId))
-            {
-                await _repository.InsertAsync(new SwapTransactionRecord
-                {
-                    TransactionId = transactionId,
-                    TransactionType = TransactionType.SwapLpTokens
-                });
-            }
         }
 
         /// <summary>
@@ -446,56 +423,6 @@ namespace Awaken.Scripts.Dividends.Services
             return tokenSymbol == _dividendsScriptOptions.TargetToken || swapMap.ContainsKey(tokenSymbol);
         }
 
-        private async Task<int> CheckTransactionStatusAsync()
-        {
-            using var uow = _unitOfWorkManager.Begin(requiresNew: true, isTransactional: true);
-            var txRecords = await _repository.GetListAsync(x => x.TransactionStatus == TransactionStatus.NotChecked);
-            var toUpdateRecords = new List<SwapTransactionRecord>();
-            foreach (var txRecord in txRecords)
-            {
-                try
-                {
-                    if (await HandlerSwapTransactionRecordAsync(txRecord))
-                    {
-                        toUpdateRecords.Add(txRecord);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    _logger.LogError(exception.Message);
-                    _logger.LogError(exception.StackTrace);
-                }
-            }
-
-            if (toUpdateRecords.Any())
-            {
-                await _repository.UpdateManyAsync(toUpdateRecords);
-            }
-
-            await uow.CompleteAsync();
-            return txRecords.Count;
-        }
-
-        private async Task<bool> HandlerSwapTransactionRecordAsync
-            (SwapTransactionRecord txRecord)
-        {
-            var tx = await _clientService.QueryTransactionResultByTransactionId(txRecord.TransactionId);
-            if (tx.Status == DividendsScriptConstants.Mined)
-            {
-                txRecord.TransactionStatus = TransactionStatus.Success;
-                return true;
-            }
-
-            if (tx.Status is DividendsScriptConstants.Pending or DividendsScriptConstants.PendingValidation)
-            {
-                return false;
-            }
-
-            _logger.LogError($"TransactionId: {tx.TransactionId} failed, message: {tx.Error}");
-            txRecord.TransactionStatus = TransactionStatus.Fail;
-            return true;
-        }
-
         private async Task NewRewardAsync(string targetToken)
         {
             var operatorKey = _dividendsScriptOptions.ReceiverPrivateKey;
@@ -518,18 +445,7 @@ namespace Awaken.Scripts.Dividends.Services
             }
 
             // new reward
-            var newRewardTxId = await _dividendService.NewRewardAsync(operatorKey, targetToken, balance);
-            if (newRewardTxId.IsNullOrEmpty())
-            {
-                _logger.LogError("Failed to send newReward transaction");
-                return;
-            }
-
-            await _repository.InsertAsync(new SwapTransactionRecord
-            {
-                TransactionId = newRewardTxId,
-                TransactionType = TransactionType.NewReward
-            });
+            await _dividendService.NewRewardAsync(operatorKey, targetToken, balance);
         }
 
         private async Task ApproveToSwapExchangeAsync(string operatorKey, AElf.Types.Address address,

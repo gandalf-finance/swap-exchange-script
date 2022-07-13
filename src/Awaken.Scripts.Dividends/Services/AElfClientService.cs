@@ -3,8 +3,10 @@ using System.Threading.Tasks;
 using AElf;
 using AElf.Client.Dto;
 using AElf.Client.Service;
+using Awaken.Scripts.Dividends.Handlers.Events;
 using Google.Protobuf;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.EventBus.Local;
 
 namespace Awaken.Scripts.Dividends.Services
 {
@@ -13,10 +15,12 @@ namespace Awaken.Scripts.Dividends.Services
     public class AElfClientService : IAElfClientService, ITransientDependency
     {
         private readonly AElfClient _client;
+        private readonly ILocalEventBus _localEventBus;
 
-        public AElfClientService(AElfClient client)
+        public AElfClientService(AElfClient client, ILocalEventBus localEventBus)
         {
             _client = client;
+            _localEventBus = localEventBus;
         }
 
         public async Task<T> QueryAsync<T>(string toAddress, string privateKey, string methodName, IMessage txParam)
@@ -47,6 +51,13 @@ namespace Awaken.Scripts.Dividends.Services
             var result = await _client.SendTransactionAsync(new SendTransactionInput
             {
                 RawTransaction = signedTransaction.ToByteArray().ToHex()
+            });
+            await _localEventBus.PublishAsync(new NewTransactionEvent
+            {
+                TransactionId = result.TransactionId,
+                ToAddress = toAddress,
+                MethodName = methodName,
+                Message = txParam.ToByteArray().ToHex()
             });
             return result.TransactionId;
         }
