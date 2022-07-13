@@ -17,10 +17,10 @@ namespace Awaken.Scripts.Dividends.Services
             _queryAndAssembleService = queryAndAssembleService;
         }
 
-        public async Task ExecuteAsync()
+        public async Task ExecuteAsync(bool isNewReward)
         {
             _logger.LogInformation($"Start main task time：{DateTime.UtcNow.ToUniversalTime()}");
-            await _queryAndAssembleService.HandleTokenInfoAndSwap();
+            await _queryAndAssembleService.HandleTokenInfoAndSwap(isNewReward);
             _logger.LogInformation($"End main task time:{DateTime.UtcNow.ToUniversalTime()}");
         }
     }

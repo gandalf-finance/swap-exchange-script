@@ -11,23 +11,27 @@ namespace Awaken.Scripts.Dividends.Worker
     public class SwapExchangeWorker : AsyncPeriodicBackgroundWorkerBase
     {
         private readonly IHandlerService _service;
-        private readonly DividendsScriptOptions _dividendsScriptOptions;
+        private readonly int _term;
+        private readonly bool _isNewReward;
 
         public SwapExchangeWorker(AbpAsyncTimer timer, IServiceScopeFactory serviceScopeFactory,
-            IHandlerService service, IOptionsSnapshot<DividendsScriptOptions> tokenOptions) : base(
+            IHandlerService service, IOptionsSnapshot<ScriptExecuteOptions> scriptOptions) : base(
             timer,
             serviceScopeFactory)
         {
-            Timer.Period = 1000;
+            var scriptExecuteOptions = scriptOptions.Value;
+            var firstExecute = scriptExecuteOptions.FirstExecute - scriptExecuteOptions.ExecuteOffset;
+            Timer.Period = firstExecute * 1000;
             _service = service;
-            _dividendsScriptOptions = tokenOptions.Value;
+            _term = scriptExecuteOptions.FixedTerm;
+            _isNewReward = scriptExecuteOptions.IsNewReward;
         }
 
         protected override async Task DoWorkAsync(PeriodicBackgroundWorkerContext workerContext)
         {
-            Timer.Period = 10000 * 20;
+            Timer.Period = _term;
             // Timer.Period = _dividendsScriptOptions.ExecutionPeriod * 24 * 60 * 60 * 1000;
-            await _service.ExecuteAsync();
+            await _service.ExecuteAsync(_isNewReward);
         }
     }
 }

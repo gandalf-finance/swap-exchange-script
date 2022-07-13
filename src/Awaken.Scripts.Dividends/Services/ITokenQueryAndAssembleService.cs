@@ -16,6 +16,6 @@ namespace Awaken.Scripts.Dividends.Services
 
         Task<StringList> QueryTokenPairsFromChain();
 
-        Task HandleTokenInfoAndSwap();
+        Task HandleTokenInfoAndSwap(bool isNewReward);
     }
 }

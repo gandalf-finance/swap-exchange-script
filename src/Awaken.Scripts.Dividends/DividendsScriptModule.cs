@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using AElf.Client.Service;
-using Awaken.Scripts.Dividends.Jobs;
 using Awaken.Scripts.Dividends.Options;
 using Awaken.Scripts.Dividends.Worker;
 using Microsoft.AspNetCore.DataProtection;
@@ -48,7 +47,8 @@ namespace Awaken.Scripts.Dividends
 
             context.Services.AddSingleton<AElfClient>(new AElfClient(configuration["AElfNode:Url"]));
 
-            Configure<DividendsScriptOptions>(options => { configuration.GetSection("TokenConfig").Bind(options); });
+            Configure<DividendsScriptOptions>(configuration.GetSection("TokenConfig"));
+            Configure<ScriptExecuteOptions>(configuration.GetSection("Script"));
             ConfigureBackgroundJob(configuration);
         }
 
@@ -76,7 +76,6 @@ namespace Awaken.Scripts.Dividends
             Configure<AbpBackgroundJobOptions>(options =>
             {
                 options.IsJobExecutionEnabled = true;
-                options.AddJob(typeof(TransactionStatusQueryJob));
             });
         }
     }

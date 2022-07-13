@@ -16,7 +16,6 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Math;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Uow;
 using Google.Protobuf;
 using GetBalanceInput = Awaken.Contracts.Token.GetBalanceInput;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
@@ -29,20 +28,17 @@ namespace Awaken.Scripts.Dividends.Services
         private readonly ILogger<TokenQueryAndAssembleService> _logger;
         private readonly DividendsScriptOptions _dividendsScriptOptions;
         private readonly IAElfClientService _clientService;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IAElfTokenService _elfTokenService;
         private readonly IDividendService _dividendService;
 
         public TokenQueryAndAssembleService(IOptionsSnapshot<DividendsScriptOptions> tokenOptions,
             IAElfClientService clientService,
             ILogger<TokenQueryAndAssembleService> logger,
-            IUnitOfWorkManager unitOfWorkManager,
             IAElfTokenService elfTokenService, IDividendService dividendService)
         {
             _dividendsScriptOptions = tokenOptions.Value;
             _clientService = clientService;
             _logger = logger;
-            _unitOfWorkManager = unitOfWorkManager;
             _elfTokenService = elfTokenService;
             _dividendService = dividendService;
         }
@@ -50,7 +46,7 @@ namespace Awaken.Scripts.Dividends.Services
         /// <summary>
         /// start
         /// </summary>
-        public async Task HandleTokenInfoAndSwap()
+        public async Task HandleTokenInfoAndSwap(bool isNewReward)
         {
             var pairList = await QueryTokenPairsFromChain();
             _logger.LogInformation($"pair list count {pairList.Value.Count}");
@@ -71,6 +67,11 @@ namespace Awaken.Scripts.Dividends.Services
                 items.RemoveRange(0, takeAmount);
             }
 
+            if (!isNewReward)
+            {
+                return;
+            }
+            
             await NewRewardAsync(_dividendsScriptOptions.TargetToken);
         }
 
@@ -439,6 +440,7 @@ namespace Awaken.Scripts.Dividends.Services
 
             var balance = await ApproveAllTokenBalanceAsync(operatorKey, address, dividendAddress,
                 dividendAddressBase58Str, targetToken);
+            balance -= balance / 5;
             if (balance <= 0)
             {
                 return;

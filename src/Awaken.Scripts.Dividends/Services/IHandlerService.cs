@@ -4,6 +4,6 @@ namespace Awaken.Scripts.Dividends.Services
 {
     public interface IHandlerService
     {
-        public Task ExecuteAsync();
+        public Task ExecuteAsync(bool isNewReward);
     }
 }
