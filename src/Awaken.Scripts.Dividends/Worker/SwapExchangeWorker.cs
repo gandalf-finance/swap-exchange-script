@@ -20,17 +20,16 @@ namespace Awaken.Scripts.Dividends.Worker
             serviceScopeFactory)
         {
             var scriptExecuteOptions = scriptOptions.Value;
-            var firstExecute = scriptExecuteOptions.FirstExecute - scriptExecuteOptions.ExecuteOffset;
+            var firstExecute = scriptExecuteOptions.FirstExecuteSeconds - scriptExecuteOptions.ExecuteOffsetSeconds;
             Timer.Period = firstExecute * 1000;
             _service = service;
-            _term = scriptExecuteOptions.FixedTerm;
+            _term = scriptExecuteOptions.FixedTermSeconds;
             _isNewReward = scriptExecuteOptions.IsNewReward;
         }
 
         protected override async Task DoWorkAsync(PeriodicBackgroundWorkerContext workerContext)
         {
-            Timer.Period = _term;
-            // Timer.Period = _dividendsScriptOptions.ExecutionPeriod * 24 * 60 * 60 * 1000;
+            Timer.Period = _term * 1000;
             await _service.ExecuteAsync(_isNewReward);
         }
     }
