@@ -9,6 +9,7 @@ using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
 using Awaken.Scripts.Dividends.Entities;
 using Awaken.Scripts.Dividends.Extensions;
+using Awaken.Scripts.Dividends.Handlers.Events;
 using Awaken.Scripts.Dividends.Helpers;
 using Awaken.Scripts.Dividends.Options;
 using Google.Protobuf.WellKnownTypes;
@@ -18,6 +19,8 @@ using Newtonsoft.Json;
 using Org.BouncyCastle.Math;
 using Volo.Abp.DependencyInjection;
 using Google.Protobuf;
+using Volo.Abp.EventBus.Local;
+using Volo.Abp.Guids;
 using GetBalanceInput = Awaken.Contracts.Token.GetBalanceInput;
 using Token = Awaken.Contracts.SwapExchangeContract.Token;
 using TokenList = Awaken.Contracts.SwapExchangeContract.TokenList;
@@ -30,18 +33,21 @@ namespace Awaken.Scripts.Dividends.Services
         private readonly DividendsScriptOptions _dividendsScriptOptions;
         private readonly IAElfClientService _clientService;
         private readonly IAElfTokenService _elfTokenService;
-        private readonly IDividendService _dividendService;
+        private readonly ILocalEventBus _localEventBus;
+        private readonly IGuidGenerator _generator;
 
         public TokenQueryAndAssembleService(IOptionsSnapshot<DividendsScriptOptions> tokenOptions,
             IAElfClientService clientService,
             ILogger<TokenQueryAndAssembleService> logger,
-            IAElfTokenService elfTokenService, IDividendService dividendService)
+            IAElfTokenService elfTokenService, ILocalEventBus localEventBus,
+            IGuidGenerator generator)
         {
             _dividendsScriptOptions = tokenOptions.Value;
             _clientService = clientService;
             _logger = logger;
             _elfTokenService = elfTokenService;
-            _dividendService = dividendService;
+            _localEventBus = localEventBus;
+            _generator = generator;
         }
 
         /// <summary>
@@ -60,22 +66,18 @@ namespace Awaken.Scripts.Dividends.Services
             var items = queryTokenInfo.Items;
             var tokenSwapMap = DisassemblePairsListIntoMap(pairList);
             CheckTokenItems(items, tokenSwapMap);
+            var newId = _generator.Create();
             while (items.Count > 0)
             {
                 var takeAmount = Math.Min(_dividendsScriptOptions.BatchAmount, items.Count);
                 var handleItems = items.Take(takeAmount).ToList();
-                await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems);
+                await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems, isNewReward, newId);
                 items.RemoveRange(0, takeAmount);
-            }
-
-            if (isNewReward)
-            {
-                await NewRewardAsync(_dividendsScriptOptions.TargetToken);
             }
         }
 
-        public async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
-            List<Item> handleItems)
+        private async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
+            List<Item> handleItems, bool isNewReward, Guid newId)
         {
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
@@ -110,9 +112,20 @@ namespace Awaken.Scripts.Dividends.Services
                 PathMap = { pathMap },
                 SwapTokenList = tokenList
             };
-            await _clientService.SendTransactionAsync(
+            var txId = await _clientService.SendTransactionAsync(
                 _dividendsScriptOptions.SwapToolContractAddress,
                 _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.SwapLpTokens, swapTokensInput);
+
+            if (!isNewReward)
+            {
+                return;
+            }
+
+            await _localEventBus.PublishAsync(new ToSwapTokenEvent
+            {
+                Id = newId,
+                TransactionId = txId
+            });
         }
 
         /// <summary>
@@ -177,7 +190,7 @@ namespace Awaken.Scripts.Dividends.Services
                 _logger.LogInformation($"Lp Token: {lpTokenSymbol} Balance is zero");
                 return;
             }
-            
+
             foreach (var token in tokens)
             {
                 if (token == _dividendsScriptOptions.TargetToken)
@@ -227,7 +240,7 @@ namespace Awaken.Scripts.Dividends.Services
                     : amountsExcept.Last();
 
                 await BudgetTokenExpectPriceAsync(token, pathMap, amountIn);
-                await ApproveToSwapExchangeAsync(_dividendsScriptOptions.OperatorPrivateKey, address, spender, token);
+                await ApproveToSwapExchangeAsync(_dividendsScriptOptions.OperatorPrivateKey, address, token);
             }
 
             // Add token amount 
@@ -422,44 +435,15 @@ namespace Awaken.Scripts.Dividends.Services
             return tokenSymbol == _dividendsScriptOptions.TargetToken || swapMap.ContainsKey(tokenSymbol);
         }
 
-        private async Task NewRewardAsync(string targetToken)
-        {
-            var operatorKey = _dividendsScriptOptions.ReceiverPrivateKey;
-            if (operatorKey.IsNullOrEmpty())
-            {
-                throw new Exception("Failed to send NewReward transactions because of lacking of Receiver private key");
-            }
-
-            var userAddress =
-                (await _clientService.GetAddressFromPrivateKey(operatorKey)).ToAddress();
-            var address = GetAddress(userAddress);
-            var dividendAddressBase58Str = _dividendsScriptOptions.DividendContractAddresses;
-            var dividendAddress = GetAddress(dividendAddressBase58Str.ToAddress());
-
-            var balance = await ApproveAllTokenBalanceAsync(operatorKey, address, dividendAddress,
-                dividendAddressBase58Str, targetToken);
-            balance -= balance / 5;
-            if (balance <= 0)
-            {
-                return;
-            }
-
-            // new reward
-            await _dividendService.NewRewardAsync(operatorKey, targetToken, balance);
-        }
-
-        private async Task ApproveToSwapExchangeAsync(string operatorKey, AElf.Types.Address address,
-            AElf.Types.Address spender, string token)
+        private async Task ApproveToSwapExchangeAsync(string operatorKey, AElf.Types.Address address, string token)
         {
             var owner = GetAddress(address);
             var swapExchangeBase58Address = _dividendsScriptOptions.SwapToolContractAddress;
-            var swapExchangeAddress = GetAddress(spender);
-            await ApproveAllTokenBalanceAsync(operatorKey, owner, swapExchangeAddress, swapExchangeBase58Address,
+            await ApproveAllTokenBalanceAsync(operatorKey, owner, swapExchangeBase58Address,
                 token);
         }
 
-        private async Task<long> ApproveAllTokenBalanceAsync(string operatorKey, AElf.Client.Proto.Address owner,
-            AElf.Client.Proto.Address spender, string spenderBase58, string targetToken)
+        private async Task<long> ApproveAllTokenBalanceAsync(string operatorKey, AElf.Client.Proto.Address owner, string spenderBase58, string targetToken)
         {
             var balance = await _elfTokenService.GetBalanceAsync(operatorKey, owner, targetToken);
             _logger.LogInformation($"Token: {targetToken} Balance is {balance}");
@@ -482,7 +466,7 @@ namespace Awaken.Scripts.Dividends.Services
             var addressByteString = address.ToByteString();
             return AElf.Client.Proto.Address.Parser.ParseFrom(addressByteString);
         }
-        
+
         private async Task<(Dictionary<string, Path>, TokenList)> FixPathMapAsync(Dictionary<string, Path> pathMap,
             TokenList tokenList)
         {
@@ -509,7 +493,7 @@ namespace Awaken.Scripts.Dividends.Services
                     fixedPathMap.Add(token.TokenSymbol, path);
                     fixedTokenList.TokensInfo.Add(token);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     var pathInfo = new StringBuilder();
                     path.Value.ForAll(p => pathInfo.Append(p + "=>"));
@@ -518,7 +502,7 @@ namespace Awaken.Scripts.Dividends.Services
                     _logger.LogWarning(exception.Message);
                 }
             }
-            
+
             return (fixedPathMap, fixedTokenList);
         }
     }

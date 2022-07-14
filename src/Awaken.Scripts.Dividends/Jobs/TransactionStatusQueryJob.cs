@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Awaken.Scripts.Dividends.Entities;
 using Awaken.Scripts.Dividends.Enum;
+using Awaken.Scripts.Dividends.Handlers.Events;
 using Awaken.Scripts.Dividends.Jobs.Descriptions;
 using Awaken.Scripts.Dividends.Options;
 using Awaken.Scripts.Dividends.Services;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.EventBus.Local;
 using Volo.Abp.Uow;
 
 namespace Awaken.Scripts.Dividends.Jobs;
@@ -22,19 +24,21 @@ public class TransactionStatusQueryJob : IAsyncBackgroundJob<TransactionStatusQu
     private readonly IAElfClientService _clientService;
     private readonly IRepository<SwapTransactionRecord, Guid> _repository;
     private readonly IUnitOfWorkManager _unitOfWorkManager;
+    private readonly ILocalEventBus _localEventBus;
     private readonly int _checkInternal;
     private readonly ILogger _logger;
 
     public TransactionStatusQueryJob(IBackgroundJobManager backgroundJobManager,
         IRepository<SwapTransactionRecord, Guid> repository, ILogger<TransactionStatusQueryJob> logger,
         IUnitOfWorkManager unitOfWorkManager, IAElfClientService clientService,
-        IOptionsSnapshot<DividendsScriptOptions> options)
+        IOptionsSnapshot<DividendsScriptOptions> options, ILocalEventBus localEventBus)
     {
         _backgroundJobManager = backgroundJobManager;
         _repository = repository;
         _logger = logger;
         _unitOfWorkManager = unitOfWorkManager;
         _clientService = clientService;
+        _localEventBus = localEventBus;
         _checkInternal = options.Value.TransactionCheckTerm;
     }
 
@@ -84,6 +88,11 @@ public class TransactionStatusQueryJob : IAsyncBackgroundJob<TransactionStatusQu
         if (tx.Status == DividendsScriptConstants.Mined)
         {
             txRecord.TransactionStatus = TransactionStatus.Success;
+            if (txRecord.MethodName == ContractMethodNameConstants.SwapLpTokens)
+            {
+                await _localEventBus.PublishAsync(new ToNewRewardEvent { TransactionId = txRecord.TransactionId });
+            }
+
             return true;
         }
 
