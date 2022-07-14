@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper.Internal;
 using Awaken.Contracts.Swap;
 using Awaken.Contracts.SwapExchangeContract;
 using Awaken.Contracts.Token;
@@ -103,12 +104,12 @@ namespace Awaken.Scripts.Dividends.Services
                 return;
             }
 
+            (pathMap, tokenList) = await FixPathMapAsync(pathMap, tokenList);
             var swapTokensInput = new SwapTokensInput
             {
                 PathMap = { pathMap },
                 SwapTokenList = tokenList
             };
-
             await _clientService.SendTransactionAsync(
                 _dividendsScriptOptions.SwapToolContractAddress,
                 _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.SwapLpTokens, swapTokensInput);
@@ -480,6 +481,44 @@ namespace Awaken.Scripts.Dividends.Services
         {
             var addressByteString = address.ToByteString();
             return AElf.Client.Proto.Address.Parser.ParseFrom(addressByteString);
+        }
+        
+        private async Task<(Dictionary<string, Path>, TokenList)> FixPathMapAsync(Dictionary<string, Path> pathMap,
+            TokenList tokenList)
+        {
+            var fixedPathMap = new Dictionary<string, Path>();
+            var fixedTokenList = new TokenList();
+            foreach (var token in tokenList.TokensInfo)
+            {
+                if (!pathMap.TryGetValue(token.TokenSymbol, out var path))
+                {
+                    continue;
+                }
+
+                try
+                {
+                    await _clientService.QueryAsync<GetReservesOutput>(
+                        _dividendsScriptOptions.SwapContractAddress,
+                        _dividendsScriptOptions.OperatorPrivateKey,
+                        ContractMethodNameConstants.GetReserves,
+                        new GetReservesInput
+                        {
+                            SymbolPair = { path.Value }
+                        });
+                    fixedPathMap.Add(token.TokenSymbol, path);
+                    fixedTokenList.TokensInfo.Add(token);
+                }
+                catch(Exception exception)
+                {
+                    var pathInfo = new StringBuilder();
+                    path.Value.ForAll(p => pathInfo.Append(p + "=>"));
+                    pathInfo.Remove(pathInfo.Length - 2, 2);
+                    _logger.LogWarning($"Failed swap token: {token.TokenSymbol}, path: {pathInfo}");
+                    _logger.LogWarning(exception.Message);
+                }
+            }
+            
+            return (fixedPathMap, fixedTokenList);
         }
     }
 }
