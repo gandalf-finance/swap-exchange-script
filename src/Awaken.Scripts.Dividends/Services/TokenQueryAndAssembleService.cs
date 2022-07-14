@@ -152,19 +152,16 @@ namespace Awaken.Scripts.Dividends.Services
         {
             // Get FeeTo lp token amount.
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
-            foreach (var token in tokens)
-            {
-                if (token == _dividendsScriptOptions.TargetToken)
-                {
-                    continue;
-                }
-
-                if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) != null) continue;
-                _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
-                return;
-            }
-
             var pair = LpTokenHelper.ExtractTokenPairFromSymbol(lpTokenSymbol);
+            // Get Reserves.
+            var getReservesOutput = await _clientService.QueryAsync<GetReservesOutput>(
+                _dividendsScriptOptions.SwapContractAddress,
+                _dividendsScriptOptions.OperatorPrivateKey,
+                ContractMethodNameConstants.GetReserves,
+                new GetReservesInput
+                {
+                    SymbolPair = { pair }
+                });
             var address = (await _clientService.GetAddressFromPrivateKey(_dividendsScriptOptions.OperatorPrivateKey))
                 .ToAddress();
             var balance = await _clientService.QueryAsync<Balance>(_dividendsScriptOptions.LpTokenContractAddresses,
@@ -177,6 +174,18 @@ namespace Awaken.Scripts.Dividends.Services
             if (balance.Amount <= 0)
             {
                 _logger.LogInformation($"Lp Token: {lpTokenSymbol} Balance is zero");
+                return;
+            }
+            
+            foreach (var token in tokens)
+            {
+                if (token == _dividendsScriptOptions.TargetToken)
+                {
+                    continue;
+                }
+
+                if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) != null) continue;
+                _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
                 return;
             }
 
@@ -195,16 +204,6 @@ namespace Awaken.Scripts.Dividends.Services
                 _logger.LogInformation(
                     $"Approve token: {lpTokenSymbol}, amount: {toApproveAmount} to {spender}\n Transaction Id: {txId}");
             }
-
-            // Get Reserves.
-            var getReservesOutput = await _clientService.QueryAsync<GetReservesOutput>(
-                _dividendsScriptOptions.SwapContractAddress,
-                _dividendsScriptOptions.OperatorPrivateKey,
-                ContractMethodNameConstants.GetReserves,
-                new GetReservesInput
-                {
-                    SymbolPair = { pair }
-                });
 
             // Get lpToken total supply.
             var getTotalSupplyOutput = await _clientService.QueryAsync<GetTotalSupplyOutput>(
