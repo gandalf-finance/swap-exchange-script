@@ -500,10 +500,11 @@ namespace Awaken.Scripts.Dividends.Services
                     await _clientService.QueryAsync<GetReservesOutput>(
                         _dividendsScriptOptions.SwapContractAddress,
                         _dividendsScriptOptions.OperatorPrivateKey,
-                        ContractMethodNameConstants.GetReserves,
-                        new GetReservesInput
+                        ContractMethodNameConstants.GetAmountsOut,
+                        new GetAmountsOutInput
                         {
-                            SymbolPair = { path.Value }
+                            Path = { path.Value },
+                            AmountIn = token.Amount
                         });
                     fixedPathMap.Add(token.TokenSymbol, path);
                     fixedTokenList.TokensInfo.Add(token);
