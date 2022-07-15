@@ -390,7 +390,6 @@ namespace Awaken.Scripts.Dividends.Services
         private async Task<QueryTokenInfo> ConvertTokensAsync()
         {
             var queryStr = await QueryTokenListAsync();
-            _logger.LogInformation($"query token: {queryStr}");
             return JsonConvert.DeserializeObject<QueryTokenInfo>(queryStr);
         }
 
@@ -398,6 +397,9 @@ namespace Awaken.Scripts.Dividends.Services
         {
             const int maxResultCount = 999;
             const int skipCount = 0;
+            var url = string.Format(_dividendsScriptOptions.QueryTokenUrl, maxResultCount, skipCount,
+                _dividendsScriptOptions.FeeRate);
+            _logger.LogInformation($"Query url: {url}");
             try
             {
                 string response;
@@ -405,11 +407,7 @@ namespace Awaken.Scripts.Dividends.Services
                 do
                 {
                     _logger.LogInformation("Start querying token");
-                    // response = HttpClientHelper.GetResponse(string.Format(_dividendsScriptOptions.QueryTokenUrl,maxResultCount,skipCount,_dividendsScriptOptions.FeeRate), out statusCode);
-                    response = HttpClientHelper.GetResponse(
-                        string.Format(_dividendsScriptOptions.QueryTokenUrl, maxResultCount, skipCount,
-                            _dividendsScriptOptions.FeeRate),
-                        out statusCode);
+                    response = HttpClientHelper.GetResponse(url, out statusCode);
                 } while (!statusCode.Equals("OK"));
 
                 return response;
