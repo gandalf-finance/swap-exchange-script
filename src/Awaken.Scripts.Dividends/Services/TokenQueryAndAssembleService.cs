@@ -93,14 +93,14 @@ namespace Awaken.Scripts.Dividends.Services
                     if (
                         !await HandleSwapPathAndTokenInfoAsync(tokens, tokenCanSwapMap, pathMap, tokenList))
                     {
-                        FixPathMap(tokenList, tokens);
+                        FixTokenList(tokenList, tokens);
                     }
                 }
                 catch (Exception exception)
                 {
                     _logger.LogError(exception.Message);
                     _logger.LogError(exception.StackTrace);
-                    FixPathMap(tokenList, tokens);
+                    FixTokenList(tokenList, tokens);
                 }
             }
 
@@ -484,7 +484,7 @@ namespace Awaken.Scripts.Dividends.Services
             return AElf.Client.Proto.Address.Parser.ParseFrom(addressByteString);
         }
 
-        private void FixPathMap(
+        private void FixTokenList(
             TokenList tokenList, string[] tokens)
         {
             var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
