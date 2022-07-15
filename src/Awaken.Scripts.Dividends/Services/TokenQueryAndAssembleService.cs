@@ -66,18 +66,18 @@ namespace Awaken.Scripts.Dividends.Services
             var items = queryTokenInfo.Items;
             var tokenSwapMap = DisassemblePairsListIntoMap(pairList);
             CheckTokenItems(items, tokenSwapMap);
-            var newId = _generator.Create();
+            Guid? newId = isNewReward? _generator.Create() : null;
             while (items.Count > 0)
             {
                 var takeAmount = Math.Min(_dividendsScriptOptions.BatchAmount, items.Count);
                 var handleItems = items.Take(takeAmount).ToList();
-                await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems, isNewReward, newId);
+                await QueryTokenAndAssembleSwapInfosAsync(tokenSwapMap, handleItems, newId);
                 items.RemoveRange(0, takeAmount);
             }
         }
 
         private async Task QueryTokenAndAssembleSwapInfosAsync(Dictionary<string, List<string>> tokenCanSwapMap,
-            List<Item> handleItems, bool isNewReward, Guid newId)
+            List<Item> handleItems, Guid? newId)
         {
             // Swap path map. token-->path
             var pathMap = new Dictionary<string, Path>();
@@ -119,14 +119,14 @@ namespace Awaken.Scripts.Dividends.Services
                 _dividendsScriptOptions.SwapToolContractAddress,
                 _dividendsScriptOptions.OperatorPrivateKey, ContractMethodNameConstants.SwapLpTokens, swapTokensInput);
 
-            if (!isNewReward)
+            if (!newId.HasValue)
             {
                 return;
             }
 
             await _localEventBus.PublishAsync(new ToSwapTokenEvent
             {
-                Id = newId,
+                Id = newId.Value,
                 TransactionId = txId
             });
         }
