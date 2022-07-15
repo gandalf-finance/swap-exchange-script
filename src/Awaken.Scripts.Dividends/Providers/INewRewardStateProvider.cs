@@ -15,7 +15,6 @@ public class NewRewardStateProvider : INewRewardStateProvider, ISingletonDepende
     private Guid _currentId;
     private readonly HashSet<string> _txIds;
     private bool _isNewReward;
-    private readonly object _locker = new object();
 
     public NewRewardStateProvider()
     {
@@ -36,16 +35,13 @@ public class NewRewardStateProvider : INewRewardStateProvider, ISingletonDepende
 
     public bool TryToSetNewReward(string txId)
     {
-        lock (_locker)
-        {
-            if (_isNewReward)
-                return false;
+        if (_isNewReward)
+            return false;
 
-            if (!_txIds.Contains(txId))
-                return false;
+        if (!_txIds.Contains(txId))
+            return false;
 
-            _isNewReward = true;
-            return true;
-        }
+        _isNewReward = true;
+        return true;
     }
 }
