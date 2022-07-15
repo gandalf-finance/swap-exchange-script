@@ -390,6 +390,7 @@ namespace Awaken.Scripts.Dividends.Services
         private async Task<QueryTokenInfo> ConvertTokensAsync()
         {
             var queryStr = await QueryTokenListAsync();
+            _logger.LogInformation($"query token: {queryStr}");
             return JsonConvert.DeserializeObject<QueryTokenInfo>(queryStr);
         }
 

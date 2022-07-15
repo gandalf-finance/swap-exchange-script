@@ -42,7 +42,7 @@ namespace Awaken.Scripts.Dividends.Worker
             datetime = datetime.IsNullOrEmpty() ? currentTime.ToString(TimeFormatter) : datetime;
             var timespan = DateTime.ParseExact(datetime, TimeFormatter, null) - currentTime;
             var executionTime = (int)timespan.TotalSeconds + offset;
-            return executionTime > 0 ? executionTime : 10;
+            return executionTime > 0 ? executionTime : 1;
         }
     }
 }
