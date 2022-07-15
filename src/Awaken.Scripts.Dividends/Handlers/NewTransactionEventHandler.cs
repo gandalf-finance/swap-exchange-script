@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Awaken.Scripts.Dividends.Entities;
 using Awaken.Scripts.Dividends.Handlers.Events;
+using Awaken.Scripts.Dividends.Jobs.Descriptions;
 using Awaken.Scripts.Dividends.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -49,6 +50,9 @@ public class NewTransactionEventHandler : ILocalEventHandler<NewTransactionEvent
         };
 
         await _repository.InsertAsync(record, true);
-        await _backgroundJobManager.EnqueueAsync(record, delay: TimeSpan.FromSeconds(_checkInternal));
+        await _backgroundJobManager.EnqueueAsync(new TransactionStatusQueryJobDescription
+        {
+            TransactionId = record.TransactionId
+        }, delay: TimeSpan.FromSeconds(_checkInternal));
     }
 }

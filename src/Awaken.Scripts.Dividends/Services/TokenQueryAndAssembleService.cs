@@ -83,21 +83,25 @@ namespace Awaken.Scripts.Dividends.Services
             var pathMap = new Dictionary<string, Path>();
             var tokenList = new TokenList();
 
-            foreach (var item in handleItems)
+            foreach (var tokens in handleItems.Select(item => new []
+                     {
+                         item.Token0.Symbol, item.Token1.Symbol
+                     }))
             {
                 try
                 {
-                    await HandleSwapPathAndTokenInfoAsync(new string[]
+                    if (
+                        !await HandleSwapPathAndTokenInfoAsync(tokens, tokenCanSwapMap, pathMap, tokenList))
                     {
-                        item.Token0.Symbol, item.Token1.Symbol
-                    }, tokenCanSwapMap, pathMap, tokenList);
+                        FixPathMap(pathMap, tokenList, tokens);
+                    }
                 }
                 catch (Exception exception)
                 {
                     _logger.LogError(exception.Message);
                     _logger.LogError(exception.StackTrace);
+                    FixPathMap(pathMap, tokenList, tokens);
                 }
-                // Handle path ，expect price,slip point percentage
             }
 
             if (tokenList.TokensInfo.Count == 0)
@@ -105,8 +109,7 @@ namespace Awaken.Scripts.Dividends.Services
                 _logger.LogInformation("0 token in QueryTokenAndAssembleSwapInfosAsync");
                 return;
             }
-
-            (pathMap, tokenList) = await FixPathMapAsync(pathMap, tokenList);
+            
             var swapTokensInput = new SwapTokensInput
             {
                 PathMap = { pathMap },
@@ -160,7 +163,7 @@ namespace Awaken.Scripts.Dividends.Services
             return map;
         }
 
-        private async Task HandleSwapPathAndTokenInfoAsync(string[] tokens,
+        private async Task<bool> HandleSwapPathAndTokenInfoAsync(string[] tokens,
             Dictionary<string, List<string>> canSwapMap,
             Dictionary<string, Path> pathMap, TokenList tokenList)
         {
@@ -188,7 +191,7 @@ namespace Awaken.Scripts.Dividends.Services
             if (balance.Amount <= 0)
             {
                 _logger.LogInformation($"Lp Token: {lpTokenSymbol} Balance is zero");
-                return;
+                return false;
             }
 
             foreach (var token in tokens)
@@ -200,7 +203,7 @@ namespace Awaken.Scripts.Dividends.Services
 
                 if (await PreferredSwapPathAsync(token, canSwapMap, pathMap) != null) continue;
                 _logger.LogInformation($"Skip LP token:{lpTokenSymbol} because it can't find path for {token}");
-                return;
+                return false;
             }
 
             // approve
@@ -239,7 +242,21 @@ namespace Awaken.Scripts.Dividends.Services
                     ? amountsExcept.First()
                     : amountsExcept.Last();
 
-                await BudgetTokenExpectPriceAsync(token, pathMap, amountIn);
+                try
+                {
+                    await BudgetTokenExpectPriceAsync(token, pathMap, amountIn);
+                }
+                catch (Exception exception)
+                {
+                    var pathInfo = new StringBuilder();
+                    var path = pathMap[token];
+                    path.Value.ForAll(p => pathInfo.Append(p + "=>"));
+                    pathInfo.Remove(pathInfo.Length - 2, 2);
+                    _logger.LogWarning($"Failed swap token: {token}, path: {pathInfo}");
+                    _logger.LogWarning(exception.Message);
+                    return false;
+                }
+
                 await ApproveToSwapExchangeAsync(_dividendsScriptOptions.OperatorPrivateKey, address, token);
             }
 
@@ -249,6 +266,7 @@ namespace Awaken.Scripts.Dividends.Services
                 Amount = balance.Amount,
                 TokenSymbol = lpTokenSymbol
             });
+            return true;
         }
 
         private List<long> ComputeAmountFromRemovedLiquidity(long liquidityRemoveAmount,
@@ -467,43 +485,12 @@ namespace Awaken.Scripts.Dividends.Services
             return AElf.Client.Proto.Address.Parser.ParseFrom(addressByteString);
         }
 
-        private async Task<(Dictionary<string, Path>, TokenList)> FixPathMapAsync(Dictionary<string, Path> pathMap,
-            TokenList tokenList)
+        private void FixPathMap(Dictionary<string, Path> pathMap,
+            TokenList tokenList, string[] tokens)
         {
-            var fixedPathMap = new Dictionary<string, Path>();
-            var fixedTokenList = new TokenList();
-            foreach (var token in tokenList.TokensInfo)
-            {
-                if (!pathMap.TryGetValue(token.TokenSymbol, out var path))
-                {
-                    continue;
-                }
-
-                try
-                {
-                    await _clientService.QueryAsync<GetReservesOutput>(
-                        _dividendsScriptOptions.SwapContractAddress,
-                        _dividendsScriptOptions.OperatorPrivateKey,
-                        ContractMethodNameConstants.GetAmountsOut,
-                        new GetAmountsOutInput
-                        {
-                            Path = { path.Value },
-                            AmountIn = token.Amount
-                        });
-                    fixedPathMap.Add(token.TokenSymbol, path);
-                    fixedTokenList.TokensInfo.Add(token);
-                }
-                catch (Exception exception)
-                {
-                    var pathInfo = new StringBuilder();
-                    path.Value.ForAll(p => pathInfo.Append(p + "=>"));
-                    pathInfo.Remove(pathInfo.Length - 2, 2);
-                    _logger.LogWarning($"Failed swap token: {token.TokenSymbol}, path: {pathInfo}");
-                    _logger.LogWarning(exception.Message);
-                }
-            }
-
-            return (fixedPathMap, fixedTokenList);
+            var lpTokenSymbol = LpTokenHelper.GetTokenPairSymbol(tokens.First(), tokens.Last());
+            tokenList.TokensInfo.RemoveAll(x => x.TokenSymbol == lpTokenSymbol);
+            pathMap.RemoveAll(x => tokens.Contains(x.Key));
         }
     }
 }
